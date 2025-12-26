@@ -95,8 +95,8 @@ const App = () => {
   const album = {
     title: "Mala by som niečo robiť",
     label: "Slnko Records",
-    year: "2024",
-    desc: "'...je plnotučným songwriterským svědectvím čerstvé matky, která dává průchod svojí únavě, rozčarování, střetům s realitou, nasranosti, kletbám, naději, únikům', -Pavel Klusák",
+    year: "2025",
+    desc: "'...je plnotučným songwriterským svědectvím čerstvé matky, která dává průchod svojí únavě, rozčarování, střetům s realitou, nasranosti, kletbám, naději, únikům.' -Pavel Klusák",
     color: "bg-orange-300",
     link: "https://www.slnkorecords.sk/terez-frecerova/mala-by-som-nieco-robit",
     tidalLink: "https://tidal.com/album/456287612/u"
@@ -434,7 +434,7 @@ const App = () => {
           <div className="w-full overflow-x-auto no-scrollbar pb-6">
             <div className="flex gap-4 min-w-full w-max">
               {past.map((gig, idx) => (
-                <div key={idx} className="group relative cursor-pointer min-w-[280px] md:min-w-[320px] shrink-0" onClick={() => setSelectedImage(gig)}>
+                <a key={idx} href={gig.link} target="_blank" rel="noreferrer" className="group relative cursor-pointer min-w-[280px] md:min-w-[320px] shrink-0 block">
                   {/* Clean Image Container */}
                   <div className={`w-full aspect-square ${gig.imgColor} border-2 border-black flex items-center justify-center overflow-hidden relative transition-all group-hover:neo-shadow`}>
                      {/* Image Placeholder - User can replace bg color with <img src={gig.photoUrl} /> */}
@@ -455,10 +455,10 @@ const App = () => {
                      
                      {/* Gallery Icon Indicator */}
                      <div className="absolute top-2 right-2 z-20 opacity-0 group-hover:opacity-100 transition-opacity bg-white border border-black p-1">
-                       <Camera size={14} />
+                       <ArrowUpRight size={14} />
                      </div>
                   </div>
-                </div>
+                </a>
               ))}
             </div>
             {/* Scroll hint if needed */}
@@ -490,7 +490,7 @@ const App = () => {
                </h2>
                <div className="w-12 h-1 bg-black mb-6"></div>
                <p className="font-serif italic text-xl leading-relaxed text-gray-700 mb-8 max-w-md">
-                 "{projects[2].desc}"
+                 {projects[2].desc}
                </p>
                <a href={projects[2].link} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 font-mono text-sm font-bold border-b-2 border-black pb-1 hover:text-red-600 hover:border-red-600 transition-colors">
                  To chcem <ArrowUpRight size={16} />

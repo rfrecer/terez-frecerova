@@ -10,21 +10,21 @@ const App = () => {
   // Replace the empty strings "" with your image paths (e.g., "/terez-frecerova/images/my-photo.jpg")
   const projectImages = {
     hero: {
-      titleImage: "/hero.jpg"  // Main title image replacing the bio text (Aspect ratio 3:2)
+      titleImage: "hero.jpg"  // Main title image replacing the bio text (Aspect ratio 3:2)
     },
     malaBySom: {
-      background: "/album_background.jpg", // Background for the left side of the Music section
-      cover: "/album.jpg"       // Album cover image inside the tile
+      background: "album_background.jpg", // Background for the left side of the Music section
+      cover: "album.jpg"       // Album cover image inside the tile
     },
     rapiky: {
-      background: "/rapiky_background.JPG", // Background for the Rapíky section
-      cover: "/rapiky.JPG"       // Book cover image inside the tile
+      background: "rapiky_background.JPG", // Background for the Rapíky section
+      cover: "rapiky.JPG"       // Book cover image inside the tile
     },
     lsdolina: {
-      background: "/lsdolina.jpeg"  // Background image for the podcast section
+      background: "lsdolina.jpeg"  // Background image for the podcast section
     },
     smiesna: {
-      background: "/smiesnaosobnadrama.jpg"  // Background image for the diagonal green section
+      background: "smiesnaosobnadrama.jpg"  // Background image for the diagonal green section
     }
   };
 

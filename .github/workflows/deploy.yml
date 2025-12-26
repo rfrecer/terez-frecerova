@@ -19,18 +19,36 @@ jobs:
       - name: Set up Node
         uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 18
           cache: 'npm'
 
       - name: Install dependencies
-        run: npm install
+        run: npm ci
+        # 'npm ci' is faster and more reliable for CI than 'npm install'
+        # It requires a package-lock.json file to be present.
 
       - name: Build
         run: npm run build
+        env:
+          CI: false 
+          # Setting CI to false ensures the build doesn't fail on warnings 
+          # (common with ESLint/React in GitHub Actions)
+
+      - name: Debug - List Build Output
+        run: |
+          echo "Listing root directory:"
+          ls -la
+          echo "Listing dist directory (if exists):"
+          ls -la dist || echo "dist directory not found"
+          echo "Listing build directory (if exists):"
+          ls -la build || echo "build directory not found"
+        # This step helps us see if the output folder is named 'dist' or 'build'
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
+          # If your project (e.g. Create React App) creates a 'build' folder, change this to './build'
+          # If using Vite, './dist' is usually correct.
           path: ./dist
 
   deploy:

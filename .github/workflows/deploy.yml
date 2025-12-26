@@ -24,9 +24,31 @@ jobs:
           cache: 'npm'
 
       - name: Install dependencies
-        # Changed from 'npm ci' to 'npm install' to be more forgiving
-        # of lockfile mismatches during manual edits.
+        # Uses npm install to be more forgiving
         run: npm install
+
+      - name: Ensure Tailwind Plugin (Safety Net)
+        # Installs the plugin explicitly in case it was missed in package.json
+        run: npm install -D @tailwindcss/vite
+
+      - name: Repair Vite Config
+        # This step overwrites vite.config.js with the KNOWN GOOD code.
+        # It fixes any copy-paste errors, typos, or saving issues from the local file.
+        run: |
+          echo "Overwriting vite.config.js with correct configuration..."
+          cat > vite.config.js <<EOF
+          import { defineConfig } from 'vite'
+          import react from '@vitejs/plugin-react'
+          import tailwindcss from '@tailwindcss/vite'
+
+          export default defineConfig({
+            plugins: [
+              react(),
+              tailwindcss(),
+            ],
+            base: './',
+          })
+          EOF
 
       - name: Build
         run: npm run build

@@ -24,32 +24,37 @@ jobs:
 
       - name: Install dependencies
         run: npm ci
-        # 'npm ci' is faster and more reliable for CI than 'npm install'
-        # It requires a package-lock.json file to be present.
 
       - name: Build
         run: npm run build
         env:
           CI: false 
-          # Setting CI to false ensures the build doesn't fail on warnings 
-          # (common with ESLint/React in GitHub Actions)
 
-      - name: Debug - List Build Output
+      - name: Debug - List All Files
         run: |
-          echo "Listing root directory:"
-          ls -la
-          echo "Listing build directory (if exists):"
-          ls -la build || echo "build directory not found"
-          echo "Listing dist directory (if exists):"
-          ls -la dist || echo "dist directory not found"
-        # This step helps us see if the output folder is named 'dist' or 'build'
+          echo "Listing root directory content:"
+          ls -F
+        # This helps confirm what folders were actually created
+
+      - name: Detect Build Folder
+        id: build_folder
+        run: |
+          if [ -d "dist" ]; then
+            echo "BUILD_PATH=./dist" >> $GITHUB_ENV
+            echo "Detected 'dist' folder."
+          elif [ -d "build" ]; then
+            echo "BUILD_PATH=./build" >> $GITHUB_ENV
+            echo "Detected 'build' folder."
+          else
+            echo "::error::Neither 'dist' nor 'build' folder found after build step."
+            exit 1
+          fi
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          # Changed to ./build (Standard for Create React App).
-          # Previous attempt with ./dist failed.
-          path: ./build
+          # Uses the environment variable set in the previous step
+          path: ${{ env.BUILD_PATH }}
 
   deploy:
     environment:

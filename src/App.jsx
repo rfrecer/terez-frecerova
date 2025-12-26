@@ -99,6 +99,7 @@ const App = () => {
     desc: "'...je plnotučným songwriterským svědectvím čerstvé matky, která dává průchod svojí únavě, rozčarování, střetům s realitou, nasranosti, kletbám, naději, únikům.' -Pavel Klusák",
     color: "bg-orange-300",
     link: "https://www.slnkorecords.sk/terez-frecerova/mala-by-som-nieco-robit",
+    spotifyLink: "https://open.spotify.com/album/5tvf99kYFfLVPHuRyQs3a6",
     tidalLink: "https://tidal.com/album/456287612/u"
   };
 
@@ -235,6 +236,8 @@ const App = () => {
               ✿ ROZHOVOR V ARTCAFÉ NA RÁDIU VLTAVA
             </a>
 
+            <span className="mx-4">✿ Bič plieska na konci</span>
+
             <span className="mx-4">✿ NOVÝ ALBUM "MALA BY SOM NIEČO ROBIŤ" PRÁVE VYŠIEL V SLNKO RECORDS</span>
             
             <a href="https://soundcloud.com/terezia-frecerova/lsdolina-katarina-janeckova-walshe-trip-nam-pomohol-vo-vztahu-35" target="_blank" rel="noreferrer" className="mx-4 hover:underline decoration-black decoration-2 underline-offset-2">
@@ -354,7 +357,7 @@ const App = () => {
               {album.desc}
             </p>
             <div className="flex flex-wrap gap-4">
-               <a href={album.link} target="_blank" rel="noreferrer" className="bg-black text-white font-mono px-6 py-3 border-2 border-transparent hover:bg-white hover:text-black hover:border-black transition-all neo-shadow-sm">
+               <a href={album.spotifyLink} target="_blank" rel="noreferrer" className="bg-black text-white font-mono px-6 py-3 border-2 border-transparent hover:bg-white hover:text-black hover:border-black transition-all neo-shadow-sm">
                  Spotify
                </a>
                <a href={album.tidalLink} target="_blank" rel="noreferrer" className="bg-black text-white font-mono px-6 py-3 border-2 border-transparent hover:bg-white hover:text-black hover:border-black transition-all neo-shadow-sm">
@@ -379,7 +382,7 @@ const App = () => {
                 <Calendar className="w-6 h-6" />
                 <span className="font-mono font-bold text-sm tracking-widest text-blue-600 uppercase">Tour</span>
               </div>
-              <h2 className="font-syne font-extrabold text-5xl md:text-7xl">Najbližšie koncerty</h2>
+              <h2 className="font-syne font-extrabold text-5xl md:text-7xl">Najbližšie Koncerty</h2>
             </div>
             <div className="font-mono text-sm text-gray-500 max-w-xs text-right hidden md:block">
               Lístky dostupné aj na mieste.
@@ -434,7 +437,7 @@ const App = () => {
           <div className="w-full overflow-x-auto no-scrollbar pb-6">
             <div className="flex gap-4 min-w-full w-max">
               {past.map((gig, idx) => (
-                <a key={idx} href={gig.link} target="_blank" rel="noreferrer" className="group relative cursor-pointer min-w-[280px] md:min-w-[320px] shrink-0 block">
+                <div key={idx} className="group relative cursor-pointer min-w-[280px] md:min-w-[320px] shrink-0" onClick={() => setSelectedImage(gig)}>
                   {/* Clean Image Container */}
                   <div className={`w-full aspect-square ${gig.imgColor} border-2 border-black flex items-center justify-center overflow-hidden relative transition-all group-hover:neo-shadow`}>
                      {/* Image Placeholder - User can replace bg color with <img src={gig.photoUrl} /> */}
@@ -455,10 +458,10 @@ const App = () => {
                      
                      {/* Gallery Icon Indicator */}
                      <div className="absolute top-2 right-2 z-20 opacity-0 group-hover:opacity-100 transition-opacity bg-white border border-black p-1">
-                       <ArrowUpRight size={14} />
+                       <Camera size={14} />
                      </div>
                   </div>
-                </a>
+                </div>
               ))}
             </div>
             {/* Scroll hint if needed */}
@@ -490,7 +493,7 @@ const App = () => {
                </h2>
                <div className="w-12 h-1 bg-black mb-6"></div>
                <p className="font-serif italic text-xl leading-relaxed text-gray-700 mb-8 max-w-md">
-                 {projects[2].desc}
+                 "{projects[2].desc}"
                </p>
                <a href={projects[2].link} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 font-mono text-sm font-bold border-b-2 border-black pb-1 hover:text-red-600 hover:border-red-600 transition-colors">
                  To chcem <ArrowUpRight size={16} />

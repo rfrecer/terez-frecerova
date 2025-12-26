@@ -275,9 +275,9 @@ const App = () => {
            <div className="w-16 h-16 bg-blue-400 rotate-45 border-2 border-black"></div>
         </div>
 
-        <div className="relative z-10 text-center max-w-5xl">
+        <div className="relative z-10 text-center w-full max-w-7xl">
           <h1 className="font-syne font-extrabold text-5xl sm:text-7xl md:text-8xl lg:text-9xl leading-[0.85] tracking-tighter mb-8 text-black drop-shadow-sm">
-            TEREZ <br className="lg:hidden"/> FRECEROVÁ
+            TEREZ <br /> FRECEROVÁ
           </h1>
           
           <div className="flex flex-wrap justify-center gap-4 mb-10">

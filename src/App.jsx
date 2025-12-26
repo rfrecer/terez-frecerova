@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useMemo } from 'react';
-import { Music, BookOpen, Mic, ArrowUpRight, Mail, Instagram, Facebook, Calendar, Disc, MapPin, ExternalLink, Camera, Headphones, X, ChevronLeft, ChevronRight, Star, Heart, Zap, FileText, Anchor, Cloud } from 'lucide-react';
+import { Music, BookOpen, Mic, ArrowUpRight, Mail, Instagram, Facebook, Calendar, Disc, MapPin, ExternalLink, Camera, Headphones, X, ChevronLeft, ChevronRight, Star, Heart, Zap, FileText, Anchor,QlCloud, Cloud } from 'lucide-react';
 
 const App = () => {
   const [scrolled, setScrolled] = useState(false);
@@ -45,7 +45,7 @@ const App = () => {
   const rawConcerts = [
     { venue: "Beseda u Bigbítu", city: "Tasov, CZ", date: "2026-07-31", link: "https://besedaubigbitu.cz/program", imgColor: "bg-teal-200", photoUrl: "" },
     { venue: "WiFič VEN!_na poli", city: "Bílovice, CZ", date: "2026-08-28", link: "https://www.wificven.cz/", imgColor: "bg-violet-200", photoUrl: "" },
-    { venue: "Anežka (CZ krst albumu)", city: "Praha, CZ", date: "2025-12-13", link: "https://www.facebook.com/events/1676961323261958", imgColor: "bg-purple-200", photoUrl: "" },
+    { venue: "Anežka (CZ krst albumu)", city: "Praha, CZ", date: "2025-12-13", link: "https://www.facebook.com/events/1676961323261958", imgColor: "bg-purple-200", photoUrl: "2025-12-13 anezka.jpg" },
     { venue: "Pink Whale (SK krst albumu)", city: "Bratislava, SK", date: "2025-11-06", link: "https://koncerty.slnkorecords.sk/event-detail/68dd2aa6ec2eb8327e9f7eb2/", imgColor: "bg-pink-300", photoUrl: "" },
     { venue: "Wave", city: "Prešov, SK", date: "2025-12-05", link: "https://www.wave.sk/event-detail/68e7a143370bcafa026c654c/?lang=sk_SK", imgColor: "bg-blue-200", photoUrl: "" },
     { venue: "Beseda u Bigbítu", city: "Tasov, CZ", date: "2025-08-02", link: "https://besedaubigbitu.cz/program/rok/2025", imgColor: "bg-yellow-200", photoUrl: "" },
@@ -82,7 +82,7 @@ const App = () => {
       }
     });
 
-    // Sort Upcoming: Ascending (Soonest first)
+    //ZS Sort Upcoming: Ascending (Soonest first)
     up.sort((a, b) => new Date(a.date) - new Date(b.date));
     
     // Sort Past: Descending (Most recent first)
@@ -475,11 +475,6 @@ const App = () => {
 
         {/* 4. RAPIKY MLADEJ MATERE (Redesigned: Clean Manuscript Style) */}
         <section className="relative min-h-[50vh] bg-[#fdf8e8] border-b-2 border-black flex flex-col md:flex-row overflow-hidden">
-           {/* Background Image Placeholder */}
-           {projectImages.rapiky.background && (
-             <img src={projectImages.rapiky.background} alt="Rapiky Background" className="absolute inset-0 w-full h-full object-cover opacity-20 pointer-events-none" />
-           )}
-
            {/* Decorative Typewriter Elements - Visible if no bg, or on top */}
            <div className="absolute top-0 right-0 p-4 opacity-10 pointer-events-none">
              <FileText size={300} strokeWidth={0.5} />
@@ -503,9 +498,14 @@ const App = () => {
              </div>
            </div>
 
-           <div className="md:w-1/2 bg-white flex items-center justify-center p-12 z-10">
+           <div className="md:w-1/2 relative flex items-center justify-center p-12 overflow-hidden">
+             {/* EDIT 1: Background image moved HERE to be under the right-hand photo only */}
+             {projectImages.rapiky.background && (
+                <img src={projectImages.rapiky.background} alt="Rapiky Background" className="absolute inset-0 w-full h-full object-cover opacity-50 z-0" />
+             )}
+
              {/* Abstract visual: Book/Page or Image */}
-             <div className="relative w-64 h-80 bg-white border-2 border-black shadow-[10px_10px_0px_0px_rgba(200,200,200,1)] flex flex-col items-center justify-center p-0 text-center overflow-hidden">
+             <div className="relative z-10 w-64 h-80 bg-white border-2 border-black shadow-[10px_10px_0px_0px_rgba(200,200,200,1)] flex flex-col items-center justify-center p-0 text-center overflow-hidden">
                 {projectImages.rapiky.cover ? (
                   <img src={projectImages.rapiky.cover} alt="Rapiky Cover" className="w-full h-full object-cover" />
                 ) : (
@@ -568,8 +568,11 @@ const App = () => {
           </div>
 
           <div className="md:w-3/5 p-12 flex items-center relative z-10">
-             <p className="font-mono text-lg md:text-2xl font-bold leading-relaxed text-indigo-100 max-w-xl drop-shadow-md">
-               {projects[1].desc}
+             {/* Highlighted text directly using a span with background color */}
+             <p className="font-mono text-lg md:text-2xl font-bold leading-[2.3] max-w-xl">
+               <span className="bg-lime-300 text-black px-2 py-0.5 box-decoration-clone">
+                 {projects[1].desc}
+               </span>
              </p>
           </div>
         </section>
@@ -599,8 +602,8 @@ const App = () => {
                </a>
              </div>
              
+             {/* EDIT 3: Removed BookOpen symbol */}
              <div className="md:w-1/2 relative flex items-center justify-center p-10 pointer-events-none">
-               <BookOpen size={140} className="text-black drop-shadow-[4px_4px_0_rgba(255,255,255,1)]" />
              </div>
            </div>
         </section>

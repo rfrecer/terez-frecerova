@@ -21,7 +21,7 @@ const App = () => {
       cover: ""       // Book cover image inside the tile
     },
     lsdolina: {
-      background: "/terez-frecerova/public/lsdolina.jpeg"  // Background image for the podcast section
+      background: "/lsdolina.jpeg"  // Background image for the podcast section
     },
     smiesna: {
       background: ""  // Background image for the diagonal green section

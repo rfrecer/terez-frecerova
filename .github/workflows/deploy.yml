@@ -19,7 +19,8 @@ jobs:
       - name: Set up Node
         uses: actions/setup-node@v4
         with:
-          node-version: 18
+          # Updated to Node 20. This is REQUIRED for Tailwind CSS v4.
+          node-version: 20
           cache: 'npm'
 
       - name: Install dependencies

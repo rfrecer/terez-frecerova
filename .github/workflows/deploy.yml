@@ -50,6 +50,26 @@ jobs:
             exit 1
           fi
 
+      - name: Fix Jekyll Issues
+        run: |
+          # Create a .nojekyll file to prevent GitHub Pages from ignoring files
+          touch ${{ env.BUILD_PATH }}/.nojekyll
+          echo "Created .nojekyll file in ${{ env.BUILD_PATH }}"
+
+      - name: Debug - Inspect Config & HTML
+        run: |
+          echo "--- CHECKING VITE CONFIG ---"
+          cat vite.config.js || echo "vite.config.js not found in root"
+          
+          echo "--- CHECKING BUILT INDEX.HTML ---"
+          HTML_FILE=$(find ${{ env.BUILD_PATH }} -name "index.html" | head -n 1)
+          if [ -z "$HTML_FILE" ]; then
+            echo "::error::No index.html found in build output!"
+          else
+            echo "Found: $HTML_FILE"
+            cat "$HTML_FILE"
+          fi
+
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:

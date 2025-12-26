@@ -99,6 +99,7 @@ const App = () => {
     desc: "'...je plnotučným songwriterským svědectvím čerstvé matky, která dává průchod svojí únavě, rozčarování, střetům s realitou, nasranosti, kletbám, naději, únikům.' -Pavel Klusák",
     color: "bg-orange-300",
     link: "https://www.slnkorecords.sk/terez-frecerova/mala-by-som-nieco-robit",
+    spotifyLink: "https://open.spotify.com/album/5tvf99kYFfLVPHuRyQs3a6",
     tidalLink: "https://tidal.com/album/456287612/u"
   };
 
@@ -276,7 +277,7 @@ const App = () => {
         </div>
 
         <div className="relative z-10 text-center w-full max-w-7xl">
-          <h1 className="font-syne font-extrabold text-5xl sm:text-7xl md:text-8xl lg:text-9xl leading-[0.85] tracking-tighter mb-8 text-black drop-shadow-sm">
+          <h1 className="font-syne font-extrabold text-[13vw] sm:text-7xl md:text-8xl lg:text-9xl leading-[0.85] tracking-tighter mb-8 text-black drop-shadow-sm break-words max-w-full">
             TEREZ <br /> FRECEROVÁ
           </h1>
           
@@ -354,7 +355,7 @@ const App = () => {
               {album.desc}
             </p>
             <div className="flex flex-wrap gap-4">
-               <a href={album.link} target="_blank" rel="noreferrer" className="bg-black text-white font-mono px-6 py-3 border-2 border-transparent hover:bg-white hover:text-black hover:border-black transition-all neo-shadow-sm">
+               <a href={album.spotifyLink} target="_blank" rel="noreferrer" className="bg-black text-white font-mono px-6 py-3 border-2 border-transparent hover:bg-white hover:text-black hover:border-black transition-all neo-shadow-sm">
                  Spotify
                </a>
                <a href={album.tidalLink} target="_blank" rel="noreferrer" className="bg-black text-white font-mono px-6 py-3 border-2 border-transparent hover:bg-white hover:text-black hover:border-black transition-all neo-shadow-sm">
@@ -379,7 +380,7 @@ const App = () => {
                 <Calendar className="w-6 h-6" />
                 <span className="font-mono font-bold text-sm tracking-widest text-blue-600 uppercase">Tour</span>
               </div>
-              <h2 className="font-syne font-extrabold text-5xl md:text-7xl">Najbližšie Koncerty</h2>
+              <h2 className="font-syne font-extrabold text-5xl md:text-7xl">Najbližšie koncerty</h2>
             </div>
             <div className="font-mono text-sm text-gray-500 max-w-xs text-right hidden md:block">
               Lístky dostupné aj na mieste.
@@ -475,10 +476,6 @@ const App = () => {
 
         {/* 4. RAPIKY MLADEJ MATERE (Redesigned: Clean Manuscript Style) */}
         <section className="relative min-h-[50vh] bg-[#fdf8e8] border-b-2 border-black flex flex-col md:flex-row overflow-hidden">
-           {/* Decorative Typewriter Elements - Visible if no bg, or on top */}
-           <div className="absolute top-0 right-0 p-4 opacity-10 pointer-events-none">
-             <FileText size={300} strokeWidth={0.5} />
-           </div>
            
            <div className="md:w-1/2 p-12 flex flex-col justify-center relative border-b-2 md:border-b-0 md:border-r-2 border-black z-10">
              <div className="relative z-10">
@@ -490,7 +487,7 @@ const App = () => {
                </h2>
                <div className="w-12 h-1 bg-black mb-6"></div>
                <p className="font-serif italic text-xl leading-relaxed text-gray-700 mb-8 max-w-md">
-                 {projects[2].desc}
+                 "{projects[2].desc}"
                </p>
                <a href={projects[2].link} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 font-mono text-sm font-bold border-b-2 border-black pb-1 hover:text-red-600 hover:border-red-600 transition-colors">
                  To chcem <ArrowUpRight size={16} />

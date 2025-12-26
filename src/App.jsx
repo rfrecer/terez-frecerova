@@ -226,7 +226,7 @@ const App = () => {
       <div className="bg-lime-300 text-black py-2 font-mono text-sm border-b-2 border-black overflow-hidden relative z-50">
         <div className="marquee-container">
           <div className="marquee-content font-bold flex items-center">
-            <span className="mx-4">✿ NOVÝ ALBUM "MALA BY SOM NIEČO ROBIŤ" PRÁVE VYŠIEL V SLNKO RECORDS</span>
+            <span className="mx-4">✿ NOVÝ ALBUM "MALA BY SOM NIEČO ROBIŤ" VYŠIEL V SLNKO RECORDS</span>
             
             <a href="https://soundcloud.com/terezia-frecerova/lsdolina-katarina-janeckova-walshe-trip-nam-pomohol-vo-vztahu-35" target="_blank" rel="noreferrer" className="mx-4 hover:underline decoration-black decoration-2 underline-offset-2">
               ✿ VYPOČUJ SI LSDOLINU S KATARÍNOU JANEČKOVOU WALSHE
@@ -236,9 +236,9 @@ const App = () => {
               ✿ ROZHOVOR V ARTCAFÉ NA RÁDIU VLTAVA
             </a>
 
-            <span className="mx-4">✿ Bič plieska na konci</span>
+            <span className="mx-4">✿ BIČ PLIESKA NA KONCI</span>
 
-            <span className="mx-4">✿ NOVÝ ALBUM "MALA BY SOM NIEČO ROBIŤ" PRÁVE VYŠIEL V SLNKO RECORDS</span>
+            <span className="mx-4">✿ NOVÝ ALBUM "MALA BY SOM NIEČO ROBIŤ" VYŠIEL V SLNKO RECORDS</span>
             
             <a href="https://soundcloud.com/terezia-frecerova/lsdolina-katarina-janeckova-walshe-trip-nam-pomohol-vo-vztahu-35" target="_blank" rel="noreferrer" className="mx-4 hover:underline decoration-black decoration-2 underline-offset-2">
               ✿ VYPOČUJ SI LSDOLINU S KATARÍNOU JANEČKOVOU WALSHE

@@ -48,15 +48,15 @@ const App = () => {
     { venue: "Anežka (CZ krst albumu)", city: "Praha, CZ", date: "2025-12-13", link: "https://www.facebook.com/events/1676961323261958", imgColor: "bg-purple-200", photoUrl: "2025-12-13 anezka.jpg" },
     { venue: "Pink Whale (SK krst albumu)", city: "Bratislava, SK", date: "2025-11-06", link: "https://koncerty.slnkorecords.sk/event-detail/68dd2aa6ec2eb8327e9f7eb2/", imgColor: "bg-pink-300", photoUrl: "" },
     { venue: "Wave", city: "Prešov, SK", date: "2025-12-05", link: "https://www.wave.sk/event-detail/68e7a143370bcafa026c654c/?lang=sk_SK", imgColor: "bg-blue-200", photoUrl: "" },
-    { venue: "Beseda u Bigbítu", city: "Tasov, CZ", date: "2025-08-02", link: "https://besedaubigbitu.cz/program/rok/2025", imgColor: "bg-yellow-200", photoUrl: "" },
+    { venue: "Beseda u Bigbítu", city: "Tasov, CZ", date: "2025-08-02", link: "https://besedaubigbitu.cz/program/rok/2025", imgColor: "bg-yellow-200", photoUrl: "2025-08-02 beseda.jpeg" },
     { venue: "MFDF Ji.hlava", city: "Jihlava, CZ", date: "2025-10-26", link: "https://www.ji-hlava.cz/akce/terez-frecerova", imgColor: "bg-red-200", photoUrl: "" },
     { venue: "Trnavský rínek", city: "Trnava, SK", date: "2025-12-06", link: "https://www.facebook.com/events/3293671617474544/", imgColor: "bg-orange-200", photoUrl: "" },
-    { venue: "Tužina Groove", city: "Tužina, SK", date: "2025-07-26", link: "https://www.tuzinagroove.sk/program/sobota/", imgColor: "bg-green-200", photoUrl: "" },
+    { venue: "Tužina Groove", city: "Tužina, SK", date: "2025-07-26", link: "https://www.tuzinagroove.sk/program/sobota/", imgColor: "bg-green-200", photoUrl: "2025-07-26 tuzina.jpeg" },
     { venue: "Prüger-Wallnerova záhrada (Letorast)", city: "Bratislava, SK", date: "2024-08-28", link: "https://www.instagram.com/reel/C_F-IMxq1rb/?utm_source=ig_web_copy_link", imgColor: "bg-emerald-200", photoUrl: "" },
     { venue: "Fuga (Poeti z ulice)", city: "Bratislava, SK", date: "2025-03-20", link: "https://www.facebook.com/events/n%C3%A1mestie-snp-24-81101-bratislava-slovakia/poeti-z-ulice-fragmenty-svetla/1837139687060250/", imgColor: "bg-indigo-200", photoUrl: "" },
-    { venue: "Manifest Bohéma (Srdcové záležitosti)", city: "Bratislava, SK", date: "2024-12-18", link: "https://www.facebook.com/events/1716159449240360/", imgColor: "bg-rose-200", photoUrl: "" },
+    { venue: "Manifest Bohéma (Srdcové záležitosti)", city: "Bratislava, SK", date: "2024-12-18", link: "https://www.facebook.com/events/1716159449240360/", imgColor: "bg-rose-200", photoUrl: "2025-03-20 fuga.jpg" },
     { venue: "Koncertná sieň Klarisiek", city: "Bratislava, SK", date: "2024-05-12", link: "https://goout.net/sk/srdcove-zalezitosti-matky-vsemohuce/szxqxcx/", imgColor: "bg-cyan-200", photoUrl: "" },
-    { venue: "Šafko Klub (Tepláreň Kabaret)", city: "Bratislava, SK", date: "2024-11-23", link: "https://tootoot.fm/en/events/65af9de81b234e174cefe18d", imgColor: "bg-lime-200", photoUrl: "" },
+    { venue: "Šafko Klub (Tepláreň Kabaret)", city: "Bratislava, SK", date: "2024-11-23", link: "https://tootoot.fm/en/events/65af9de81b234e174cefe18d", imgColor: "bg-lime-200", photoUrl: "2024-11-23 teplaren.jpg" },
     { venue: "Nová Cvernovka", city: "Bratislava, SK", date: "2024-12-07", link: "https://goout.net/uk/kaery-ann%2Bterez-frecerova/szetynx/", imgColor: "bg-fuchsia-200", photoUrl: "" }
   ];
 
@@ -226,6 +226,7 @@ const App = () => {
       <div className="bg-lime-300 text-black py-2 font-mono text-sm border-b-2 border-black overflow-hidden relative z-50">
         <div className="marquee-container">
           <div className="marquee-content font-bold flex items-center">
+            {/* Original Set */}
             <span className="mx-4">✿ NOVÝ ALBUM "MALA BY SOM NIEČO ROBIŤ" VYŠIEL V SLNKO RECORDS</span>
             
             <a href="https://soundcloud.com/terezia-frecerova/lsdolina-katarina-janeckova-walshe-trip-nam-pomohol-vo-vztahu-35" target="_blank" rel="noreferrer" className="mx-4 hover:underline decoration-black decoration-2 underline-offset-2">
@@ -238,11 +239,18 @@ const App = () => {
 
             <span className="mx-4">✿ BIČ PLIESKA NA KONCI</span>
 
+            {/* Duplicate Set for Seamless Loop */}
             <span className="mx-4">✿ NOVÝ ALBUM "MALA BY SOM NIEČO ROBIŤ" VYŠIEL V SLNKO RECORDS</span>
             
             <a href="https://soundcloud.com/terezia-frecerova/lsdolina-katarina-janeckova-walshe-trip-nam-pomohol-vo-vztahu-35" target="_blank" rel="noreferrer" className="mx-4 hover:underline decoration-black decoration-2 underline-offset-2">
               ✿ VYPOČUJ SI LSDOLINU S KATARÍNOU JANEČKOVOU WALSHE
             </a>
+            
+            <a href="https://www.mujrozhlas.cz/artcafe/debut-hudebnice-terez-frecerove-prinasi-autenticitu-zivota-lehouckou-ironii-i-trapove-beaty" target="_blank" rel="noreferrer" className="mx-4 hover:underline decoration-black decoration-2 underline-offset-2">
+              ✿ ROZHOVOR V ARTCAFÉ NA RÁDIU VLTAVA
+            </a>
+
+            <span className="mx-4">✿ BIČ PLIESKA NA KONCI</span>
           </div>
         </div>
       </div>
@@ -382,7 +390,7 @@ const App = () => {
                 <Calendar className="w-6 h-6" />
                 <span className="font-mono font-bold text-sm tracking-widest text-blue-600 uppercase">Tour</span>
               </div>
-              <h2 className="font-syne font-extrabold text-5xl md:text-7xl">Najbližšie Koncerty</h2>
+              <h2 className="font-syne font-extrabold text-5xl md:text-7xl">Najbližšie koncerty</h2>
             </div>
             <div className="font-mono text-sm text-gray-500 max-w-xs text-right hidden md:block">
               Lístky dostupné aj na mieste.
@@ -478,10 +486,6 @@ const App = () => {
 
         {/* 4. RAPIKY MLADEJ MATERE (Redesigned: Clean Manuscript Style) */}
         <section className="relative min-h-[50vh] bg-[#fdf8e8] border-b-2 border-black flex flex-col md:flex-row overflow-hidden">
-           {/* Decorative Typewriter Elements - Visible if no bg, or on top */}
-           <div className="absolute top-0 right-0 p-4 opacity-10 pointer-events-none">
-             <FileText size={300} strokeWidth={0.5} />
-           </div>
            
            <div className="md:w-1/2 p-12 flex flex-col justify-center relative border-b-2 md:border-b-0 md:border-r-2 border-black z-10">
              <div className="relative z-10">

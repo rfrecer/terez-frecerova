@@ -45,19 +45,21 @@ const App = () => {
   const rawConcerts = [
     { venue: "Beseda u Bigbítu", city: "Tasov, CZ", date: "2026-07-31", link: "https://besedaubigbitu.cz/program", imgColor: "bg-teal-200", photoUrl: "" },
     { venue: "WiFič VEN!_na poli", city: "Bílovice, CZ", date: "2026-08-28", link: "https://www.wificven.cz/", imgColor: "bg-violet-200", photoUrl: "" },
+    { venue: "Christiania (Vyliate duše)", city: "Prešov, SK", date: "2025-12-05", link: "https://www.facebook.com/events/2041057979971614", imgColor: "bg-purple-200", photoUrl: "2025-12-05 christiania.JPG" },
     { venue: "Anežka (CZ krst albumu)", city: "Praha, CZ", date: "2025-12-13", link: "https://www.facebook.com/events/1676961323261958", imgColor: "bg-purple-200", photoUrl: "2025-12-13 anezka.jpg" },
-    { venue: "Pink Whale (SK krst albumu)", city: "Bratislava, SK", date: "2025-11-06", link: "https://koncerty.slnkorecords.sk/event-detail/68dd2aa6ec2eb8327e9f7eb2/", imgColor: "bg-pink-300", photoUrl: "" },
-    { venue: "Wave", city: "Prešov, SK", date: "2025-12-05", link: "https://www.wave.sk/event-detail/68e7a143370bcafa026c654c/?lang=sk_SK", imgColor: "bg-blue-200", photoUrl: "" },
+    { venue: "Pink Whale (SK krst albumu)", city: "Bratislava, SK", date: "2025-11-06", link: "https://koncerty.slnkorecords.sk/event-detail/68dd2aa6ec2eb8327e9f7eb2/", imgColor: "bg-pink-300", photoUrl: "2025-11-06 Pink Whale krst.JPG" },
+    { venue: "Wave", city: "Prešov, SK", date: "2025-12-05", link: "https://www.wave.sk/event-detail/68e7a143370bcafa026c654c/?lang=sk_SK", imgColor: "bg-blue-200", photoUrl: "2025-12-05 wave.JPG" },
     { venue: "Beseda u Bigbítu", city: "Tasov, CZ", date: "2025-08-02", link: "https://besedaubigbitu.cz/program/rok/2025", imgColor: "bg-yellow-200", photoUrl: "2025-08-02 beseda.jpeg" },
-    { venue: "MFDF Ji.hlava", city: "Jihlava, CZ", date: "2025-10-26", link: "https://www.ji-hlava.cz/akce/terez-frecerova", imgColor: "bg-red-200", photoUrl: "" },
-    { venue: "Trnavský rínek", city: "Trnava, SK", date: "2025-12-06", link: "https://www.facebook.com/events/3293671617474544/", imgColor: "bg-orange-200", photoUrl: "" },
+    { venue: "MFDF Ji.hlava", city: "Jihlava, CZ", date: "2025-10-26", link: "https://www.ji-hlava.cz/akce/terez-frecerova", imgColor: "bg-red-200", photoUrl: "2025-10-26 Jihlava.JPG" },
+    { venue: "Trnavský rínek", city: "Trnava, SK", date: "2025-12-06", link: "https://www.facebook.com/events/3293671617474544/", imgColor: "bg-orange-200", photoUrl: "2025-12-06 Trnavsky rinek.JPG" },
     { venue: "Tužina Groove", city: "Tužina, SK", date: "2025-07-26", link: "https://www.tuzinagroove.sk/program/sobota/", imgColor: "bg-green-200", photoUrl: "2025-07-26 tuzina.jpeg" },
-    { venue: "Prüger-Wallnerova záhrada (Letorast)", city: "Bratislava, SK", date: "2024-08-28", link: "https://www.instagram.com/reel/C_F-IMxq1rb/?utm_source=ig_web_copy_link", imgColor: "bg-emerald-200", photoUrl: "" },
-    { venue: "Fuga (Poeti z ulice)", city: "Bratislava, SK", date: "2025-03-20", link: "https://www.facebook.com/events/n%C3%A1mestie-snp-24-81101-bratislava-slovakia/poeti-z-ulice-fragmenty-svetla/1837139687060250/", imgColor: "bg-indigo-200", photoUrl: "" },
-    { venue: "Manifest Bohéma (Srdcové záležitosti)", city: "Bratislava, SK", date: "2024-12-18", link: "https://www.facebook.com/events/1716159449240360/", imgColor: "bg-rose-200", photoUrl: "2025-03-20 fuga.jpg" },
-    { venue: "Koncertná sieň Klarisiek", city: "Bratislava, SK", date: "2024-05-12", link: "https://goout.net/sk/srdcove-zalezitosti-matky-vsemohuce/szxqxcx/", imgColor: "bg-cyan-200", photoUrl: "" },
+    { venue: "Prüger-Wallnerova záhrada (Letorast)", city: "Bratislava, SK", date: "2024-08-28", link: "https://www.instagram.com/reel/C_F-IMxq1rb/?utm_source=ig_web_copy_link", imgColor: "bg-emerald-200", photoUrl: "2024-08-28 Letorast.jpg" },
+    { venue: "Fuga (Poeti z ulice)", city: "Bratislava, SK", date: "2025-03-20", link: "https://www.facebook.com/events/n%C3%A1mestie-snp-24-81101-bratislava-slovakia/poeti-z-ulice-fragmenty-svetla/1837139687060250/", imgColor: "bg-indigo-200", photoUrl: "2025-03-20 fuga.jpg" },
+    { venue: "Manifest Bohéma (Srdcové záležitosti)", city: "Bratislava, SK", date: "2024-12-18", link: "https://www.facebook.com/events/1716159449240360/", imgColor: "bg-rose-200", photoUrl: "2024-12-18 Srdcove zalezitosti.jpg" },
+    { venue: "Koncertná sieň Klarisiek", city: "Bratislava, SK", date: "2024-05-12", link: "https://goout.net/sk/srdcove-zalezitosti-matky-vsemohuce/szxqxcx/", imgColor: "bg-cyan-200", photoUrl: "2024-05-12 Srdcove zalezitosti-Matky vsemohuce.jpeg" },
     { venue: "Šafko Klub (Tepláreň Kabaret)", city: "Bratislava, SK", date: "2024-11-23", link: "https://tootoot.fm/en/events/65af9de81b234e174cefe18d", imgColor: "bg-lime-200", photoUrl: "2024-11-23 teplaren.jpg" },
-    { venue: "Nová Cvernovka", city: "Bratislava, SK", date: "2024-12-07", link: "https://goout.net/uk/kaery-ann%2Bterez-frecerova/szetynx/", imgColor: "bg-fuchsia-200", photoUrl: "" }
+    { venue: "Prüger-Wallnerova záhrada", city: "Bratislava, SK", date: "2024-05-30", link: "", imgColor: "bg-lime-200", photoUrl: "2024-05-30 Prugerka Bratislava solo.jpeg" },
+    { venue: "Nová Cvernovka", city: "Bratislava, SK", date: "2024-12-07", link: "https://goout.net/uk/kaery-ann%2Bterez-frecerova/szetynx/", imgColor: "bg-fuchsia-200", photoUrl: "2024-12-07 Nova Cvernovka.JPG" }
   ];
 
   // Logic to split and sort concerts
@@ -445,7 +447,7 @@ const App = () => {
           <div className="w-full overflow-x-auto no-scrollbar pb-6">
             <div className="flex gap-4 min-w-full w-max">
               {past.map((gig, idx) => (
-                <div key={idx} className="group relative cursor-pointer min-w-[280px] md:min-w-[320px] shrink-0" onClick={() => setSelectedImage(gig)}>
+                <a key={idx} href={gig.link} target="_blank" rel="noreferrer" className="group relative cursor-pointer min-w-[280px] md:min-w-[320px] shrink-0 block">
                   {/* Clean Image Container */}
                   <div className={`w-full aspect-square ${gig.imgColor} border-2 border-black flex items-center justify-center overflow-hidden relative transition-all group-hover:neo-shadow`}>
                      {/* Image Placeholder - User can replace bg color with <img src={gig.photoUrl} /> */}
@@ -466,10 +468,10 @@ const App = () => {
                      
                      {/* Gallery Icon Indicator */}
                      <div className="absolute top-2 right-2 z-20 opacity-0 group-hover:opacity-100 transition-opacity bg-white border border-black p-1">
-                       <Camera size={14} />
+                       <ArrowUpRight size={14} />
                      </div>
                   </div>
-                </div>
+                </a>
               ))}
             </div>
             {/* Scroll hint if needed */}
@@ -497,7 +499,7 @@ const App = () => {
                </h2>
                <div className="w-12 h-1 bg-black mb-6"></div>
                <p className="font-serif italic text-xl leading-relaxed text-gray-700 mb-8 max-w-md">
-                 "{projects[2].desc}"
+                 {projects[2].desc}
                </p>
                <a href={projects[2].link} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 font-mono text-sm font-bold border-b-2 border-black pb-1 hover:text-red-600 hover:border-red-600 transition-colors">
                  To chcem <ArrowUpRight size={16} />

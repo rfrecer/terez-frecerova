@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useMemo } from 'react';
-import { Music, BookOpen, Mic, ArrowUpRight, Mail, Instagram, Facebook, Calendar, Disc, MapPin, ExternalLink, Camera, Headphones, X, ChevronLeft, ChevronRight, Star, Heart, Zap, FileText, Anchor,QlCloud, Cloud } from 'lucide-react';
+import { Music, BookOpen, Mic, ArrowUpRight, Mail, Instagram, Facebook, Calendar, Disc, MapPin, ExternalLink, Camera, Headphones, X, ChevronLeft, ChevronRight, Star, Heart, Zap, FileText, Anchor, Cloud } from 'lucide-react';
 
 const App = () => {
   const [scrolled, setScrolled] = useState(false);
@@ -51,7 +51,7 @@ const App = () => {
     { venue: "Wave", city: "Prešov, SK", date: "2025-12-05", link: "https://www.wave.sk/event-detail/68e7a143370bcafa026c654c/?lang=sk_SK", imgColor: "bg-blue-200", photoUrl: "2025-12-05 wave.JPG" },
     { venue: "Beseda u Bigbítu", city: "Tasov, CZ", date: "2025-08-02", link: "https://besedaubigbitu.cz/program/rok/2025", imgColor: "bg-yellow-200", photoUrl: "2025-08-02 beseda.jpeg" },
     { venue: "MFDF Ji.hlava", city: "Jihlava, CZ", date: "2025-10-26", link: "https://www.ji-hlava.cz/akce/terez-frecerova", imgColor: "bg-red-200", photoUrl: "2025-10-26 Jihlava.JPG" },
-    { venue: "Trnavský rínek", city: "Trnava, SK", date: "2025-12-06", link: "https://www.facebook.com/events/3293671617474544/", imgColor: "bg-orange-200", photoUrl: "2025-12-06 Trnavsky rinek.JPG" },
+    { venue: "Trnavský rínek", city: "Trnava, SK", date: "2025-12-06", link: "https://www.facebook.com/events/3293671617474544/", imgColor: "bg-orange-200", photoUrl: "2025-12-06 Trnavsky rinek.jpeg" },
     { venue: "Tužina Groove", city: "Tužina, SK", date: "2025-07-26", link: "https://www.tuzinagroove.sk/program/sobota/", imgColor: "bg-green-200", photoUrl: "2025-07-26 tuzina.jpeg" },
     { venue: "Prüger-Wallnerova záhrada (Letorast)", city: "Bratislava, SK", date: "2024-08-28", link: "https://www.instagram.com/reel/C_F-IMxq1rb/?utm_source=ig_web_copy_link", imgColor: "bg-emerald-200", photoUrl: "2024-08-28 Letorast.jpg" },
     { venue: "Fuga (Poeti z ulice)", city: "Bratislava, SK", date: "2025-03-20", link: "https://www.facebook.com/events/n%C3%A1mestie-snp-24-81101-bratislava-slovakia/poeti-z-ulice-fragmenty-svetla/1837139687060250/", imgColor: "bg-indigo-200", photoUrl: "2025-03-20 fuga.jpg" },
@@ -289,7 +289,11 @@ const App = () => {
         </div>
 
         <div className="relative z-10 text-center w-full max-w-7xl">
-          <h1 className="font-syne font-extrabold text-5xl sm:text-7xl md:text-8xl lg:text-9xl leading-[0.85] tracking-tighter mb-8 text-black drop-shadow-sm">
+          {/* UPDATED HERO TITLE SIZING:
+              - text-[8vw]: Fluid size (8% of viewport) guarantees the 9-letter name fits on all screens including mobile.
+              - 2xl:text-[8rem]: Caps the size on massive screens (>1536px) to maintain the original "poster" look without overflowing.
+          */}
+          <h1 className="font-syne font-extrabold text-[8vw] 2xl:text-[8rem] leading-[0.85] tracking-tighter mb-8 text-black drop-shadow-sm">
             TEREZ <br /> FRECEROVÁ
           </h1>
           

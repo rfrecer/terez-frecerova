@@ -393,12 +393,12 @@ const App = () => {
           
           {/* Upcoming Header */}
           <div className="flex flex-col md:flex-row justify-between items-end mb-12 gap-6">
-            <div>
+            <div className="pl-4">
               <div className="flex items-center gap-3 mb-2">
                 <Calendar className="w-6 h-6" />
                 <span className="font-mono font-bold text-sm tracking-widest text-blue-600 uppercase">Tour</span>
               </div>
-              <h2 className="font-syne font-extrabold text-5xl md:text-7xl">Najbližšie koncerty</h2>
+              <h2 className="font-syne font-extrabold text-4xl sm:text-5xl md:text-7xl">Najbližšie koncerty</h2>
             </div>
             <div className="font-mono text-sm text-gray-500 max-w-xs text-right hidden md:block">
               Lístky dostupné aj na mieste.
@@ -412,7 +412,7 @@ const App = () => {
                 {upcoming.map((gig, idx) => (
                   <div 
                     key={idx} 
-                    className="group relative border-t-2 border-black py-8 flex flex-col md:flex-row md:items-center justify-between gap-4 hover:bg-lime-50 transition-colors"
+                    className="group relative border-t-2 border-black py-8 pl-4 flex flex-col md:flex-row md:items-center justify-between gap-4 hover:bg-lime-50 transition-colors"
                   >
                     <div className="md:w-1/4">
                       <span className="font-syne font-bold text-3xl md:text-4xl">{gig.displayDate}</span>

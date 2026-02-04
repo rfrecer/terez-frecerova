@@ -43,7 +43,10 @@ const App = () => {
   // Raw Concert Data
   // Add 'photoUrl' for past concerts to appear in the archive grid
   const rawConcerts = [
-    { venue: "+ Tante Elze: Tiny Flájská ", city: "Praha, CZ", date: "2026-01-24", link: "https://www.youtube.com/@TinyFl%C3%A1jsk%C3%A1", imgColor: "bg-teal-200", photoUrl: "2026-01-24 tiny flajska.jpg" },
+    { venue: "Literatura žije!", city: "České Budějovice, CZ", date: "2026-04-25", link: "https://www.literatura-zije.cz/", imgColor: "bg-cyan-200", photoUrl: "" },
+    { venue: "United Islands (Klubová noc)", city: "Praha, CZ", date: "2026-04-30", link: "https://www.unitedislands.cz/cs", imgColor: "bg-rose-200", photoUrl: "" },
+    { venue: "Žižkovská noc", city: "Praha, CZ", date: "2026-03-20", link: "https://www.facebook.com/events/865544609627654", imgColor: "bg-orange-200", photoUrl: "" },
+    { venue: "+ Tante Elze: Tiny Flájská", city: "Praha, CZ", date: "2026-01-24", link: "https://www.youtube.com/@TinyFl%C3%A1jsk%C3%A1", imgColor: "bg-teal-200", photoUrl: "2026-01-24 tiny flajska.jpg" },
     { venue: "Popo_FM", city: "Bratislava, SK", date: "2026-03-13", link: "https://fm.stvr.sk/relacie/popo_fm", imgColor: "bg-rose-200", photoUrl: "" },
     { venue: "Beseda u Bigbítu", city: "Tasov, CZ", date: "2026-07-31", link: "https://besedaubigbitu.cz/program", imgColor: "bg-fuchsia-200", photoUrl: "" },
     { venue: "WiFič VEN!_na poli", city: "Bílovice, CZ", date: "2026-08-28", link: "https://www.wificven.cz/", imgColor: "bg-violet-200", photoUrl: "" },

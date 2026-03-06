@@ -50,7 +50,7 @@ const App = () => {
     { venue: "Popo_FM", city: "Bratislava, SK", date: "2026-03-13", link: "https://fm.stvr.sk/relacie/popo_fm", imgColor: "bg-rose-200", photoUrl: "" },
     { venue: "Beseda u Bigbítu", city: "Tasov, CZ", date: "2026-07-31", link: "https://besedaubigbitu.cz/program", imgColor: "bg-fuchsia-200", photoUrl: "" },
     { venue: "WiFič VEN!_na poli", city: "Bílovice, CZ", date: "2026-08-28", link: "https://www.wificven.cz/", imgColor: "bg-violet-200", photoUrl: "" },
-    { venue: "Christiania (Vyliate duše)", city: "Prešov, SK", date: "2025-12-05", link: "https://www.facebook.com/events/2041057979971614", imgColor: "bg-purple-200", photoUrl: "2025-12-05 christiania.jpg" },
+    { venue: "Christiania (Vyliate duše)", city: "Prešov, SK", date: "2025-12-05", link: "https://www.facebook.com/events/2041057979971614", imgColor: "bg-purple-200", photoUrl: "2025-12-05 christiania.jpeg" },
     { venue: "Anežka (CZ krst albumu)", city: "Praha, CZ", date: "2025-12-13", link: "https://www.facebook.com/events/1676961323261958", imgColor: "bg-purple-200", photoUrl: "2025-12-13 anezka.jpg" },
     { venue: "Pink Whale (SK krst albumu)", city: "Bratislava, SK", date: "2025-11-06", link: "https://koncerty.slnkorecords.sk/event-detail/68dd2aa6ec2eb8327e9f7eb2/", imgColor: "bg-pink-300", photoUrl: "2025-11-06 Pink Whale krst.JPG" },
     { venue: "Wave", city: "Prešov, SK", date: "2025-12-05", link: "https://www.wave.sk/event-detail/68e7a143370bcafa026c654c/?lang=sk_SK", imgColor: "bg-blue-200", photoUrl: "2025-12-05 wave.JPG" },

@@ -234,8 +234,10 @@ const App = () => {
         <div className="marquee-container">
           <div className="marquee-content font-bold flex items-center">
             {/* Original Set */}
-            <span className="mx-4">✿ ALBUM "MALA BY SOM NIEČO ROBIŤ" JE NOMINOVANÝ NA RADIO_HEAD AWARDS 2025</span>
-            
+            <a href="https://www.instagram.com/p/DVRIJX_DKg1/?img_index=1" target="_blank" rel="noreferrer" className="mx-4 hover:underline decoration-black decoration-2 underline-offset-2">
+              ✿ ALBUM "MALA BY SOM NIEČO ROBIŤ" JE NOMINOVANÝ NA RADIO_HEAD AWARDS 2025
+            </a>
+                        
             <span className="mx-4">✿ ČEKNI JARNÉ KONCERTY</span>
 
             <a href="https://soundcloud.com/terezia-frecerova/lsdolina-katarina-janeckova-walshe-trip-nam-pomohol-vo-vztahu-35" target="_blank" rel="noreferrer" className="mx-4 hover:underline decoration-black decoration-2 underline-offset-2">
@@ -249,7 +251,9 @@ const App = () => {
             <span className="mx-4">✿ BIČ PLIESKA NA KONCI</span>
 
             {/* Duplicate Set for Seamless Loop */}
-            <span className="mx-4">✿ ALBUM "MALA BY SOM NIEČO ROBIŤ" JE NOMINOVANÝ NA RADIO_HEAD AWARDS 2025</span>
+            <a href="https://www.instagram.com/p/DVRIJX_DKg1/?img_index=1" target="_blank" rel="noreferrer" className="mx-4 hover:underline decoration-black decoration-2 underline-offset-2">
+              ✿ ALBUM "MALA BY SOM NIEČO ROBIŤ" JE NOMINOVANÝ NA RADIO_HEAD AWARDS 2025
+            </a>
 
             <span className="mx-4">✿ ČEKNI JARNÉ KONCERTY</span>
             

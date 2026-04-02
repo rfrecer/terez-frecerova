@@ -298,7 +298,7 @@ const App = () => {
         <motion.div 
           drag 
           dragConstraints={heroRef}
-          className="hidden md:block absolute z-20 w-64 lg:w-80 bottom-24 2xl:bottom-80 left-10 lg:left-20 2xl:left-40 bg-black border-2 border-[#bef264] shadow-[6px_6px_0px_0px_#bef264] rotate-[-4deg] overflow-hidden cursor-grab active:cursor-grabbing pointer-events-auto"
+          className="hidden md:block absolute z-20 w-64 lg:w-80 bottom-24 2xl:bottom-80 left-10 lg:left-20 2xl:left-40 bg-[#bef264] border-2 border-[#bef264] shadow-[6px_6px_0px_0px_#bef264] rotate-[-4deg] overflow-hidden cursor-grab active:cursor-grabbing pointer-events-auto"
         >
            {projectImages.hero.medium ? (
               <img src={projectImages.hero.medium} alt="Terez Frecerová" className="w-full h-auto aspect-square object-cover pointer-events-none" />
@@ -314,7 +314,7 @@ const App = () => {
         <motion.div 
           drag 
           dragConstraints={heroRef}
-          className="hidden lg:block absolute z-40 w-48 bottom-40 2xl:bottom-165 right-35 lg:right-45 2xl:right-60 bg-black border-2 border-[#d8b4fe] shadow-[6px_6px_0px_0px_#d8b4fe] rotate-[5deg] overflow-hidden cursor-grab active:cursor-grabbing pointer-events-auto"
+          className="hidden lg:block absolute z-40 w-48 bottom-40 2xl:bottom-165 right-35 lg:right-45 2xl:right-60 bg-[#d8b4fe] border-2 border-[#d8b4fe] shadow-[6px_6px_0px_0px_#d8b4fe] rotate-[5deg] overflow-hidden cursor-grab active:cursor-grabbing pointer-events-auto"
         >
            {projectImages.hero.small ? (
               <img src={projectImages.hero.small} alt="Terez Frecerová" className="w-full h-auto aspect-[4/5] object-cover pointer-events-none" />

@@ -175,8 +175,12 @@ const App = () => {
         <div className="marquee-container">
           <div className="marquee-content font-bold flex items-center">
             {/* Original Set */}
+            <a href="https://www.youtube.com/watch?v=dzXfDRHVnE0&list=RDdzXfDRHVnE0&start_radio=1" target="_blank" rel="noreferrer" className="mx-4 hover:underline decoration-black decoration-2 underline-offset-2">
+              ✿ KONCERT S TANTE ELZE v :POPO_FM
+            </a>
+
             <a href="https://www.instagram.com/p/DVRIJX_DKg1/?img_index=1" target="_blank" rel="noreferrer" className="mx-4 hover:underline decoration-black decoration-2 underline-offset-2">
-              ✿ ALBUM "MALA BY SOM NIEČO ROBIŤ" JE NOMINOVANÝ NA RADIO_HEAD AWARDS 2025
+              ✿ ALBUM "MALA BY SOM NIEČO ROBIŤ" NA RADIO_HEAD AWARDS 2025
             </a>
                         
             <span className="mx-4">✿ ČEKNI JARNÉ KONCERTY</span>
@@ -191,9 +195,13 @@ const App = () => {
 
             <span className="mx-4">✿ BIČ PLIESKA NA KONCI</span>
 
+            <a href="https://www.youtube.com/watch?v=dzXfDRHVnE0&list=RDdzXfDRHVnE0&start_radio=1" target="_blank" rel="noreferrer" className="mx-4 hover:underline decoration-black decoration-2 underline-offset-2">
+              ✿ KONCERT S TANTE ELZE v :POPO_FM
+            </a>
+
             {/* Duplicate Set for Seamless Loop */}
             <a href="https://www.instagram.com/p/DVRIJX_DKg1/?img_index=1" target="_blank" rel="noreferrer" className="mx-4 hover:underline decoration-black decoration-2 underline-offset-2">
-              ✿ ALBUM "MALA BY SOM NIEČO ROBIŤ" JE NOMINOVANÝ NA RADIO_HEAD AWARDS 2025
+              ✿ ALBUM "MALA BY SOM NIEČO ROBIŤ" NA RADIO_HEAD AWARDS 2025
             </a>
 
             <span className="mx-4">✿ ČEKNI JARNÉ KONCERTY</span>

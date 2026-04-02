@@ -1,16 +1,22 @@
-import React, { useState, useEffect, useMemo } from 'react';
+import React, { useState, useEffect, useMemo, useRef } from 'react';
+import { motion } from 'framer-motion';
 import { Music, BookOpen, Mic, ArrowUpRight, Mail, Instagram, Facebook, Calendar, Disc, MapPin, ExternalLink, Camera, Headphones, X, ChevronLeft, ChevronRight, Star, Heart, Zap, FileText, Anchor, Cloud } from 'lucide-react';
 
 const App = () => {
   const [scrolled, setScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState('home');
   const [selectedImage, setSelectedImage] = useState(null);
+  
+  // Reference for the draggable area boundaries
+  const heroRef = useRef(null);
 
   // --- IMAGE CONFIGURATION ---
   // Replace the empty strings "" with your image paths (e.g., "/terez-frecerova/images/my-photo.jpg")
   const projectImages = {
     hero: {
-      titleImage: "hero.jpg"  // Main title image replacing the bio text (Aspect ratio 3:2)
+      large: "hero.jpg",   // Bottom layer (#4) - Visible on all screens
+      medium: "hero2.jpg", // Middle layer (#3) - Visible on tablet+
+      small: "hero3.jpg"   // Top layer (#1) - Visible on desktop+
     },
     malaBySom: {
       background: "album_background.jpg", // Background for the left side of the Music section
@@ -45,9 +51,9 @@ const App = () => {
   const rawConcerts = [
     { venue: "Literatura žije!", city: "České Budějovice, CZ", date: "2026-04-25", link: "https://www.literatura-zije.cz/", imgColor: "bg-cyan-200", photoUrl: "" },
     { venue: "United Islands (Klubová noc)", city: "Praha, CZ", date: "2026-04-30", link: "https://www.unitedislands.cz/cs", imgColor: "bg-rose-200", photoUrl: "" },
-    { venue: "Žižkovská noc", city: "Praha, CZ", date: "2026-03-20", link: "https://www.facebook.com/events/865544609627654", imgColor: "bg-orange-200", photoUrl: "" },
+    { venue: "Žižkovská noc", city: "Praha, CZ", date: "2026-03-20", link: "https://www.facebook.com/events/865544609627654", imgColor: "bg-orange-200", photoUrl: "2026-03-20 zizkovska noc.jpg" },
     { venue: "+ Tante Elze: Tiny Flájská", city: "Praha, CZ", date: "2026-01-24", link: "https://www.youtube.com/@TinyFl%C3%A1jsk%C3%A1", imgColor: "bg-teal-200", photoUrl: "2026-01-24 tiny flajska.jpg" },
-    { venue: "Popo_FM", city: "Bratislava, SK", date: "2026-03-13", link: "https://fm.stvr.sk/relacie/popo_fm", imgColor: "bg-rose-200", photoUrl: "" },
+    { venue: "Popo_FM", city: "Bratislava, SK", date: "2026-03-13", link: "https://fm.stvr.sk/relacie/popo_fm", imgColor: "bg-rose-200", photoUrl: "2026-03-13 popofm.jpg" },
     { venue: "Beseda u Bigbítu", city: "Tasov, CZ", date: "2026-07-31", link: "https://besedaubigbitu.cz/program", imgColor: "bg-fuchsia-200", photoUrl: "" },
     { venue: "WiFič VEN!_na poli", city: "Bílovice, CZ", date: "2026-08-28", link: "https://www.wificven.cz/", imgColor: "bg-violet-200", photoUrl: "" },
     { venue: "Christiania (Vyliate duše)", city: "Prešov, SK", date: "2025-12-05", link: "https://www.facebook.com/events/2041057979971614", imgColor: "bg-purple-200", photoUrl: "2025-12-05 christiania.jpeg" },
@@ -206,7 +212,7 @@ const App = () => {
       </div>
 
       {/* Navigation */}
-      <nav className={`fixed top-12 left-0 right-0 z-40 transition-all duration-300 px-4 md:px-8 flex justify-center pointer-events-none`}>
+      <nav className={`fixed top-12 left-0 right-0 z-[60] transition-all duration-300 px-4 md:px-8 flex justify-center pointer-events-none`}>
         <div className={`
           pointer-events-auto
           bg-white border-2 border-black px-6 py-3 
@@ -227,49 +233,90 @@ const App = () => {
         </div>
       </nav>
 
-      {/* 1. HERO SECTION */}
-      <section id="home" className="relative min-h-[90vh] flex flex-col justify-center items-center px-6 pt-24 border-b-2 border-black overflow-hidden noise-bg">
-        <div className="absolute top-20 left-10 md:left-20 animate-bounce delay-100">
+      {/* 1. HERO SECTION (Draggable Diorama) */}
+      <section ref={heroRef} id="home" className="relative min-h-[90vh] flex flex-col justify-center items-center px-6 pt-24 border-b-2 border-black overflow-hidden noise-bg">
+        
+        {/* Glow Layer (z-0) - Ensures black text is readable if a dark image is dragged under it */}
+        <div className="absolute inset-0 z-0 pointer-events-none flex justify-center items-center">
+            <div className="w-[80vw] h-[60vh] bg-white/70 blur-[80px] rounded-full mix-blend-screen"></div>
+        </div>
+
+        {/* GEOMETRIC SHAPES (z-30)
+            Moved outside the text div so absolute positioning anchors to the section container */}
+        <div className="absolute top-20 left-10 md:left-20 animate-bounce delay-100 z-30 pointer-events-none">
            <div className="w-12 h-12 bg-yellow-400 rounded-full border-2 border-black"></div>
         </div>
-        <div className="absolute bottom-40 right-10 md:right-20 animate-pulse">
+        <div className="hidden md:block absolute bottom-40 right-10 md:right-20 animate-pulse z-30 pointer-events-none">
            <div className="w-16 h-16 bg-blue-400 rotate-45 border-2 border-black"></div>
         </div>
 
-        <div className="relative z-10 text-center w-full max-w-7xl">
-          {/* UPDATED HERO TITLE SIZING:
-              - text-[8vw]: Fluid size (8% of viewport) guarantees the 9-letter name fits on all screens including mobile.
-              - 2xl:text-[8rem]: Caps the size on massive screens (>1536px) to maintain the original "poster" look without overflowing.
-          */}
-          <h1 className="font-syne font-extrabold text-[8vw] 2xl:text-[8rem] leading-[0.85] tracking-tighter mb-8 text-black drop-shadow-sm">
+        {/* LAYER 2: Title & Pills (z-30) - Set to pointer-events-none to allow clicking through */}
+        <div className="relative z-30 pointer-events-none text-center w-full max-w-7xl mb-10">
+          <h1 className="font-syne font-extrabold text-[8vw] 2xl:text-[10rem] leading-[0.85] tracking-tighter mb-8 text-black drop-shadow-sm">
             TEREZ <br /> FRECEROVÁ
           </h1>
           
-          <div className="flex flex-wrap justify-center gap-4 mb-10">
-            <span className="bg-white border-2 border-black px-6 py-2 rounded-full font-mono text-sm md:text-base font-bold neo-shadow-sm rotate-[-2deg] hover:rotate-0 transition-transform cursor-default">
+          <div className="flex flex-wrap justify-center gap-4">
+            <span className="bg-white border-2 border-black px-6 py-2 rounded-full font-mono text-sm md:text-base font-bold neo-shadow-sm rotate-[-2deg]">
               Spisovateľka
             </span>
-            <span className="bg-lime-300 border-2 border-black px-6 py-2 rounded-full font-mono text-sm md:text-base font-bold neo-shadow-sm rotate-[1deg] hover:rotate-0 transition-transform cursor-default">
+            <span className="bg-lime-300 border-2 border-black px-6 py-2 rounded-full font-mono text-sm md:text-base font-bold neo-shadow-sm rotate-[1deg]">
               Pesničkárka
             </span>
-            <span className="bg-purple-300 border-2 border-black px-6 py-2 rounded-full font-mono text-sm md:text-base font-bold neo-shadow-sm rotate-[-1deg] hover:rotate-0 transition-transform cursor-default">
+            <span className="bg-purple-300 border-2 border-black px-6 py-2 rounded-full font-mono text-sm md:text-base font-bold neo-shadow-sm rotate-[-1deg]">
               Textárka
             </span>
           </div>
-
-          {/* Title Image Container */}
-          <div className="max-w-md mx-auto md:translate-x-12 bg-white border-2 border-black neo-shadow rotate-[2deg] overflow-hidden">
-             {projectImages.hero.titleImage ? (
-                <img src={projectImages.hero.titleImage} alt="Terez Frecerová" className="w-full h-auto aspect-[3/2] object-cover" />
-             ) : (
-                <div className="w-full aspect-[3/2] bg-gray-100 flex items-center justify-center p-6 text-center border border-dashed border-gray-300">
-                   <p className="font-mono text-sm text-gray-500">
-                     Title Image Placeholder (3:2 Aspect Ratio)
-                   </p>
-                </div>
-             )}
-          </div>
         </div>
+
+        {/* LAYER 4: Largest Image (z-10) - Bottom Layer 
+            Now a sibling of the text container so they don't share z-index constraints. */}
+        <motion.div 
+          drag={window.innerWidth >= 768} 
+          dragConstraints={heroRef}
+          className="relative z-10 w-full max-w-md mx-auto md:translate-x-12 bg-black border-2 border-black neo-shadow rotate-[2deg] overflow-hidden md:cursor-grab active:cursor-grabbing pointer-events-auto"
+        >
+           {projectImages.hero.large ? (
+              <img src={projectImages.hero.large} alt="Terez Frecerová" className="w-full h-auto aspect-[3/2] object-cover pointer-events-none" />
+           ) : (
+              <div className="w-full aspect-[3/2] bg-gray-100 flex items-center justify-center p-6 text-center border border-dashed border-gray-300">
+                 <p className="font-mono text-sm text-gray-500">Large Image (hero.jpg)</p>
+              </div>
+           )}
+        </motion.div>
+
+        {/* LAYER 3: Medium Image (z-20) - Middle Layer
+            Hidden on mobile. Lime border & lime shadow. Anchored to bottom-left. */}
+        <motion.div 
+          drag 
+          dragConstraints={heroRef}
+          className="hidden md:block absolute z-20 w-64 lg:w-80 bottom-24 2xl:bottom-80 left-10 lg:left-20 2xl:left-40 bg-black border-2 border-[#bef264] shadow-[6px_6px_0px_0px_#bef264] rotate-[-4deg] overflow-hidden cursor-grab active:cursor-grabbing pointer-events-auto"
+        >
+           {projectImages.hero.medium ? (
+              <img src={projectImages.hero.medium} alt="Terez Frecerová" className="w-full h-auto aspect-square object-cover pointer-events-none" />
+           ) : (
+              <div className="w-full aspect-square bg-gray-100 flex items-center justify-center p-6 text-center border border-dashed border-gray-300">
+                 <p className="font-mono text-sm text-gray-500">Medium Image (hero2.jpg)</p>
+              </div>
+           )}
+        </motion.div>
+
+        {/* LAYER 1: Smallest Image (z-40) - Top Layer (Over the text)
+            Hidden on mobile/tablet (visible on lg+). Purple border & purple shadow. Anchored to bottom-right. */}
+        <motion.div 
+          drag 
+          dragConstraints={heroRef}
+          className="hidden lg:block absolute z-40 w-48 bottom-40 2xl:bottom-165 right-35 lg:right-45 2xl:right-60 bg-black border-2 border-[#d8b4fe] shadow-[6px_6px_0px_0px_#d8b4fe] rotate-[5deg] overflow-hidden cursor-grab active:cursor-grabbing pointer-events-auto"
+        >
+           {projectImages.hero.small ? (
+              <img src={projectImages.hero.small} alt="Terez Frecerová" className="w-full h-auto aspect-[4/5] object-cover pointer-events-none" />
+           ) : (
+              <div className="w-full aspect-[4/5] bg-gray-100 flex items-center justify-center p-6 text-center border border-dashed border-gray-300">
+                 <p className="font-mono text-sm text-gray-500">Small Image (hero3.jpg)</p>
+              </div>
+           )}
+        </motion.div>
+
       </section>
 
       {/* 2. LATEST ALBUM (Mala by som nieco robit) */}

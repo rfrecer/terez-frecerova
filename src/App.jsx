@@ -2,9 +2,51 @@ import React, { useState, useEffect, useMemo, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { Music, BookOpen, Mic, ArrowUpRight, Mail, Instagram, Facebook, Calendar, Disc, MapPin, ExternalLink, Camera, Headphones, X, ChevronLeft, ChevronRight, Star, Heart, Zap, FileText, Anchor, Cloud } from 'lucide-react';
 
-const App = () => {
+const Navbar = ({ navItems, activeSection, scrollTo }) => {
   const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 50);
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  return (
+    <nav className={`fixed top-12 left-0 right-0 z-[60] transition-all duration-300 px-4 md:px-8 flex justify-center pointer-events-none`}>
+      <div className={`
+        pointer-events-auto
+        bg-white border-2 border-black px-6 py-3 
+        flex flex-wrap justify-center items-center gap-4 md:gap-8 
+        neo-shadow rounded-full
+        transition-all duration-300
+        ${scrolled ? 'scale-90 bg-white/90 backdrop-blur' : 'scale-100'}
+      `}>
+        {navItems.map((item) => (
+          <button
+            key={item.id}
+            onClick={() => scrollTo(item.id)}
+            className={`font-mono text-xs md:text-sm uppercase tracking-wide hover:text-blue-600 hover:underline decoration-2 underline-offset-4 transition-colors ${activeSection === item.id ? 'text-blue-600 font-bold' : ''}`}
+          >
+            {item.label}
+          </button>
+        ))}
+      </div>
+    </nav>
+  );
+};
+
+const App = () => {
   const [activeSection, setActiveSection] = useState('home');
+  const [heroMobileHeight, setHeroMobileHeight] = useState('90svh');
+
+  // Lock the hero height exactly once on mobile load to prevent address bar shifting
+  useEffect(() => {
+    if (window.innerWidth < 768) {
+      setHeroMobileHeight(`${window.innerHeight * 0.9}px`);
+    }
+  }, []);
   const [selectedImage, setSelectedImage] = useState(null);
   
   // Reference for the draggable area boundaries
@@ -33,15 +75,6 @@ const App = () => {
       background: "smiesnaosobnadrama.jpg"  // Background image for the diagonal green section
     }
   };
-
-  // Handle scroll for navbar styling
-  useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 50);
-    };
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
 
   // Data
   const artistName = "Terez Frecerová";
@@ -220,29 +253,10 @@ const App = () => {
       </div>
 
       {/* Navigation */}
-      <nav className={`fixed top-12 left-0 right-0 z-[60] transition-all duration-300 px-4 md:px-8 flex justify-center pointer-events-none`}>
-        <div className={`
-          pointer-events-auto
-          bg-white border-2 border-black px-6 py-3 
-          flex flex-wrap justify-center items-center gap-4 md:gap-8 
-          neo-shadow rounded-full
-          transition-all duration-300
-          ${scrolled ? 'scale-90 bg-white/90 backdrop-blur' : 'scale-100'}
-        `}>
-          {navItems.map((item) => (
-            <button
-              key={item.id}
-              onClick={() => scrollTo(item.id)}
-              className={`font-mono text-xs md:text-sm uppercase tracking-wide hover:text-blue-600 hover:underline decoration-2 underline-offset-4 transition-colors ${activeSection === item.id ? 'text-blue-600 font-bold' : ''}`}
-            >
-              {item.label}
-            </button>
-          ))}
-        </div>
-      </nav>
+      <Navbar navItems={navItems} activeSection={activeSection} scrollTo={scrollTo} />
 
       {/* 1. HERO SECTION (Draggable Diorama) */}
-      <section ref={heroRef} id="home" className="relative min-h-[90vh] flex flex-col justify-center items-center px-6 pt-24 border-b-2 border-black overflow-hidden noise-bg">
+      <section ref={heroRef} id="home" style={{ minHeight: heroMobileHeight }} className="relative flex flex-col justify-center items-center px-6 pt-24 border-b-2 border-black overflow-hidden noise-bg">
         
         {/* Glow Layer (z-0) - Ensures black text is readable if a dark image is dragged under it */}
         <div className="absolute inset-0 z-0 pointer-events-none flex justify-center items-center">
@@ -281,7 +295,7 @@ const App = () => {
             Now a sibling of the text container so they don't share z-index constraints. */}
         <motion.div 
           drag={window.innerWidth >= 768} 
-          dragConstraints={heroRef}
+          dragConstraints={window.innerWidth >= 768 ? heroRef : undefined}
           className="relative z-10 w-full max-w-md mx-auto md:translate-x-12 bg-black border-2 border-black neo-shadow rotate-[2deg] overflow-hidden md:cursor-grab active:cursor-grabbing pointer-events-auto"
         >
            {projectImages.hero.large ? (

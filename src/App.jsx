@@ -82,6 +82,7 @@ const App = () => {
   // Raw Concert Data
   // Add 'photoUrl' for past concerts to appear in the archive grid
   const rawConcerts = [
+    { venue: "Letná čítáreň U červeného raka", city: "Bratislava, SK", date: "2026-08-19", link: "https://www.mestskakniznica.sk/navstivte/nase-lokality/letna-citaren-u-cerveneho-raka", imgColor: "bg-purple-300", photoUrl: "" },
     { venue: "Medze Festival", city: "Dolný Kubín, SK", date: "2026-09-05", link: "https://www.instagram.com/medzefestival/", imgColor: "bg-lime-200", photoUrl: "" },
     { venue: "10 rokov Kurníka", city: "Bratislava, SK", date: "2026-05-21", link: "https://naskurnik.sk/", imgColor: "bg-orange-200", photoUrl: "2026-05-21 kurnik.JPG" },
     { venue: "Literatura žije!", city: "České Budějovice, CZ", date: "2026-04-25", link: "https://www.literatura-zije.cz/", imgColor: "bg-cyan-200", photoUrl: "2026-04-25 literatura zije.jpg" },

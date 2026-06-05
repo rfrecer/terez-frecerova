@@ -56,7 +56,7 @@ const App = () => {
   // Replace the empty strings "" with your image paths (e.g., "/terez-frecerova/images/my-photo.jpg")
   const projectImages = {
     hero: {
-      large: "hero.jpg",   // Bottom layer (#4) - Visible on all screens
+      large: "hero1.jpg",   // Bottom layer (#4) - Visible on all screens
       medium: "hero2.jpg", // Middle layer (#3) - Visible on tablet+
       small: "hero3.jpg"   // Top layer (#1) - Visible on desktop+
     },

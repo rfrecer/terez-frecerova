@@ -315,6 +315,155 @@ const ConcertArchive = ({ upcoming, past }) => (
   </section>
 );
 
+const ProjectsSection = () => (
+  <div id="projects">
+    {/* 4. RAPIKY MLADEJ MATERE (Redesigned: Clean Manuscript Style) */}
+    <section className="relative min-h-[50vh] bg-[#fdf8e8] border-b-2 border-black flex flex-col md:flex-row overflow-hidden">
+       
+       <div className="md:w-1/2 p-12 flex flex-col justify-center relative border-b-2 md:border-b-0 md:border-r-2 border-black z-10">
+         <div className="relative z-10">
+           <span className="font-mono text-xs font-bold uppercase tracking-widest text-red-600 mb-4 block">
+             Básnická zbierka • {projects[2].publisher}
+           </span>
+           <h2 className="font-mono font-bold text-4xl md:text-6xl mb-6 tracking-tight text-gray-900 leading-tight">
+             Rapíky <br/> mladej matere
+           </h2>
+           <div className="w-12 h-1 bg-black mb-6"></div>
+           <p className="font-serif italic text-xl leading-relaxed text-gray-700 mb-8 max-w-md">
+             {projects[2].desc}
+           </p>
+           <a href={projects[2].link} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 font-mono text-sm font-bold border-b-2 border-black pb-1 hover:text-red-600 hover:border-red-600 transition-colors">
+             To chcem <ArrowUpRight size={16} />
+           </a>
+         </div>
+       </div>
+
+       <div className="md:w-1/2 relative flex items-center justify-center p-12 overflow-hidden">
+         {projectImages.rapiky.background && (
+            <img src={projectImages.rapiky.background} alt="Rapiky Background" className="absolute inset-0 w-full h-full object-cover opacity-50 z-0" />
+         )}
+
+         <div className="relative z-10 w-64 h-80 bg-white border-2 border-black shadow-[10px_10px_0px_0px_rgba(200,200,200,1)] flex flex-col items-center justify-center p-0 text-center overflow-hidden">
+            {projectImages.rapiky.cover ? (
+              <img src={projectImages.rapiky.cover} alt="Rapiky Cover" className="w-full h-full object-cover" />
+            ) : (
+              <div className="w-full h-full border border-gray-100 flex flex-col items-center justify-center relative overflow-hidden p-6">
+                 <div className="absolute inset-0 opacity-5 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-gray-400 to-transparent"></div>
+                 <BookOpen size={48} className="text-gray-300 mb-4" />
+                 <p className="font-mono text-[10px] text-gray-400">STRANA 42</p>
+              </div>
+            )}
+         </div>
+       </div>
+    </section>
+
+    {/* 5. LSDOLINA (Slightly Smaller) */}
+    <section className="relative min-h-[60vh] text-indigo-100 border-b-2 border-black overflow-hidden flex flex-col md:flex-row items-center">
+      <div className="absolute inset-0 z-0">
+         {projectImages.lsdolina.background ? (
+           <img src={projectImages.lsdolina.background} alt="LSDolina Background" className="w-full h-full object-cover" />
+         ) : (
+           <div className="w-full h-full bg-indigo-900">
+             <div className="absolute inset-0 overflow-hidden pointer-events-none">
+                <div className="absolute top-0 right-0 w-[40vw] h-[40vw] bg-purple-600 rounded-full blur-[80px] opacity-30 mix-blend-screen animate-pulse"></div>
+             </div>
+           </div>
+         )}
+      </div>
+
+      <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-0 overflow-hidden">
+         <h2 className="font-bubbly text-[23vw] leading-none text-transparent bg-clip-text bg-gradient-to-b from-pink-400 via-purple-400 to-indigo-900 opacity-60 transform -rotate-3 blur-[1px] w-full text-center">
+           LSDOLINA
+         </h2>
+      </div>
+
+      <div className="md:w-2/5 p-12 flex flex-col justify-center items-center md:items-start text-center md:text-left relative z-10 min-h-[400px]">
+         <div className="flex items-center justify-center md:justify-start gap-4 mb-12 float-anim bg-indigo-900/40 backdrop-blur-sm p-4 rounded-full">
+           <Headphones size={48} className="text-pink-300" />
+           <div className="blob-shape bg-indigo-800/80 border-2 border-indigo-400 px-4 py-1">
+             <span className="font-mono text-xs font-bold uppercase tracking-widest text-indigo-200">
+               Podcast
+             </span>
+           </div>
+         </div>
+         
+         <div className="flex flex-col gap-3 w-auto items-center md:items-start mt-auto">
+           <a href={projects[1].link} target="_blank" rel="noreferrer" className="inline-flex items-center justify-center gap-2 bg-green-500 hover:bg-green-400 text-black px-6 py-2 rounded-full font-mono text-sm font-bold transition-all hover:scale-105 w-full md:w-auto shadow-[4px_4px_0_rgba(0,0,0,0.3)]">
+             Spotify <Zap size={14} className="fill-black text-black"/>
+           </a>
+           <a href={projects[1].soundcloudLink} target="_blank" rel="noreferrer" className="inline-flex items-center justify-center gap-2 bg-white hover:bg-gray-100 text-black px-6 py-2 rounded-full font-mono text-sm font-bold transition-all hover:scale-105 border-2 border-transparent w-full md:w-auto shadow-[4px_4px_0_rgba(0,0,0,0.3)]">
+             Soundcloud <Cloud size={14} className="fill-orange-500 text-orange-500"/>
+           </a>
+         </div>
+      </div>
+
+      <div className="md:w-3/5 p-12 flex items-center relative z-10">
+         <p className="font-mono text-lg md:text-2xl font-bold leading-[2.3] max-w-xl">
+           <span className="bg-lime-300 text-black px-2 py-0.5 box-decoration-clone">
+             {projects[1].desc}
+           </span>
+         </p>
+      </div>
+    </section>
+
+    {/* 6. SMIESNA OSOBNA DRAMA (Slightly Smaller) */}
+    <section className="relative min-h-[50vh] flex flex-col md:flex-row border-b-2 border-black overflow-hidden bg-white">
+       <div className="absolute top-0 right-0 w-full h-full md:w-1/2 bg-emerald-300 md:clip-diagonal z-0 overflow-hidden">
+         {projectImages.smiesna.background && (
+           <img src={projectImages.smiesna.background} alt="Drama Background" className="w-full h-full object-cover" />
+         )}
+       </div>
+
+       <div className="relative z-10 w-full flex flex-col md:flex-row">
+         <div className="md:w-1/2 p-10 flex flex-col justify-center">
+           <div className="bg-black text-white inline-block self-start px-3 py-1 font-mono font-bold text-sm mb-4 rotate-[-2deg]">
+             {projects[0].category}
+           </div>
+           <h2 className="font-syne font-extrabold text-4xl md:text-6xl leading-[0.9] mb-6 text-black">
+             SMIEŠNA <br/> OSOBNÁ <br/> <span className="text-stroke-black">DRÁMA</span>
+           </h2>
+           <p className="font-mono text-sm bg-white/90 p-4 border-2 border-black neo-shadow max-w-sm mb-6">
+             {projects[0].desc}
+           </p>
+           <a href={projects[0].link} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 font-bold font-mono hover:underline decoration-2">
+             Chcem pre kamaráta <ArrowUpRight size={18} />
+           </a>
+         </div>
+         <div className="md:w-1/2 relative flex items-center justify-center p-10 pointer-events-none">
+         </div>
+       </div>
+    </section>
+  </div>
+);
+
+const ContactFooter = () => (
+  <section id="contact" className="py-20 px-6 bg-black text-white text-center relative overflow-hidden">
+    <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-lime-300 via-purple-300 to-blue-300"></div>
+
+    <h2 className="font-syne font-bold text-5xl md:text-8xl mb-12 leading-tight">
+      Booking
+    </h2>
+
+    <div className="flex flex-col items-center gap-6 mb-16">
+       <a href="mailto:terez.frecerova@gmail.com" className="group flex items-center gap-3 text-xl md:text-3xl font-mono transition-colors border-2 border-white px-8 py-4 rounded-full hover:bg-lime-300 hover:border-lime-300 hover:text-black">
+         <Mail className="group-hover:animate-bounce" /> terez.frecerova@gmail.com
+       </a>
+    </div>
+
+    <div className="flex justify-center gap-8 mb-16">
+      <a href="https://www.instagram.com/cincin.terezit/" target="_blank" rel="noreferrer" className="hover:text-purple-300 transition-transform hover:scale-110"><Instagram size={32} /></a>
+      <a href="https://www.facebook.com/terezia.frecerova" target="_blank" rel="noreferrer" className="hover:text-blue-300 transition-transform hover:scale-110"><Facebook size={32} /></a>
+      <a href="https://open.spotify.com/artist/43CJ3Ot90JF7M2j1wTAYlf" target="_blank" rel="noreferrer" className="hover:text-indigo-300 transition-transform hover:scale-110"><Headphones size={32} /></a>
+    </div>
+
+    <footer className="font-mono text-xs text-gray-500 flex flex-col md:flex-row justify-center items-center gap-4">
+      <p>© {new Date().getFullYear()} Terez Frecerová.</p>
+      <span className="hidden md:inline">•</span>
+      <p>Praha & Špania Dolina</p>
+    </footer>
+  </section>
+);
+
 // ==========================================
 // MAIN APP COMPONENT
 // ==========================================
@@ -382,168 +531,8 @@ const App = () => {
       <AlbumSection />
       <ConcertArchive upcoming={upcoming} past={past} />
 
-      {/* Projects Container (Reordered & Resized) */}
-      <div id="projects">
-
-        {/* 4. RAPIKY MLADEJ MATERE (Redesigned: Clean Manuscript Style) */}
-        <section className="relative min-h-[50vh] bg-[#fdf8e8] border-b-2 border-black flex flex-col md:flex-row overflow-hidden">
-           
-           <div className="md:w-1/2 p-12 flex flex-col justify-center relative border-b-2 md:border-b-0 md:border-r-2 border-black z-10">
-             <div className="relative z-10">
-               <span className="font-mono text-xs font-bold uppercase tracking-widest text-red-600 mb-4 block">
-                 Básnická zbierka • {projects[2].publisher}
-               </span>
-               <h2 className="font-mono font-bold text-4xl md:text-6xl mb-6 tracking-tight text-gray-900 leading-tight">
-                 Rapíky <br/> mladej matere
-               </h2>
-               <div className="w-12 h-1 bg-black mb-6"></div>
-               <p className="font-serif italic text-xl leading-relaxed text-gray-700 mb-8 max-w-md">
-                 {projects[2].desc}
-               </p>
-               <a href={projects[2].link} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 font-mono text-sm font-bold border-b-2 border-black pb-1 hover:text-red-600 hover:border-red-600 transition-colors">
-                 To chcem <ArrowUpRight size={16} />
-               </a>
-             </div>
-           </div>
-
-           <div className="md:w-1/2 relative flex items-center justify-center p-12 overflow-hidden">
-             {/* EDIT 1: Background image moved HERE to be under the right-hand photo only */}
-             {projectImages.rapiky.background && (
-                <img src={projectImages.rapiky.background} alt="Rapiky Background" className="absolute inset-0 w-full h-full object-cover opacity-50 z-0" />
-             )}
-
-             {/* Abstract visual: Book/Page or Image */}
-             <div className="relative z-10 w-64 h-80 bg-white border-2 border-black shadow-[10px_10px_0px_0px_rgba(200,200,200,1)] flex flex-col items-center justify-center p-0 text-center overflow-hidden">
-                {projectImages.rapiky.cover ? (
-                  <img src={projectImages.rapiky.cover} alt="Rapiky Cover" className="w-full h-full object-cover" />
-                ) : (
-                  <div className="w-full h-full border border-gray-100 flex flex-col items-center justify-center relative overflow-hidden p-6">
-                     <div className="absolute inset-0 opacity-5 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-gray-400 to-transparent"></div>
-                     <BookOpen size={48} className="text-gray-300 mb-4" />
-                     <p className="font-mono text-[10px] text-gray-400">STRANA 42</p>
-                  </div>
-                )}
-             </div>
-           </div>
-        </section>
-
-        {/* 5. LSDOLINA (Slightly Smaller) */}
-        <section className="relative min-h-[60vh] text-indigo-100 border-b-2 border-black overflow-hidden flex flex-col md:flex-row items-center">
-          
-          {/* Decoupled Background Layer - Image Placeholder */}
-          <div className="absolute inset-0 z-0">
-             {projectImages.lsdolina.background ? (
-               <img src={projectImages.lsdolina.background} alt="LSDolina Background" className="w-full h-full object-cover" />
-             ) : (
-               <div className="w-full h-full bg-indigo-900">
-                 {/* Background FX */}
-                 <div className="absolute inset-0 overflow-hidden pointer-events-none">
-                    <div className="absolute top-0 right-0 w-[40vw] h-[40vw] bg-purple-600 rounded-full blur-[80px] opacity-30 mix-blend-screen animate-pulse"></div>
-                 </div>
-               </div>
-             )}
-          </div>
-
-          {/* Massive Background Title Layer - Sitting behind everything */}
-          <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-0 overflow-hidden">
-             <h2 className="font-bubbly text-[23vw] leading-none text-transparent bg-clip-text bg-gradient-to-b from-pink-400 via-purple-400 to-indigo-900 opacity-60 transform -rotate-3 blur-[1px] w-full text-center">
-               LSDOLINA
-             </h2>
-          </div>
-
-          <div className="md:w-2/5 p-12 flex flex-col justify-center items-center md:items-start text-center md:text-left relative z-10 min-h-[400px]">
-             
-             {/* Header Group with Icon + Blob Tag */}
-             <div className="flex items-center justify-center md:justify-start gap-4 mb-12 float-anim bg-indigo-900/40 backdrop-blur-sm p-4 rounded-full">
-               <Headphones size={48} className="text-pink-300" />
-               
-               <div className="blob-shape bg-indigo-800/80 border-2 border-indigo-400 px-4 py-1">
-                 <span className="font-mono text-xs font-bold uppercase tracking-widest text-indigo-200">
-                   Podcast
-                 </span>
-               </div>
-             </div>
-             
-             {/* Compact Buttons */}
-             <div className="flex flex-col gap-3 w-auto items-center md:items-start mt-auto">
-               <a href={projects[1].link} target="_blank" rel="noreferrer" className="inline-flex items-center justify-center gap-2 bg-green-500 hover:bg-green-400 text-black px-6 py-2 rounded-full font-mono text-sm font-bold transition-all hover:scale-105 w-full md:w-auto shadow-[4px_4px_0_rgba(0,0,0,0.3)]">
-                 Spotify <Zap size={14} className="fill-black text-black"/>
-               </a>
-               <a href={projects[1].soundcloudLink} target="_blank" rel="noreferrer" className="inline-flex items-center justify-center gap-2 bg-white hover:bg-gray-100 text-black px-6 py-2 rounded-full font-mono text-sm font-bold transition-all hover:scale-105 border-2 border-transparent w-full md:w-auto shadow-[4px_4px_0_rgba(0,0,0,0.3)]">
-                 Soundcloud <Cloud size={14} className="fill-orange-500 text-orange-500"/>
-               </a>
-             </div>
-          </div>
-
-          <div className="md:w-3/5 p-12 flex items-center relative z-10">
-             {/* Highlighted text directly using a span with background color */}
-             <p className="font-mono text-lg md:text-2xl font-bold leading-[2.3] max-w-xl">
-               <span className="bg-lime-300 text-black px-2 py-0.5 box-decoration-clone">
-                 {projects[1].desc}
-               </span>
-             </p>
-          </div>
-        </section>
-
-        {/* 6. SMIESNA OSOBNA DRAMA (Slightly Smaller) */}
-        <section className="relative min-h-[50vh] flex flex-col md:flex-row border-b-2 border-black overflow-hidden bg-white">
-           {/* Background Image Placeholder for Green Area */}
-           <div className="absolute top-0 right-0 w-full h-full md:w-1/2 bg-emerald-300 md:clip-diagonal z-0 overflow-hidden">
-             {projectImages.smiesna.background && (
-               <img src={projectImages.smiesna.background} alt="Drama Background" className="w-full h-full object-cover" />
-             )}
-           </div>
-
-           <div className="relative z-10 w-full flex flex-col md:flex-row">
-             <div className="md:w-1/2 p-10 flex flex-col justify-center">
-               <div className="bg-black text-white inline-block self-start px-3 py-1 font-mono font-bold text-sm mb-4 rotate-[-2deg]">
-                 {projects[0].category}
-               </div>
-               <h2 className="font-syne font-extrabold text-4xl md:text-6xl leading-[0.9] mb-6 text-black">
-                 SMIEŠNA <br/> OSOBNÁ <br/> <span className="text-stroke-black">DRÁMA</span>
-               </h2>
-               <p className="font-mono text-sm bg-white/90 p-4 border-2 border-black neo-shadow max-w-sm mb-6">
-                 {projects[0].desc}
-               </p>
-               <a href={projects[0].link} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 font-bold font-mono hover:underline decoration-2">
-                 Chcem pre kamaráta <ArrowUpRight size={18} />
-               </a>
-             </div>
-             
-             {/* EDIT 3: Removed BookOpen symbol */}
-             <div className="md:w-1/2 relative flex items-center justify-center p-10 pointer-events-none">
-             </div>
-           </div>
-        </section>
-
-      </div>
-
-      {/* 7. FOOTER / CONTACT */}
-      <section id="contact" className="py-20 px-6 bg-black text-white text-center relative overflow-hidden">
-        <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-lime-300 via-purple-300 to-blue-300"></div>
-
-        <h2 className="font-syne font-bold text-5xl md:text-8xl mb-12 leading-tight">
-          Booking
-        </h2>
-
-        <div className="flex flex-col items-center gap-6 mb-16">
-           <a href="mailto:terez.frecerova@gmail.com" className="group flex items-center gap-3 text-xl md:text-3xl font-mono transition-colors border-2 border-white px-8 py-4 rounded-full hover:bg-lime-300 hover:border-lime-300 hover:text-black">
-             <Mail className="group-hover:animate-bounce" /> terez.frecerova@gmail.com
-           </a>
-        </div>
-
-        <div className="flex justify-center gap-8 mb-16">
-          <a href="https://www.instagram.com/cincin.terezit/" target="_blank" rel="noreferrer" className="hover:text-purple-300 transition-transform hover:scale-110"><Instagram size={32} /></a>
-          <a href="https://www.facebook.com/terezia.frecerova" target="_blank" rel="noreferrer" className="hover:text-blue-300 transition-transform hover:scale-110"><Facebook size={32} /></a>
-          <a href="https://open.spotify.com/artist/43CJ3Ot90JF7M2j1wTAYlf" target="_blank" rel="noreferrer" className="hover:text-indigo-300 transition-transform hover:scale-110"><Headphones size={32} /></a>
-        </div>
-
-        <footer className="font-mono text-xs text-gray-500 flex flex-col md:flex-row justify-center items-center gap-4">
-          <p>© {new Date().getFullYear()} Terez Frecerová.</p>
-          <span className="hidden md:inline">•</span>
-          <p>Praha & Špania Dolina</p>
-        </footer>
-      </section>
+      <ProjectsSection />
+      <ContactFooter />
 
       {/* Simple Image Modal Placeholder */}
       {selectedImage && (

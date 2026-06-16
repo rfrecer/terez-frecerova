@@ -37,10 +37,291 @@ const Navbar = ({ navItems, activeSection, scrollTo }) => {
   );
 };
 
+// ==========================================
+// STATIC DATA & CONFIGURATION
+// ==========================================
+// Moving constants outside the component prevents re-allocation on every render.
+
+const projectImages = {
+  hero: { large: "/hero/hero1.jpg", medium: "/hero/hero2.jpg", small: "/hero/hero3.jpg" },
+  malaBySom: { background: "/projects/album_background.jpg", cover: "/projects/album.jpg" },
+  rapiky: { background: "/projects/rapiky_background.JPG", cover: "/projects/rapiky.JPG" },
+  lsdolina: { background: "/projects/lsdolina.jpeg" },
+  smiesna: { background: "/projects/smiesnaosobnadrama.jpg" }
+};
+
+const artistName = "Terez Frecerová";
+
+const rawConcerts = [
+  { venue: "Letná čítáreň U červeného raka", city: "Bratislava, SK", date: "2026-08-19", link: "https://www.mestskakniznica.sk/navstivte/nase-lokality/letna-citaren-u-cerveneho-raka", imgColor: "bg-purple-300", photoUrl: "" },
+  { venue: "Medze Festival", city: "Dolný Kubín, SK", date: "2026-09-05", link: "https://www.instagram.com/medzefestival/", imgColor: "bg-lime-200", photoUrl: "" },
+  { venue: "10 rokov Kurníka", city: "Bratislava, SK", date: "2026-05-21", link: "https://naskurnik.sk/", imgColor: "bg-orange-200", photoUrl: "/concerts/2026-05-21 kurnik.JPG" },
+  { venue: "Literatura žije!", city: "České Budějovice, CZ", date: "2026-04-25", link: "https://www.literatura-zije.cz/", imgColor: "bg-cyan-200", photoUrl: "/concerts/2026-04-25 literatura zije.jpg" },
+  { venue: "United Islands (Klubová noc)", city: "Praha, CZ", date: "2026-04-30", link: "https://www.unitedislands.cz/cs", imgColor: "bg-rose-200", photoUrl: "/concerts/2026-04-30 united islands.JPG" },
+  { venue: "Žižkovská noc", city: "Praha, CZ", date: "2026-03-20", link: "https://www.facebook.com/events/865544609627654", imgColor: "bg-orange-200", photoUrl: "/concerts/2026-03-20 zizkovska noc.jpg" },
+  { venue: "+ Tante Elze: Tiny Flájská", city: "Praha, CZ", date: "2026-01-24", link: "https://www.youtube.com/@TinyFl%C3%A1jsk%C3%A1", imgColor: "bg-teal-200", photoUrl: "/concerts/2026-01-24 tiny flajska.jpg" },
+  { venue: "Popo_FM", city: "Bratislava, SK", date: "2026-03-13", link: "https://fm.stvr.sk/relacie/popo_fm", imgColor: "bg-rose-200", photoUrl: "/concerts/2026-03-13 popofm.jpg" },
+  { venue: "Beseda u Bigbítu", city: "Tasov, CZ", date: "2026-07-31", link: "https://besedaubigbitu.cz/program", imgColor: "bg-fuchsia-200", photoUrl: "" },
+  { venue: "WiFič VEN!_na poli", city: "Bílovice, CZ", date: "2026-08-28", link: "https://www.wificven.cz/", imgColor: "bg-violet-200", photoUrl: "" },
+  { venue: "Christiania (Vyliate duše)", city: "Prešov, SK", date: "2025-12-05", link: "https://www.facebook.com/events/2041057979971614", imgColor: "bg-purple-200", photoUrl: "/concerts/2025-12-05 christiania.jpeg" },
+  { venue: "Anežka (CZ krst albumu)", city: "Praha, CZ", date: "2025-12-13", link: "https://www.facebook.com/events/1676961323261958", imgColor: "bg-purple-200", photoUrl: "/concerts/2025-12-13 anezka.jpg" },
+  { venue: "Pink Whale (SK krst albumu)", city: "Bratislava, SK", date: "2025-11-06", link: "https://koncerty.slnkorecords.sk/event-detail/68dd2aa6ec2eb8327e9f7eb2/", imgColor: "bg-pink-300", photoUrl: "/concerts/2025-11-06 Pink Whale krst.JPG" },
+  { venue: "Wave", city: "Prešov, SK", date: "2025-12-05", link: "https://www.wave.sk/event-detail/68e7a143370bcafa026c654c/?lang=sk_SK", imgColor: "bg-blue-200", photoUrl: "/concerts/2025-12-05 wave.JPG" },
+  { venue: "Beseda u Bigbítu", city: "Tasov, CZ", date: "2025-08-02", link: "https://besedaubigbitu.cz/program/rok/2025", imgColor: "bg-yellow-200", photoUrl: "/concerts/2025-08-02 beseda.jpeg" },
+  { venue: "MFDF Ji.hlava", city: "Jihlava, CZ", date: "2025-10-26", link: "https://www.ji-hlava.cz/akce/terez-frecerova", imgColor: "bg-red-200", photoUrl: "/concerts/2025-10-26 Jihlava.JPG" },
+  { venue: "Trnavský rínek", city: "Trnava, SK", date: "2025-12-06", link: "https://www.facebook.com/events/3293671617474544/", imgColor: "bg-orange-200", photoUrl: "/concerts/2025-12-06 Trnavsky rinek.jpeg" },
+  { venue: "Tužina Groove", city: "Tužina, SK", date: "2025-07-26", link: "https://www.tuzinagroove.sk/program/sobota/", imgColor: "bg-green-200", photoUrl: "/concerts/2025-07-26 tuzina.jpeg" },
+  { venue: "Prüger-Wallnerova záhrada (Letorast)", city: "Bratislava, SK", date: "2024-08-28", link: "https://www.instagram.com/reel/C_F-IMxq1rb/?utm_source=ig_web_copy_link", imgColor: "bg-emerald-200", photoUrl: "/concerts/2024-08-28 Letorast.jpg" },
+  { venue: "Fuga (Poeti z ulice)", city: "Bratislava, SK", date: "2025-03-20", link: "https://www.facebook.com/events/n%C3%A1mestie-snp-24-81101-bratislava-slovakia/poeti-z-ulice-fragmenty-svetla/1837139687060250/", imgColor: "bg-indigo-200", photoUrl: "/concerts/2025-03-20 fuga.jpg" },
+  { venue: "Manifest Bohéma (Srdcové záležitosti)", city: "Bratislava, SK", date: "2024-12-18", link: "https://www.facebook.com/events/1716159449240360/", imgColor: "bg-rose-200", photoUrl: "/concerts/2024-12-18 Srdcove zalezitosti.jpg" },
+  { venue: "Koncertná sieň Klarisiek", city: "Bratislava, SK", date: "2024-05-12", link: "https://goout.net/sk/srdcove-zalezitosti-matky-vsemohuce/szxqxcx/", imgColor: "bg-cyan-200", photoUrl: "/concerts/2024-05-12 Srdcove zalezitosti-Matky vsemohuce.jpeg" },
+  { venue: "Šafko Klub (Tepláreň Kabaret)", city: "Bratislava, SK", date: "2024-11-23", link: "https://tootoot.fm/en/events/65af9de81b234e174cefe18d", imgColor: "bg-lime-200", photoUrl: "/concerts/2024-11-23 teplaren.jpg" },
+  { venue: "Prüger-Wallnerova záhrada", city: "Bratislava, SK", date: "2024-05-30", link: "", imgColor: "bg-lime-200", photoUrl: "/concerts/2024-05-30 Prugerka Bratislava solo.jpeg" },
+  { venue: "Nová Cvernovka", city: "Bratislava, SK", date: "2024-12-07", link: "https://goout.net/uk/kaery-ann%2Bterez-frecerova/szetynx/", imgColor: "bg-fuchsia-200", photoUrl: "/concerts/2024-12-07 Nova Cvernovka.JPG" }
+];
+
+const album = {
+  title: "Mala by som niečo robiť",
+  label: "Slnko Records",
+  year: "2025",
+  desc: "'...je plnotučným songwriterským svědectvím čerstvé matky, která dává průchod svojí únavě, rozčarování, střetům s realitou, nasranosti, kletbám, naději, únikům.' -Pavel Klusák",
+  color: "bg-orange-300",
+  link: "https://www.slnkorecords.sk/terez-frecerova/mala-by-som-nieco-robit",
+  spotifyLink: "https://open.spotify.com/album/5tvf99kYFfLVPHuRyQs3a6",
+  tidalLink: "https://tidal.com/album/456287612/u"
+};
+
+const projects = [
+  {
+    id: "book1", category: "Kniha", title: "Smiešna osobná dráma", publisher: "Tatran, 2016",
+    desc: "Debutový román. Autentická satira o generácii Y, uväznenej medzi študentskou slobodou a absurditou prvého korporátneho jobu. Príbeh plný irónie a slangu o hľadaní zmyslu v banalitách dospelého života.",
+    link: "https://www.martinus.sk/777931-smiesna-osobna-drama/260353", style: "comic", 
+    theme: { bg: "bg-emerald-300", text: "text-black", accent: "bg-black text-emerald-300" }
+  },
+  {
+    id: "podcast", category: "Podcast", title: "LSDolina", publisher: "Spotify",
+    desc: "Dospelácka relácia o psychedelikách a dolinách ľudskej mysle.",
+    link: "https://open.spotify.com/show/4VPddgb3iQSskvQy3touHg", soundcloudLink: "https://soundcloud.com/terezia-frecerova", style: "psychedelic",
+    theme: { bg: "bg-indigo-900", text: "text-indigo-100", accent: "bg-indigo-400" }
+  },
+  {
+    id: "book2", category: "Poézia", title: "Rapíky mladej matere", publisher: "Ursa Minor",
+    desc: "'Freska o moderných ženách, modernom konzume, je to trip do vesmírnej petriho misky, na ktorú mieri galaktický snajper. Melodráma o kojení sveta, ktorý sa vám prisal na prsník cez uzlíček šťastia okolo ktorého číhajú vlásočnice depky.' -Lyrik",
+    link: "https://www.ursa-minor.sk/rapiky-mladej-matere/", style: "manuscript",
+    theme: { bg: "bg-[#f4e4bc]", text: "text-rose-900", accent: "bg-rose-500" }
+  }
+];
+
+const navItems = [
+  { id: 'home', label: 'domov' },
+  { id: 'music', label: 'hudba' },
+  { id: 'concerts', label: 'koncerty' },
+  { id: 'projects', label: 'projekty' },
+  { id: 'contact', label: 'kontakt' },
+];
+
+// ==========================================
+// SUB-COMPONENTS
+// ==========================================
+
+const Marquee = () => (
+  <div className="bg-lime-300 text-black py-2 font-mono text-sm border-b-2 border-black overflow-hidden relative z-50">
+    <div className="marquee-container">
+      <div className="marquee-content font-bold flex items-center">
+        {/* Original Set */}
+        <a href="https://www.youtube.com/watch?v=dzXfDRHVnE0&list=RDdzXfDRHVnE0&start_radio=1" target="_blank" rel="noreferrer" className="mx-4 hover:underline decoration-black decoration-2 underline-offset-2">
+          ✿ KONCERT S TANTE ELZE v :POPO_FM
+        </a>
+        <a href="https://www.instagram.com/p/DVRIJX_DKg1/?img_index=1" target="_blank" rel="noreferrer" className="mx-4 hover:underline decoration-black decoration-2 underline-offset-2">
+          ✿ ALBUM "MALA BY SOM NIEČO ROBIŤ" NA RADIO_HEAD AWARDS 2025
+        </a>
+        <span className="mx-4">✿ ČEKNI JARNÉ KONCERTY</span>
+        <a href="https://soundcloud.com/terezia-frecerova/lsdolina-katarina-janeckova-walshe-trip-nam-pomohol-vo-vztahu-35" target="_blank" rel="noreferrer" className="mx-4 hover:underline decoration-black decoration-2 underline-offset-2">
+          ✿ VYPOČUJ SI LSDOLINU S KATARÍNOU JANEČKOVOU WALSHE
+        </a>
+        <a href="https://www.mujrozhlas.cz/artcafe/debut-hudebnice-terez-frecerove-prinasi-autenticitu-zivota-lehouckou-ironii-i-trapove-beaty" target="_blank" rel="noreferrer" className="mx-4 hover:underline decoration-black decoration-2 underline-offset-2">
+          ✿ ROZHOVOR V ARTCAFÉ NA RÁDIU VLTAVA
+        </a>
+        <span className="mx-4">✿ BIČ PLIESKA NA KONCI</span>
+        <a href="https://www.youtube.com/watch?v=dzXfDRHVnE0&list=RDdzXfDRHVnE0&start_radio=1" target="_blank" rel="noreferrer" className="mx-4 hover:underline decoration-black decoration-2 underline-offset-2">
+          ✿ KONCERT S TANTE ELZE v :POPO_FM
+        </a>
+
+        {/* Duplicate Set for Seamless Loop */}
+        <a href="https://www.instagram.com/p/DVRIJX_DKg1/?img_index=1" target="_blank" rel="noreferrer" className="mx-4 hover:underline decoration-black decoration-2 underline-offset-2">
+          ✿ ALBUM "MALA BY SOM NIEČO ROBIŤ" NA RADIO_HEAD AWARDS 2025
+        </a>
+        <span className="mx-4">✿ ČEKNI JARNÉ KONCERTY</span>
+        <a href="https://soundcloud.com/terezia-frecerova/lsdolina-katarina-janeckova-walshe-trip-nam-pomohol-vo-vztahu-35" target="_blank" rel="noreferrer" className="mx-4 hover:underline decoration-black decoration-2 underline-offset-2">
+          ✿ VYPOČUJ SI LSDOLINU S KATARÍNOU JANEČKOVOU WALSHE
+        </a>
+        <a href="https://www.mujrozhlas.cz/artcafe/debut-hudebnice-terez-frecerove-prinasi-autenticitu-zivota-lehouckou-ironii-i-trapove-beaty" target="_blank" rel="noreferrer" className="mx-4 hover:underline decoration-black decoration-2 underline-offset-2">
+          ✿ ROZHOVOR V ARTCAFÉ NA RÁDIU VLTAVA
+        </a>
+        <span className="mx-4">✿ BIČ PLIESKA NA KONCI</span>
+      </div>
+    </div>
+  </div>
+);
+
+const HeroSection = ({ heroMobileHeight, heroRef }) => (
+  <section ref={heroRef} id="home" style={{ minHeight: heroMobileHeight }} className="relative flex flex-col justify-center items-center px-6 pt-24 border-b-2 border-black overflow-hidden noise-bg">
+    <div className="absolute inset-0 z-0 pointer-events-none flex justify-center items-center">
+        <div className="w-[80vw] h-[60vh] bg-white/70 blur-[80px] rounded-full mix-blend-screen"></div>
+    </div>
+    <div className="absolute top-20 left-10 md:left-20 animate-bounce delay-100 z-30 pointer-events-none">
+       <div className="w-12 h-12 bg-yellow-400 rounded-full border-2 border-black"></div>
+    </div>
+    <div className="hidden md:block absolute bottom-40 right-10 md:right-20 animate-pulse z-30 pointer-events-none">
+       <div className="w-16 h-16 bg-blue-400 rotate-45 border-2 border-black"></div>
+    </div>
+
+    <div className="relative z-30 pointer-events-none text-center w-full max-w-7xl mb-10">
+      <h1 className="font-syne font-extrabold text-[8vw] 2xl:text-[10rem] leading-[0.85] tracking-tighter mb-8 text-black drop-shadow-sm">
+        TEREZ <br /> FRECEROVÁ
+      </h1>
+      <div className="flex flex-wrap justify-center gap-4">
+        <span className="bg-white border-2 border-black px-6 py-2 rounded-full font-mono text-sm md:text-base font-bold neo-shadow-sm rotate-[-2deg]">Spisovateľka</span>
+        <span className="bg-lime-300 border-2 border-black px-6 py-2 rounded-full font-mono text-sm md:text-base font-bold neo-shadow-sm rotate-[1deg]">Pesničkárka</span>
+        <span className="bg-purple-300 border-2 border-black px-6 py-2 rounded-full font-mono text-sm md:text-base font-bold neo-shadow-sm rotate-[-1deg]">Textárka</span>
+      </div>
+    </div>
+
+    <motion.div drag={window.innerWidth >= 768} dragConstraints={window.innerWidth >= 768 ? heroRef : undefined} className="relative z-10 w-full max-w-md mx-auto md:translate-x-12 bg-black border-2 border-black neo-shadow rotate-[2deg] overflow-hidden md:cursor-grab active:cursor-grabbing pointer-events-auto">
+       <img src={projectImages.hero.large} alt="Terez Frecerová" className="w-full h-auto aspect-[3/2] object-cover pointer-events-none" />
+    </motion.div>
+
+    <motion.div drag dragConstraints={heroRef} className="hidden md:block absolute z-20 w-64 lg:w-80 bottom-24 2xl:bottom-80 left-10 lg:left-20 2xl:left-40 bg-[#bef264] border-2 border-[#bef264] shadow-[6px_6px_0px_0px_#bef264] rotate-[-4deg] overflow-hidden cursor-grab active:cursor-grabbing pointer-events-auto">
+       <img src={projectImages.hero.medium} alt="Terez Frecerová" className="w-full h-auto aspect-square object-cover pointer-events-none" />
+    </motion.div>
+
+    <motion.div drag dragConstraints={heroRef} className="hidden lg:block absolute z-40 w-48 bottom-40 2xl:bottom-165 right-35 lg:right-45 2xl:right-60 bg-[#d8b4fe] border-2 border-[#d8b4fe] shadow-[6px_6px_0px_0px_#d8b4fe] rotate-[5deg] overflow-hidden cursor-grab active:cursor-grabbing pointer-events-auto">
+       <img src={projectImages.hero.small} alt="Terez Frecerová" className="w-full h-auto aspect-[4/5] object-cover pointer-events-none" />
+    </motion.div>
+  </section>
+);
+
+const AlbumSection = () => (
+  <section id="music" className="border-b-2 border-black">
+    <div className="flex flex-col md:flex-row min-h-[60vh]">
+      <div className={`md:w-1/2 p-10 flex items-center justify-center border-b-2 md:border-b-0 md:border-r-2 border-black ${album.color} relative overflow-hidden`}>
+        {projectImages.malaBySom.background ? (
+          <img src={projectImages.malaBySom.background} alt="Album Background" className="absolute inset-0 w-full h-full object-cover z-0" />
+        ) : (
+          <div className="absolute inset-0 opacity-10 pointer-events-none"><Disc size={400} className="absolute -right-20 -bottom-20 animate-spin-slow" /></div>
+        )}
+        <div className="relative w-full max-w-md aspect-square bg-white border-2 border-black neo-shadow-lg flex items-center justify-center group overflow-hidden z-10">
+           {projectImages.malaBySom.cover ? (
+             <img src={projectImages.malaBySom.cover} alt="Album Cover" className="w-full h-full object-cover" />
+           ) : (
+             <div className="text-center p-8"><Disc size={80} className="mx-auto mb-4" /><h3 className="font-syne font-bold text-3xl uppercase leading-none mb-2">{album.title}</h3><p className="font-mono text-xs uppercase tracking-widest">Slnko Records</p></div>
+           )}
+           <div className="absolute inset-0 bg-black/80 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+             <a href={album.link} target="_blank" rel="noreferrer" className="bg-lime-300 text-black font-mono font-bold px-8 py-3 rounded-full hover:scale-105 transition-transform flex items-center gap-2">
+               Kúpiť <ExternalLink size={16}/>
+             </a>
+           </div>
+        </div>
+      </div>
+      <div className="md:w-1/2 p-10 md:p-20 bg-white flex flex-col justify-center">
+        <div className="inline-flex items-center gap-2 font-mono font-bold text-sm mb-4">
+          <div className="w-3 h-3 bg-red-500 rounded-full animate-pulse"></div>NAJNOVŠÍ ALBUM ({album.year})
+        </div>
+        <h2 className="font-syne font-extrabold text-5xl md:text-7xl mb-6 leading-none">{album.title}</h2>
+        <p className="font-mono text-lg md:text-xl text-gray-700 mb-8 leading-relaxed">{album.desc}</p>
+        <div className="flex flex-wrap gap-4">
+           <a href={album.spotifyLink} target="_blank" rel="noreferrer" className="bg-black text-white font-mono px-6 py-3 border-2 border-transparent hover:bg-white hover:text-black hover:border-black transition-all neo-shadow-sm">Spotify</a>
+           <a href={album.tidalLink} target="_blank" rel="noreferrer" className="bg-black text-white font-mono px-6 py-3 border-2 border-transparent hover:bg-white hover:text-black hover:border-black transition-all neo-shadow-sm">Tidal</a>
+           <a href={album.link} target="_blank" rel="noreferrer" className="bg-white text-black font-mono px-6 py-3 border-2 border-black hover:bg-orange-100 transition-all neo-shadow-sm">Kúpiť na Slnko Records</a>
+        </div>
+      </div>
+    </div>
+  </section>
+);
+
+const ConcertArchive = ({ upcoming, past }) => (
+  <section id="concerts" className="py-20 bg-white border-b-2 border-black">
+    <div className="max-w-7xl mx-auto px-6">
+      <div className="flex flex-col md:flex-row justify-between items-end mb-12 gap-6">
+        <div className="pl-4">
+          <div className="flex items-center gap-3 mb-2">
+            <Calendar className="w-6 h-6" />
+            <span className="font-mono font-bold text-sm tracking-widest text-blue-600 uppercase">Tour</span>
+          </div>
+          <h2 className="font-syne font-extrabold text-4xl sm:text-5xl md:text-7xl">Najbližšie koncerty</h2>
+        </div>
+        <div className="font-mono text-sm text-gray-500 max-w-xs text-right hidden md:block">Lístky dostupné aj na mieste.</div>
+      </div>
+
+      <div className="mb-24">
+        {upcoming.length > 0 ? (
+          <>
+            {upcoming.map((gig, idx) => (
+              <div key={idx} className="group relative border-t-2 border-black py-8 pl-4 flex flex-col md:flex-row md:items-center justify-between gap-4 hover:bg-lime-50 transition-colors">
+                <div className="md:w-1/4">
+                  <span className="font-syne font-bold text-3xl md:text-4xl">{gig.displayDate}</span>
+                  <span className="font-mono text-sm text-gray-500 block">{gig.displayYear}</span>
+                </div>
+                <div className="flex-1">
+                  <h3 className="font-mono font-bold text-xl md:text-2xl uppercase mb-1">{gig.venue}</h3>
+                  <div className="flex items-center gap-2 text-gray-600 font-sans"><MapPin size={16} />{gig.city}</div>
+                </div>
+                <div className="md:w-1/4 flex justify-start md:justify-end">
+                  <a href={gig.link} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 font-mono font-bold border-2 border-black bg-white px-6 py-2 hover:bg-black hover:text-white transition-all neo-shadow-sm group-hover:translate-x-[-4px] group-hover:translate-y-[-4px]">
+                    Lístky <ArrowUpRight size={16} />
+                  </a>
+                </div>
+              </div>
+            ))}
+            <div className="border-t-2 border-black"></div>
+          </>
+        ) : (
+          <div className="py-8 text-center font-mono text-gray-500 border-t-2 border-b-2 border-black">Momentálne nie sú naplánované žiadne koncerty.</div>
+        )}
+      </div>
+
+      <div className="flex items-center gap-4 mb-8">
+        <Camera className="w-8 h-8" />
+        <h2 className="font-syne font-bold text-3xl md:text-4xl">Archív</h2>
+      </div>
+
+      <div className="w-full overflow-x-auto no-scrollbar pb-6">
+        <div className="flex gap-4 min-w-full w-max">
+          {past.map((gig, idx) => (
+            <a key={idx} href={gig.link} target="_blank" rel="noreferrer" className="group relative cursor-pointer min-w-[280px] md:min-w-[320px] shrink-0 block">
+              <div className={`w-full aspect-square ${gig.imgColor} border-2 border-black flex items-center justify-center overflow-hidden relative transition-all group-hover:neo-shadow`}>
+                 {gig.photoUrl ? (
+                    <img src={gig.photoUrl} alt={gig.venue} className="absolute inset-0 w-full h-full object-cover z-10"/>
+                 ) : (
+                   <>
+                     <div className="absolute inset-0 bg-black opacity-0 group-hover:opacity-20 transition-opacity z-10"></div>
+                     <Music className="opacity-20 text-black group-hover:scale-110 transition-transform" size={40} />
+                   </>
+                 )}
+                 <div className="absolute bottom-0 left-0 right-0 p-3 bg-white border-t-2 border-black translate-y-full group-hover:translate-y-0 transition-transform z-20">
+                   <p className="font-mono font-bold text-xs">{gig.displayDate} {gig.displayYear}</p>
+                   <p className="font-syne font-bold text-sm truncate">{gig.venue}</p>
+                 </div>
+                 <div className="absolute top-2 right-2 z-20 opacity-0 group-hover:opacity-100 transition-opacity bg-white border border-black p-1">
+                   <ArrowUpRight size={14} />
+                 </div>
+              </div>
+            </a>
+          ))}
+        </div>
+        <div className="hidden md:flex justify-end mt-2 font-mono text-xs text-gray-500 animate-pulse">Scroll pre viac →</div>
+      </div>
+    </div>
+  </section>
+);
+
+// ==========================================
+// MAIN APP COMPONENT
+// ==========================================
+
 const App = () => {
   const [activeSection, setActiveSection] = useState('home');
   const [heroMobileHeight, setHeroMobileHeight] = useState('90svh');
-
   // Lock the hero height exactly once on mobile load to prevent address bar shifting
   useEffect(() => {
     if (window.innerWidth < 768) {
@@ -51,63 +332,6 @@ const App = () => {
   
   // Reference for the draggable area boundaries
   const heroRef = useRef(null);
-
-  // --- IMAGE CONFIGURATION ---
-  // Replace the empty strings "" with your image paths (e.g., "/terez-frecerova/images/my-photo.jpg")
-  const projectImages = {
-    hero: {
-      large: "/hero/hero1.jpg",
-      medium: "/hero/hero2.jpg",
-      small: "/hero/hero3.jpg"
-    },
-    malaBySom: {
-      background: "/projects/album_background.jpg",
-      cover: "/projects/album.jpg"
-    },
-    rapiky: {
-      background: "/projects/rapiky_background.JPG",
-      cover: "/projects/rapiky.JPG"
-    },
-    lsdolina: {
-      background: "/projects/lsdolina.jpeg"
-    },
-    smiesna: {
-      background: "/projects/smiesnaosobnadrama.jpg"
-    }
-  };
-
-  // Data
-  const artistName = "Terez Frecerová";
-  
-  // Raw Concert Data
-  // Add 'photoUrl' for past concerts to appear in the archive grid
-  const rawConcerts = [
-    { venue: "Letná čítáreň U červeného raka", city: "Bratislava, SK", date: "2026-08-19", link: "https://www.mestskakniznica.sk/navstivte/nase-lokality/letna-citaren-u-cerveneho-raka", imgColor: "bg-purple-300", photoUrl: "" },
-    { venue: "Medze Festival", city: "Dolný Kubín, SK", date: "2026-09-05", link: "https://www.instagram.com/medzefestival/", imgColor: "bg-lime-200", photoUrl: "" },
-    { venue: "10 rokov Kurníka", city: "Bratislava, SK", date: "2026-05-21", link: "https://naskurnik.sk/", imgColor: "bg-orange-200", photoUrl: "/concerts/2026-05-21 kurnik.JPG" },
-    { venue: "Literatura žije!", city: "České Budějovice, CZ", date: "2026-04-25", link: "https://www.literatura-zije.cz/", imgColor: "bg-cyan-200", photoUrl: "/concerts/2026-04-25 literatura zije.jpg" },
-    { venue: "United Islands (Klubová noc)", city: "Praha, CZ", date: "2026-04-30", link: "https://www.unitedislands.cz/cs", imgColor: "bg-rose-200", photoUrl: "/concerts/2026-04-30 united islands.JPG" },
-    { venue: "Žižkovská noc", city: "Praha, CZ", date: "2026-03-20", link: "https://www.facebook.com/events/865544609627654", imgColor: "bg-orange-200", photoUrl: "/concerts/2026-03-20 zizkovska noc.jpg" },
-    { venue: "+ Tante Elze: Tiny Flájská", city: "Praha, CZ", date: "2026-01-24", link: "https://www.youtube.com/@TinyFl%C3%A1jsk%C3%A1", imgColor: "bg-teal-200", photoUrl: "/concerts/2026-01-24 tiny flajska.jpg" },
-    { venue: "Popo_FM", city: "Bratislava, SK", date: "2026-03-13", link: "https://fm.stvr.sk/relacie/popo_fm", imgColor: "bg-rose-200", photoUrl: "/concerts/2026-03-13 popofm.jpg" },
-    { venue: "Beseda u Bigbítu", city: "Tasov, CZ", date: "2026-07-31", link: "https://besedaubigbitu.cz/program", imgColor: "bg-fuchsia-200", photoUrl: "" },
-    { venue: "WiFič VEN!_na poli", city: "Bílovice, CZ", date: "2026-08-28", link: "https://www.wificven.cz/", imgColor: "bg-violet-200", photoUrl: "" },
-    { venue: "Christiania (Vyliate duše)", city: "Prešov, SK", date: "2025-12-05", link: "https://www.facebook.com/events/2041057979971614", imgColor: "bg-purple-200", photoUrl: "/concerts/2025-12-05 christiania.jpeg" },
-    { venue: "Anežka (CZ krst albumu)", city: "Praha, CZ", date: "2025-12-13", link: "https://www.facebook.com/events/1676961323261958", imgColor: "bg-purple-200", photoUrl: "/concerts/2025-12-13 anezka.jpg" },
-    { venue: "Pink Whale (SK krst albumu)", city: "Bratislava, SK", date: "2025-11-06", link: "https://koncerty.slnkorecords.sk/event-detail/68dd2aa6ec2eb8327e9f7eb2/", imgColor: "bg-pink-300", photoUrl: "/concerts/2025-11-06 Pink Whale krst.JPG" },
-    { venue: "Wave", city: "Prešov, SK", date: "2025-12-05", link: "https://www.wave.sk/event-detail/68e7a143370bcafa026c654c/?lang=sk_SK", imgColor: "bg-blue-200", photoUrl: "/concerts/2025-12-05 wave.JPG" },
-    { venue: "Beseda u Bigbítu", city: "Tasov, CZ", date: "2025-08-02", link: "https://besedaubigbitu.cz/program/rok/2025", imgColor: "bg-yellow-200", photoUrl: "/concerts/2025-08-02 beseda.jpeg" },
-    { venue: "MFDF Ji.hlava", city: "Jihlava, CZ", date: "2025-10-26", link: "https://www.ji-hlava.cz/akce/terez-frecerova", imgColor: "bg-red-200", photoUrl: "/concerts/2025-10-26 Jihlava.JPG" },
-    { venue: "Trnavský rínek", city: "Trnava, SK", date: "2025-12-06", link: "https://www.facebook.com/events/3293671617474544/", imgColor: "bg-orange-200", photoUrl: "/concerts/2025-12-06 Trnavsky rinek.jpeg" },
-    { venue: "Tužina Groove", city: "Tužina, SK", date: "2025-07-26", link: "https://www.tuzinagroove.sk/program/sobota/", imgColor: "bg-green-200", photoUrl: "/concerts/2025-07-26 tuzina.jpeg" },
-    { venue: "Prüger-Wallnerova záhrada (Letorast)", city: "Bratislava, SK", date: "2024-08-28", link: "https://www.instagram.com/reel/C_F-IMxq1rb/?utm_source=ig_web_copy_link", imgColor: "bg-emerald-200", photoUrl: "/concerts/2024-08-28 Letorast.jpg" },
-    { venue: "Fuga (Poeti z ulice)", city: "Bratislava, SK", date: "2025-03-20", link: "https://www.facebook.com/events/n%C3%A1mestie-snp-24-81101-bratislava-slovakia/poeti-z-ulice-fragmenty-svetla/1837139687060250/", imgColor: "bg-indigo-200", photoUrl: "/concerts/2025-03-20 fuga.jpg" },
-    { venue: "Manifest Bohéma (Srdcové záležitosti)", city: "Bratislava, SK", date: "2024-12-18", link: "https://www.facebook.com/events/1716159449240360/", imgColor: "bg-rose-200", photoUrl: "/concerts/2024-12-18 Srdcove zalezitosti.jpg" },
-    { venue: "Koncertná sieň Klarisiek", city: "Bratislava, SK", date: "2024-05-12", link: "https://goout.net/sk/srdcove-zalezitosti-matky-vsemohuce/szxqxcx/", imgColor: "bg-cyan-200", photoUrl: "/concerts/2024-05-12 Srdcove zalezitosti-Matky vsemohuce.jpeg" },
-    { venue: "Šafko Klub (Tepláreň Kabaret)", city: "Bratislava, SK", date: "2024-11-23", link: "https://tootoot.fm/en/events/65af9de81b234e174cefe18d", imgColor: "bg-lime-200", photoUrl: "/concerts/2024-11-23 teplaren.jpg" },
-    { venue: "Prüger-Wallnerova záhrada", city: "Bratislava, SK", date: "2024-05-30", link: "", imgColor: "bg-lime-200", photoUrl: "/concerts/2024-05-30 Prugerka Bratislava solo.jpeg" },
-    { venue: "Nová Cvernovka", city: "Bratislava, SK", date: "2024-12-07", link: "https://goout.net/uk/kaery-ann%2Bterez-frecerova/szetynx/", imgColor: "bg-fuchsia-200", photoUrl: "/concerts/2024-12-07 Nova Cvernovka.JPG" }
-  ];
 
   // Logic to split and sort concerts
   const { upcoming, past } = useMemo(() => {
@@ -140,60 +364,6 @@ const App = () => {
     return { upcoming: up, past: p };
   }, []);
 
-
-  const album = {
-    title: "Mala by som niečo robiť",
-    label: "Slnko Records",
-    year: "2025",
-    desc: "'...je plnotučným songwriterským svědectvím čerstvé matky, která dává průchod svojí únavě, rozčarování, střetům s realitou, nasranosti, kletbám, naději, únikům.' -Pavel Klusák",
-    color: "bg-orange-300",
-    link: "https://www.slnkorecords.sk/terez-frecerova/mala-by-som-nieco-robit",
-    spotifyLink: "https://open.spotify.com/album/5tvf99kYFfLVPHuRyQs3a6",
-    tidalLink: "https://tidal.com/album/456287612/u"
-  };
-
-  const projects = [
-    {
-      id: "book1",
-      category: "Kniha",
-      title: "Smiešna osobná dráma",
-      publisher: "Tatran, 2016",
-      desc: "Debutový román. Autentická satira o generácii Y, uväznenej medzi študentskou slobodou a absurditou prvého korporátneho jobu. Príbeh plný irónie a slangu o hľadaní zmyslu v banalitách dospelého života.",
-      link: "https://www.martinus.sk/777931-smiesna-osobna-drama/260353",
-      style: "comic", 
-      theme: { bg: "bg-emerald-300", text: "text-black", accent: "bg-black text-emerald-300" }
-    },
-    {
-      id: "podcast",
-      category: "Podcast",
-      title: "LSDolina",
-      publisher: "Spotify",
-      desc: "Dospelácka relácia o psychedelikách a dolinách ľudskej mysle.",
-      link: "https://open.spotify.com/show/4VPddgb3iQSskvQy3touHg",
-      soundcloudLink: "https://soundcloud.com/terezia-frecerova",
-      style: "psychedelic",
-      theme: { bg: "bg-indigo-900", text: "text-indigo-100", accent: "bg-indigo-400" }
-    },
-    {
-      id: "book2",
-      category: "Poézia",
-      title: "Rapíky mladej matere",
-      publisher: "Ursa Minor",
-      desc: "'Freska o moderných ženách, modernom konzume, je to trip do vesmírnej petriho misky, na ktorú mieri galaktický snajper. Melodráma o kojení sveta, ktorý sa vám prisal na prsník cez uzlíček šťastia okolo ktorého číhajú vlásočnice depky.' -Lyrik",
-      link: "https://www.ursa-minor.sk/rapiky-mladej-matere/",
-      style: "manuscript",
-      theme: { bg: "bg-[#f4e4bc]", text: "text-rose-900", accent: "bg-rose-500" }
-    }
-  ];
-
-  const navItems = [
-    { id: 'home', label: 'domov' },
-    { id: 'music', label: 'hudba' },
-    { id: 'concerts', label: 'koncerty' },
-    { id: 'projects', label: 'projekty' },
-    { id: 'contact', label: 'kontakt' },
-  ];
-
   // Helper for scrolling
   const scrollTo = (id) => {
     const element = document.getElementById(id);
@@ -206,306 +376,11 @@ const App = () => {
   return (
     <div className="min-h-screen bg-[#f8f5f2] text-gray-900 font-sans selection:bg-lime-300 selection:text-black overflow-x-hidden">
 
-      {/* Top Marquee */}
-      <div className="bg-lime-300 text-black py-2 font-mono text-sm border-b-2 border-black overflow-hidden relative z-50">
-        <div className="marquee-container">
-          <div className="marquee-content font-bold flex items-center">
-            {/* Original Set */}
-            <a href="https://www.youtube.com/watch?v=dzXfDRHVnE0&list=RDdzXfDRHVnE0&start_radio=1" target="_blank" rel="noreferrer" className="mx-4 hover:underline decoration-black decoration-2 underline-offset-2">
-              ✿ KONCERT S TANTE ELZE v :POPO_FM
-            </a>
-
-            <a href="https://www.instagram.com/p/DVRIJX_DKg1/?img_index=1" target="_blank" rel="noreferrer" className="mx-4 hover:underline decoration-black decoration-2 underline-offset-2">
-              ✿ ALBUM "MALA BY SOM NIEČO ROBIŤ" NA RADIO_HEAD AWARDS 2025
-            </a>
-                        
-            <span className="mx-4">✿ ČEKNI JARNÉ KONCERTY</span>
-
-            <a href="https://soundcloud.com/terezia-frecerova/lsdolina-katarina-janeckova-walshe-trip-nam-pomohol-vo-vztahu-35" target="_blank" rel="noreferrer" className="mx-4 hover:underline decoration-black decoration-2 underline-offset-2">
-              ✿ VYPOČUJ SI LSDOLINU S KATARÍNOU JANEČKOVOU WALSHE
-            </a>
-            
-            <a href="https://www.mujrozhlas.cz/artcafe/debut-hudebnice-terez-frecerove-prinasi-autenticitu-zivota-lehouckou-ironii-i-trapove-beaty" target="_blank" rel="noreferrer" className="mx-4 hover:underline decoration-black decoration-2 underline-offset-2">
-              ✿ ROZHOVOR V ARTCAFÉ NA RÁDIU VLTAVA
-            </a>
-
-            <span className="mx-4">✿ BIČ PLIESKA NA KONCI</span>
-
-            <a href="https://www.youtube.com/watch?v=dzXfDRHVnE0&list=RDdzXfDRHVnE0&start_radio=1" target="_blank" rel="noreferrer" className="mx-4 hover:underline decoration-black decoration-2 underline-offset-2">
-              ✿ KONCERT S TANTE ELZE v :POPO_FM
-            </a>
-
-            {/* Duplicate Set for Seamless Loop */}
-            <a href="https://www.instagram.com/p/DVRIJX_DKg1/?img_index=1" target="_blank" rel="noreferrer" className="mx-4 hover:underline decoration-black decoration-2 underline-offset-2">
-              ✿ ALBUM "MALA BY SOM NIEČO ROBIŤ" NA RADIO_HEAD AWARDS 2025
-            </a>
-
-            <span className="mx-4">✿ ČEKNI JARNÉ KONCERTY</span>
-            
-            <a href="https://soundcloud.com/terezia-frecerova/lsdolina-katarina-janeckova-walshe-trip-nam-pomohol-vo-vztahu-35" target="_blank" rel="noreferrer" className="mx-4 hover:underline decoration-black decoration-2 underline-offset-2">
-              ✿ VYPOČUJ SI LSDOLINU S KATARÍNOU JANEČKOVOU WALSHE
-            </a>
-            
-            <a href="https://www.mujrozhlas.cz/artcafe/debut-hudebnice-terez-frecerove-prinasi-autenticitu-zivota-lehouckou-ironii-i-trapove-beaty" target="_blank" rel="noreferrer" className="mx-4 hover:underline decoration-black decoration-2 underline-offset-2">
-              ✿ ROZHOVOR V ARTCAFÉ NA RÁDIU VLTAVA
-            </a>
-
-            <span className="mx-4">✿ BIČ PLIESKA NA KONCI</span>
-          </div>
-        </div>
-      </div>
-
-      {/* Navigation */}
+      <Marquee />
       <Navbar navItems={navItems} activeSection={activeSection} scrollTo={scrollTo} />
-
-      {/* 1. HERO SECTION (Draggable Diorama) */}
-      <section ref={heroRef} id="home" style={{ minHeight: heroMobileHeight }} className="relative flex flex-col justify-center items-center px-6 pt-24 border-b-2 border-black overflow-hidden noise-bg">
-        
-        {/* Glow Layer (z-0) - Ensures black text is readable if a dark image is dragged under it */}
-        <div className="absolute inset-0 z-0 pointer-events-none flex justify-center items-center">
-            <div className="w-[80vw] h-[60vh] bg-white/70 blur-[80px] rounded-full mix-blend-screen"></div>
-        </div>
-
-        {/* GEOMETRIC SHAPES (z-30)
-            Moved outside the text div so absolute positioning anchors to the section container */}
-        <div className="absolute top-20 left-10 md:left-20 animate-bounce delay-100 z-30 pointer-events-none">
-           <div className="w-12 h-12 bg-yellow-400 rounded-full border-2 border-black"></div>
-        </div>
-        <div className="hidden md:block absolute bottom-40 right-10 md:right-20 animate-pulse z-30 pointer-events-none">
-           <div className="w-16 h-16 bg-blue-400 rotate-45 border-2 border-black"></div>
-        </div>
-
-        {/* LAYER 2: Title & Pills (z-30) - Set to pointer-events-none to allow clicking through */}
-        <div className="relative z-30 pointer-events-none text-center w-full max-w-7xl mb-10">
-          <h1 className="font-syne font-extrabold text-[8vw] 2xl:text-[10rem] leading-[0.85] tracking-tighter mb-8 text-black drop-shadow-sm">
-            TEREZ <br /> FRECEROVÁ
-          </h1>
-          
-          <div className="flex flex-wrap justify-center gap-4">
-            <span className="bg-white border-2 border-black px-6 py-2 rounded-full font-mono text-sm md:text-base font-bold neo-shadow-sm rotate-[-2deg]">
-              Spisovateľka
-            </span>
-            <span className="bg-lime-300 border-2 border-black px-6 py-2 rounded-full font-mono text-sm md:text-base font-bold neo-shadow-sm rotate-[1deg]">
-              Pesničkárka
-            </span>
-            <span className="bg-purple-300 border-2 border-black px-6 py-2 rounded-full font-mono text-sm md:text-base font-bold neo-shadow-sm rotate-[-1deg]">
-              Textárka
-            </span>
-          </div>
-        </div>
-
-        {/* LAYER 4: Largest Image (z-10) - Bottom Layer 
-            Now a sibling of the text container so they don't share z-index constraints. */}
-        <motion.div 
-          drag={window.innerWidth >= 768} 
-          dragConstraints={window.innerWidth >= 768 ? heroRef : undefined}
-          className="relative z-10 w-full max-w-md mx-auto md:translate-x-12 bg-black border-2 border-black neo-shadow rotate-[2deg] overflow-hidden md:cursor-grab active:cursor-grabbing pointer-events-auto"
-        >
-           {projectImages.hero.large ? (
-              <img src={projectImages.hero.large} alt="Terez Frecerová" className="w-full h-auto aspect-[3/2] object-cover pointer-events-none" />
-           ) : (
-              <div className="w-full aspect-[3/2] bg-gray-100 flex items-center justify-center p-6 text-center border border-dashed border-gray-300">
-                 <p className="font-mono text-sm text-gray-500">Large Image (hero.jpg)</p>
-              </div>
-           )}
-        </motion.div>
-
-        {/* LAYER 3: Medium Image (z-20) - Middle Layer
-            Hidden on mobile. Lime border & lime shadow. Anchored to bottom-left. */}
-        <motion.div 
-          drag 
-          dragConstraints={heroRef}
-          className="hidden md:block absolute z-20 w-64 lg:w-80 bottom-24 2xl:bottom-80 left-10 lg:left-20 2xl:left-40 bg-[#bef264] border-2 border-[#bef264] shadow-[6px_6px_0px_0px_#bef264] rotate-[-4deg] overflow-hidden cursor-grab active:cursor-grabbing pointer-events-auto"
-        >
-           {projectImages.hero.medium ? (
-              <img src={projectImages.hero.medium} alt="Terez Frecerová" className="w-full h-auto aspect-square object-cover pointer-events-none" />
-           ) : (
-              <div className="w-full aspect-square bg-gray-100 flex items-center justify-center p-6 text-center border border-dashed border-gray-300">
-                 <p className="font-mono text-sm text-gray-500">Medium Image (hero2.jpg)</p>
-              </div>
-           )}
-        </motion.div>
-
-        {/* LAYER 1: Smallest Image (z-40) - Top Layer (Over the text)
-            Hidden on mobile/tablet (visible on lg+). Purple border & purple shadow. Anchored to bottom-right. */}
-        <motion.div 
-          drag 
-          dragConstraints={heroRef}
-          className="hidden lg:block absolute z-40 w-48 bottom-40 2xl:bottom-165 right-35 lg:right-45 2xl:right-60 bg-[#d8b4fe] border-2 border-[#d8b4fe] shadow-[6px_6px_0px_0px_#d8b4fe] rotate-[5deg] overflow-hidden cursor-grab active:cursor-grabbing pointer-events-auto"
-        >
-           {projectImages.hero.small ? (
-              <img src={projectImages.hero.small} alt="Terez Frecerová" className="w-full h-auto aspect-[4/5] object-cover pointer-events-none" />
-           ) : (
-              <div className="w-full aspect-[4/5] bg-gray-100 flex items-center justify-center p-6 text-center border border-dashed border-gray-300">
-                 <p className="font-mono text-sm text-gray-500">Small Image (hero3.jpg)</p>
-              </div>
-           )}
-        </motion.div>
-
-      </section>
-
-      {/* 2. LATEST ALBUM (Mala by som nieco robit) */}
-      <section id="music" className="border-b-2 border-black">
-        <div className="flex flex-col md:flex-row min-h-[60vh]">
-          {/* Visual Side */}
-          <div className={`md:w-1/2 p-10 flex items-center justify-center border-b-2 md:border-b-0 md:border-r-2 border-black ${album.color} relative overflow-hidden`}>
-            {projectImages.malaBySom.background ? (
-              <img src={projectImages.malaBySom.background} alt="Album Background" className="absolute inset-0 w-full h-full object-cover z-0" />
-            ) : (
-              <div className="absolute inset-0 opacity-10 pointer-events-none">
-                <Disc size={400} className="absolute -right-20 -bottom-20 animate-spin-slow" />
-              </div>
-            )}
-            
-            <div className="relative w-full max-w-md aspect-square bg-white border-2 border-black neo-shadow-lg flex items-center justify-center group overflow-hidden z-10">
-               {/* Album Art Placeholder or Image */}
-               {projectImages.malaBySom.cover ? (
-                 <img src={projectImages.malaBySom.cover} alt="Album Cover" className="w-full h-full object-cover" />
-               ) : (
-                 <div className="text-center p-8">
-                   <Disc size={80} className="mx-auto mb-4" />
-                   <h3 className="font-syne font-bold text-3xl uppercase leading-none mb-2">{album.title}</h3>
-                   <p className="font-mono text-xs uppercase tracking-widest">Slnko Records</p>
-                 </div>
-               )}
-               
-               {/* Hover Overlay */}
-               <div className="absolute inset-0 bg-black/80 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
-                 <a href={album.link} target="_blank" rel="noreferrer" className="bg-lime-300 text-black font-mono font-bold px-8 py-3 rounded-full hover:scale-105 transition-transform flex items-center gap-2">
-                   Kúpiť <ExternalLink size={16}/>
-                 </a>
-               </div>
-            </div>
-          </div>
-
-          {/* Info Side */}
-          <div className="md:w-1/2 p-10 md:p-20 bg-white flex flex-col justify-center">
-            <div className="inline-flex items-center gap-2 font-mono font-bold text-sm mb-4">
-              <div className="w-3 h-3 bg-red-500 rounded-full animate-pulse"></div>
-              NAJNOVŠÍ ALBUM ({album.year})
-            </div>
-            <h2 className="font-syne font-extrabold text-5xl md:text-7xl mb-6 leading-none">
-              Mala by som niečo robiť
-            </h2>
-            <p className="font-mono text-lg md:text-xl text-gray-700 mb-8 leading-relaxed">
-              {album.desc}
-            </p>
-            <div className="flex flex-wrap gap-4">
-               <a href={album.spotifyLink} target="_blank" rel="noreferrer" className="bg-black text-white font-mono px-6 py-3 border-2 border-transparent hover:bg-white hover:text-black hover:border-black transition-all neo-shadow-sm">
-                 Spotify
-               </a>
-               <a href={album.tidalLink} target="_blank" rel="noreferrer" className="bg-black text-white font-mono px-6 py-3 border-2 border-transparent hover:bg-white hover:text-black hover:border-black transition-all neo-shadow-sm">
-                 Tidal
-               </a>
-               <a href={album.link} target="_blank" rel="noreferrer" className="bg-white text-black font-mono px-6 py-3 border-2 border-black hover:bg-orange-100 transition-all neo-shadow-sm">
-                 Kúpiť na Slnko Records
-               </a>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* 3. CONCERTS SECTION (Upcoming & Archive) */}
-      <section id="concerts" className="py-20 bg-white border-b-2 border-black">
-        <div className="max-w-7xl mx-auto px-6">
-          
-          {/* Upcoming Header */}
-          <div className="flex flex-col md:flex-row justify-between items-end mb-12 gap-6">
-            <div className="pl-4">
-              <div className="flex items-center gap-3 mb-2">
-                <Calendar className="w-6 h-6" />
-                <span className="font-mono font-bold text-sm tracking-widest text-blue-600 uppercase">Tour</span>
-              </div>
-              <h2 className="font-syne font-extrabold text-4xl sm:text-5xl md:text-7xl">Najbližšie koncerty</h2>
-            </div>
-            <div className="font-mono text-sm text-gray-500 max-w-xs text-right hidden md:block">
-              Lístky dostupné aj na mieste.
-            </div>
-          </div>
-
-          {/* Upcoming List */}
-          <div className="mb-24">
-            {upcoming.length > 0 ? (
-              <>
-                {upcoming.map((gig, idx) => (
-                  <div 
-                    key={idx} 
-                    className="group relative border-t-2 border-black py-8 pl-4 flex flex-col md:flex-row md:items-center justify-between gap-4 hover:bg-lime-50 transition-colors"
-                  >
-                    <div className="md:w-1/4">
-                      <span className="font-syne font-bold text-3xl md:text-4xl">{gig.displayDate}</span>
-                      <span className="font-mono text-sm text-gray-500 block">{gig.displayYear}</span>
-                    </div>
-                    
-                    <div className="flex-1">
-                      <h3 className="font-mono font-bold text-xl md:text-2xl uppercase mb-1">{gig.venue}</h3>
-                      <div className="flex items-center gap-2 text-gray-600 font-sans">
-                        <MapPin size={16} />
-                        {gig.city}
-                      </div>
-                    </div>
-
-                    <div className="md:w-1/4 flex justify-start md:justify-end">
-                      <a href={gig.link} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 font-mono font-bold border-2 border-black bg-white px-6 py-2 hover:bg-black hover:text-white transition-all neo-shadow-sm group-hover:translate-x-[-4px] group-hover:translate-y-[-4px]">
-                        Lístky <ArrowUpRight size={16} />
-                      </a>
-                    </div>
-                  </div>
-                ))}
-                <div className="border-t-2 border-black"></div>
-              </>
-            ) : (
-              <div className="py-8 text-center font-mono text-gray-500 border-t-2 border-b-2 border-black">
-                Momentálne nie sú naplánované žiadne koncerty.
-              </div>
-            )}
-          </div>
-
-          {/* Past Archive Header */}
-          <div className="flex items-center gap-4 mb-8">
-            <Camera className="w-8 h-8" />
-            <h2 className="font-syne font-bold text-3xl md:text-4xl">Archív</h2>
-          </div>
-
-          {/* Past Archive Grid - Horizontal Scroll */}
-          <div className="w-full overflow-x-auto no-scrollbar pb-6">
-            <div className="flex gap-4 min-w-full w-max">
-              {past.map((gig, idx) => (
-                <a key={idx} href={gig.link} target="_blank" rel="noreferrer" className="group relative cursor-pointer min-w-[280px] md:min-w-[320px] shrink-0 block">
-                  {/* Clean Image Container */}
-                  <div className={`w-full aspect-square ${gig.imgColor} border-2 border-black flex items-center justify-center overflow-hidden relative transition-all group-hover:neo-shadow`}>
-                     {/* Image Placeholder - User can replace bg color with <img src={gig.photoUrl} /> */}
-                     {gig.photoUrl ? (
-                        <img src={gig.photoUrl} alt={gig.venue} className="absolute inset-0 w-full h-full object-cover z-10"/>
-                     ) : (
-                       <>
-                         <div className="absolute inset-0 bg-black opacity-0 group-hover:opacity-20 transition-opacity z-10"></div>
-                         <Music className="opacity-20 text-black group-hover:scale-110 transition-transform" size={40} />
-                       </>
-                     )}
-                     
-                     {/* Overlay Text */}
-                     <div className="absolute bottom-0 left-0 right-0 p-3 bg-white border-t-2 border-black translate-y-full group-hover:translate-y-0 transition-transform z-20">
-                       <p className="font-mono font-bold text-xs">{gig.displayDate} {gig.displayYear}</p>
-                       <p className="font-syne font-bold text-sm truncate">{gig.venue}</p>
-                     </div>
-                     
-                     {/* Gallery Icon Indicator */}
-                     <div className="absolute top-2 right-2 z-20 opacity-0 group-hover:opacity-100 transition-opacity bg-white border border-black p-1">
-                       <ArrowUpRight size={14} />
-                     </div>
-                  </div>
-                </a>
-              ))}
-            </div>
-            {/* Scroll hint if needed */}
-            <div className="hidden md:flex justify-end mt-2 font-mono text-xs text-gray-500 animate-pulse">
-              Scroll pre viac →
-            </div>
-          </div>
-
-        </div>
-      </section>
+      <HeroSection heroMobileHeight={heroMobileHeight} heroRef={heroRef} />
+      <AlbumSection />
+      <ConcertArchive upcoming={upcoming} past={past} />
 
       {/* Projects Container (Reordered & Resized) */}
       <div id="projects">

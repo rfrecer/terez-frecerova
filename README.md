@@ -8,6 +8,7 @@ A highly visual, neo-brutalist single-page portfolio for Terez Frecerová (write
 * **Animation:** Framer Motion (used primarily for the draggable interactive hero diorama)
 * **Icons:** Lucide React
 * **Typography:** Custom fonts loaded locally (`Space Mono`, `Syne`, `Modak`)
+* **Component Structure:** To keep the repository lightweight and scannable, major UI sections (e.g., `Marquee`, `HeroSection`, `AlbumSection`, `ConcertArchive`) are defined as local functional sub-components directly within `App.jsx` rather than fragmented across a `components/` directory.
 
 ## 🎨 Design Philosophy
 The site uses a **Neo-brutalist** aesthetic characterized by high contrast, rigid geometry, and playful interactions. Key design pillars include:
@@ -32,7 +33,8 @@ Static assets are strictly organized within the root `public/` directory so they
 * `/public/social-preview.jpg` - Image explicitly placed at the root for Open Graph and Twitter card meta tags.
 
 ## 🛠 Data Management
-Currently, site data (concert dates, project details, album info) is managed via constant objects and arrays directly inside the codebase. 
+Currently, site data (concert dates, project details, album info) is managed via constant objects and arrays directly inside `App.jsx`. 
+* **Performance Note:** These data constants are deliberately defined *outside* the main `App` component scope to prevent unnecessary memory re-allocation during React render cycles.
 * **Concerts:** The application automatically sorts the raw concert array into `upcoming` (ascending date) and `past` (descending date) based on the current system date.
 
 ## 🚀 Future AI Development Notes

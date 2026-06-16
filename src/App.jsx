@@ -56,23 +56,23 @@ const App = () => {
   // Replace the empty strings "" with your image paths (e.g., "/terez-frecerova/images/my-photo.jpg")
   const projectImages = {
     hero: {
-      large: "hero1.jpg",   // Bottom layer (#4) - Visible on all screens
-      medium: "hero2.jpg", // Middle layer (#3) - Visible on tablet+
-      small: "hero3.jpg"   // Top layer (#1) - Visible on desktop+
+      large: "/hero/hero1.jpg",
+      medium: "/hero/hero2.jpg",
+      small: "/hero/hero3.jpg"
     },
     malaBySom: {
-      background: "album_background.jpg", // Background for the left side of the Music section
-      cover: "album.jpg"       // Album cover image inside the tile
+      background: "/projects/album_background.jpg",
+      cover: "/projects/album.jpg"
     },
     rapiky: {
-      background: "rapiky_background.JPG", // Background for the Rapíky section
-      cover: "rapiky.JPG"       // Book cover image inside the tile
+      background: "/projects/rapiky_background.JPG",
+      cover: "/projects/rapiky.JPG"
     },
     lsdolina: {
-      background: "lsdolina.jpeg"  // Background image for the podcast section
+      background: "/projects/lsdolina.jpeg"
     },
     smiesna: {
-      background: "smiesnaosobnadrama.jpg"  // Background image for the diagonal green section
+      background: "/projects/smiesnaosobnadrama.jpg"
     }
   };
 
@@ -84,29 +84,29 @@ const App = () => {
   const rawConcerts = [
     { venue: "Letná čítáreň U červeného raka", city: "Bratislava, SK", date: "2026-08-19", link: "https://www.mestskakniznica.sk/navstivte/nase-lokality/letna-citaren-u-cerveneho-raka", imgColor: "bg-purple-300", photoUrl: "" },
     { venue: "Medze Festival", city: "Dolný Kubín, SK", date: "2026-09-05", link: "https://www.instagram.com/medzefestival/", imgColor: "bg-lime-200", photoUrl: "" },
-    { venue: "10 rokov Kurníka", city: "Bratislava, SK", date: "2026-05-21", link: "https://naskurnik.sk/", imgColor: "bg-orange-200", photoUrl: "2026-05-21 kurnik.JPG" },
-    { venue: "Literatura žije!", city: "České Budějovice, CZ", date: "2026-04-25", link: "https://www.literatura-zije.cz/", imgColor: "bg-cyan-200", photoUrl: "2026-04-25 literatura zije.jpg" },
-    { venue: "United Islands (Klubová noc)", city: "Praha, CZ", date: "2026-04-30", link: "https://www.unitedislands.cz/cs", imgColor: "bg-rose-200", photoUrl: "2026-04-30 united islands.JPG" },
-    { venue: "Žižkovská noc", city: "Praha, CZ", date: "2026-03-20", link: "https://www.facebook.com/events/865544609627654", imgColor: "bg-orange-200", photoUrl: "2026-03-20 zizkovska noc.jpg" },
-    { venue: "+ Tante Elze: Tiny Flájská", city: "Praha, CZ", date: "2026-01-24", link: "https://www.youtube.com/@TinyFl%C3%A1jsk%C3%A1", imgColor: "bg-teal-200", photoUrl: "2026-01-24 tiny flajska.jpg" },
-    { venue: "Popo_FM", city: "Bratislava, SK", date: "2026-03-13", link: "https://fm.stvr.sk/relacie/popo_fm", imgColor: "bg-rose-200", photoUrl: "2026-03-13 popofm.jpg" },
+    { venue: "10 rokov Kurníka", city: "Bratislava, SK", date: "2026-05-21", link: "https://naskurnik.sk/", imgColor: "bg-orange-200", photoUrl: "/concerts/2026-05-21 kurnik.JPG" },
+    { venue: "Literatura žije!", city: "České Budějovice, CZ", date: "2026-04-25", link: "https://www.literatura-zije.cz/", imgColor: "bg-cyan-200", photoUrl: "/concerts/2026-04-25 literatura zije.jpg" },
+    { venue: "United Islands (Klubová noc)", city: "Praha, CZ", date: "2026-04-30", link: "https://www.unitedislands.cz/cs", imgColor: "bg-rose-200", photoUrl: "/concerts/2026-04-30 united islands.JPG" },
+    { venue: "Žižkovská noc", city: "Praha, CZ", date: "2026-03-20", link: "https://www.facebook.com/events/865544609627654", imgColor: "bg-orange-200", photoUrl: "/concerts/2026-03-20 zizkovska noc.jpg" },
+    { venue: "+ Tante Elze: Tiny Flájská", city: "Praha, CZ", date: "2026-01-24", link: "https://www.youtube.com/@TinyFl%C3%A1jsk%C3%A1", imgColor: "bg-teal-200", photoUrl: "/concerts/2026-01-24 tiny flajska.jpg" },
+    { venue: "Popo_FM", city: "Bratislava, SK", date: "2026-03-13", link: "https://fm.stvr.sk/relacie/popo_fm", imgColor: "bg-rose-200", photoUrl: "/concerts/2026-03-13 popofm.jpg" },
     { venue: "Beseda u Bigbítu", city: "Tasov, CZ", date: "2026-07-31", link: "https://besedaubigbitu.cz/program", imgColor: "bg-fuchsia-200", photoUrl: "" },
     { venue: "WiFič VEN!_na poli", city: "Bílovice, CZ", date: "2026-08-28", link: "https://www.wificven.cz/", imgColor: "bg-violet-200", photoUrl: "" },
-    { venue: "Christiania (Vyliate duše)", city: "Prešov, SK", date: "2025-12-05", link: "https://www.facebook.com/events/2041057979971614", imgColor: "bg-purple-200", photoUrl: "2025-12-05 christiania.jpeg" },
-    { venue: "Anežka (CZ krst albumu)", city: "Praha, CZ", date: "2025-12-13", link: "https://www.facebook.com/events/1676961323261958", imgColor: "bg-purple-200", photoUrl: "2025-12-13 anezka.jpg" },
-    { venue: "Pink Whale (SK krst albumu)", city: "Bratislava, SK", date: "2025-11-06", link: "https://koncerty.slnkorecords.sk/event-detail/68dd2aa6ec2eb8327e9f7eb2/", imgColor: "bg-pink-300", photoUrl: "2025-11-06 Pink Whale krst.JPG" },
-    { venue: "Wave", city: "Prešov, SK", date: "2025-12-05", link: "https://www.wave.sk/event-detail/68e7a143370bcafa026c654c/?lang=sk_SK", imgColor: "bg-blue-200", photoUrl: "2025-12-05 wave.JPG" },
-    { venue: "Beseda u Bigbítu", city: "Tasov, CZ", date: "2025-08-02", link: "https://besedaubigbitu.cz/program/rok/2025", imgColor: "bg-yellow-200", photoUrl: "2025-08-02 beseda.jpeg" },
-    { venue: "MFDF Ji.hlava", city: "Jihlava, CZ", date: "2025-10-26", link: "https://www.ji-hlava.cz/akce/terez-frecerova", imgColor: "bg-red-200", photoUrl: "2025-10-26 Jihlava.JPG" },
-    { venue: "Trnavský rínek", city: "Trnava, SK", date: "2025-12-06", link: "https://www.facebook.com/events/3293671617474544/", imgColor: "bg-orange-200", photoUrl: "2025-12-06 Trnavsky rinek.jpeg" },
-    { venue: "Tužina Groove", city: "Tužina, SK", date: "2025-07-26", link: "https://www.tuzinagroove.sk/program/sobota/", imgColor: "bg-green-200", photoUrl: "2025-07-26 tuzina.jpeg" },
-    { venue: "Prüger-Wallnerova záhrada (Letorast)", city: "Bratislava, SK", date: "2024-08-28", link: "https://www.instagram.com/reel/C_F-IMxq1rb/?utm_source=ig_web_copy_link", imgColor: "bg-emerald-200", photoUrl: "2024-08-28 Letorast.jpg" },
-    { venue: "Fuga (Poeti z ulice)", city: "Bratislava, SK", date: "2025-03-20", link: "https://www.facebook.com/events/n%C3%A1mestie-snp-24-81101-bratislava-slovakia/poeti-z-ulice-fragmenty-svetla/1837139687060250/", imgColor: "bg-indigo-200", photoUrl: "2025-03-20 fuga.jpg" },
-    { venue: "Manifest Bohéma (Srdcové záležitosti)", city: "Bratislava, SK", date: "2024-12-18", link: "https://www.facebook.com/events/1716159449240360/", imgColor: "bg-rose-200", photoUrl: "2024-12-18 Srdcove zalezitosti.jpg" },
-    { venue: "Koncertná sieň Klarisiek", city: "Bratislava, SK", date: "2024-05-12", link: "https://goout.net/sk/srdcove-zalezitosti-matky-vsemohuce/szxqxcx/", imgColor: "bg-cyan-200", photoUrl: "2024-05-12 Srdcove zalezitosti-Matky vsemohuce.jpeg" },
-    { venue: "Šafko Klub (Tepláreň Kabaret)", city: "Bratislava, SK", date: "2024-11-23", link: "https://tootoot.fm/en/events/65af9de81b234e174cefe18d", imgColor: "bg-lime-200", photoUrl: "2024-11-23 teplaren.jpg" },
-    { venue: "Prüger-Wallnerova záhrada", city: "Bratislava, SK", date: "2024-05-30", link: "", imgColor: "bg-lime-200", photoUrl: "2024-05-30 Prugerka Bratislava solo.jpeg" },
-    { venue: "Nová Cvernovka", city: "Bratislava, SK", date: "2024-12-07", link: "https://goout.net/uk/kaery-ann%2Bterez-frecerova/szetynx/", imgColor: "bg-fuchsia-200", photoUrl: "2024-12-07 Nova Cvernovka.JPG" }
+    { venue: "Christiania (Vyliate duše)", city: "Prešov, SK", date: "2025-12-05", link: "https://www.facebook.com/events/2041057979971614", imgColor: "bg-purple-200", photoUrl: "/concerts/2025-12-05 christiania.jpeg" },
+    { venue: "Anežka (CZ krst albumu)", city: "Praha, CZ", date: "2025-12-13", link: "https://www.facebook.com/events/1676961323261958", imgColor: "bg-purple-200", photoUrl: "/concerts/2025-12-13 anezka.jpg" },
+    { venue: "Pink Whale (SK krst albumu)", city: "Bratislava, SK", date: "2025-11-06", link: "https://koncerty.slnkorecords.sk/event-detail/68dd2aa6ec2eb8327e9f7eb2/", imgColor: "bg-pink-300", photoUrl: "/concerts/2025-11-06 Pink Whale krst.JPG" },
+    { venue: "Wave", city: "Prešov, SK", date: "2025-12-05", link: "https://www.wave.sk/event-detail/68e7a143370bcafa026c654c/?lang=sk_SK", imgColor: "bg-blue-200", photoUrl: "/concerts/2025-12-05 wave.JPG" },
+    { venue: "Beseda u Bigbítu", city: "Tasov, CZ", date: "2025-08-02", link: "https://besedaubigbitu.cz/program/rok/2025", imgColor: "bg-yellow-200", photoUrl: "/concerts/2025-08-02 beseda.jpeg" },
+    { venue: "MFDF Ji.hlava", city: "Jihlava, CZ", date: "2025-10-26", link: "https://www.ji-hlava.cz/akce/terez-frecerova", imgColor: "bg-red-200", photoUrl: "/concerts/2025-10-26 Jihlava.JPG" },
+    { venue: "Trnavský rínek", city: "Trnava, SK", date: "2025-12-06", link: "https://www.facebook.com/events/3293671617474544/", imgColor: "bg-orange-200", photoUrl: "/concerts/2025-12-06 Trnavsky rinek.jpeg" },
+    { venue: "Tužina Groove", city: "Tužina, SK", date: "2025-07-26", link: "https://www.tuzinagroove.sk/program/sobota/", imgColor: "bg-green-200", photoUrl: "/concerts/2025-07-26 tuzina.jpeg" },
+    { venue: "Prüger-Wallnerova záhrada (Letorast)", city: "Bratislava, SK", date: "2024-08-28", link: "https://www.instagram.com/reel/C_F-IMxq1rb/?utm_source=ig_web_copy_link", imgColor: "bg-emerald-200", photoUrl: "/concerts/2024-08-28 Letorast.jpg" },
+    { venue: "Fuga (Poeti z ulice)", city: "Bratislava, SK", date: "2025-03-20", link: "https://www.facebook.com/events/n%C3%A1mestie-snp-24-81101-bratislava-slovakia/poeti-z-ulice-fragmenty-svetla/1837139687060250/", imgColor: "bg-indigo-200", photoUrl: "/concerts/2025-03-20 fuga.jpg" },
+    { venue: "Manifest Bohéma (Srdcové záležitosti)", city: "Bratislava, SK", date: "2024-12-18", link: "https://www.facebook.com/events/1716159449240360/", imgColor: "bg-rose-200", photoUrl: "/concerts/2024-12-18 Srdcove zalezitosti.jpg" },
+    { venue: "Koncertná sieň Klarisiek", city: "Bratislava, SK", date: "2024-05-12", link: "https://goout.net/sk/srdcove-zalezitosti-matky-vsemohuce/szxqxcx/", imgColor: "bg-cyan-200", photoUrl: "/concerts/2024-05-12 Srdcove zalezitosti-Matky vsemohuce.jpeg" },
+    { venue: "Šafko Klub (Tepláreň Kabaret)", city: "Bratislava, SK", date: "2024-11-23", link: "https://tootoot.fm/en/events/65af9de81b234e174cefe18d", imgColor: "bg-lime-200", photoUrl: "/concerts/2024-11-23 teplaren.jpg" },
+    { venue: "Prüger-Wallnerova záhrada", city: "Bratislava, SK", date: "2024-05-30", link: "", imgColor: "bg-lime-200", photoUrl: "/concerts/2024-05-30 Prugerka Bratislava solo.jpeg" },
+    { venue: "Nová Cvernovka", city: "Bratislava, SK", date: "2024-12-07", link: "https://goout.net/uk/kaery-ann%2Bterez-frecerova/szetynx/", imgColor: "bg-fuchsia-200", photoUrl: "/concerts/2024-12-07 Nova Cvernovka.JPG" }
   ];
 
   // Logic to split and sort concerts

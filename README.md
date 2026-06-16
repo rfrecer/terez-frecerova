@@ -1,16 +1,40 @@
-# React + Vite
+# Terez Frecerová - Artist Portfolio
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A highly visual, neo-brutalist single-page portfolio for Terez Frecerová (writer, songwriter, lyricist). Built with React, Vite, Tailwind CSS, and Framer Motion.
 
-Currently, two official plugins are available:
+## 🏗 Architecture & Tech Stack
+* **Framework:** React 18 + Vite (for fast HMR and optimized builds)
+* **Styling:** Tailwind CSS v3
+* **Animation:** Framer Motion (used primarily for the draggable interactive hero diorama)
+* **Icons:** Lucide React
+* **Typography:** Custom fonts loaded locally (`Space Mono`, `Syne`, `Modak`)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🎨 Design Philosophy
+The site uses a **Neo-brutalist** aesthetic characterized by high contrast, rigid geometry, and playful interactions. Key design pillars include:
 
-## React Compiler
+1. **Hard Lines & Borders:** Heavy, consistent use of `2px solid black` borders (`border-2 border-black`) on almost all structural elements, buttons, and image frames.
+2. **Sharp Shadows:** Un-blurred, solid black drop shadows (`neo-shadow` custom class: `box-shadow: 4px 4px 0px 0px #000000`, and `neo-shadow-lg` for larger 8px pop-outs).
+3. **Divider Styling:** Major sections are separated by distinct, full-width `2px solid black` bottom borders (`border-b-2 border-black`). Within sections, short thick strokes (e.g., `h-1 bg-black`) are used as thematic dividers.
+4. **Typography-Driven Hierarchy:** Large, bold typography dictates the layout. 
+    * **Syne:** Used for massive, imposing headers (weights ranging from 400 to 800).
+    * **Space Mono:** Provides a technical, structured contrast for utility text, tags, dates, and buttons.
+    * **Modak:** Used sparingly for bubbly, decorative background text.
+5. **Texture & Color:** The base background is an off-white/beige (`#f8f5f2`) overlaid with a subtle SVG fractal noise background (`.noise-bg`) to break up digital flatness. Accent colors are flat and punchy (lime green `#bef264`, purples, bright oranges).
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## 📂 File Structure & Asset Management
+Static assets are strictly organized within the root `public/` directory so they can be easily referenced via absolute standard string paths without requiring JavaScript imports.
 
-## Expanding the ESLint configuration
+* `/public/concerts/` - Archive of gig photography (Naming convention: `YYYY-MM-DD-venue.jpg`)
+* `/public/hero/` - Core images for the top draggable diorama section (`hero1.jpg`, `hero2.jpg`, etc.)
+* `/public/projects/` - Assets specific to highlighted works (e.g., album covers, book covers, podcast backgrounds)
+* `/public/fonts/` - Local `.ttf` and variable font files referenced in `index.css`
+* `/public/icons/` - Favicon (`favicon-32.png`, `icon-192.png`, etc.)
+* `/public/social-preview.jpg` - Image explicitly placed at the root for Open Graph and Twitter card meta tags.
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## 🛠 Data Management
+Currently, site data (concert dates, project details, album info) is managed via constant objects and arrays directly inside the codebase. 
+* **Concerts:** The application automatically sorts the raw concert array into `upcoming` (ascending date) and `past` (descending date) based on the current system date.
+
+## 🚀 Future AI Development Notes
+* **Styling Components:** When adding new UI elements, default to `border-2 border-black bg-white neo-shadow` rather than standard modern web patterns (like rounded grays with soft drop-shadows).
+* **Concert Additions:** To add a new concert, simply append an object to the concert array. Ensure the `date` string follows the strict `YYYY-MM-DD` format for the sorting algorithm to work accurately.

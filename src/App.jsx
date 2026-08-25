@@ -53,7 +53,8 @@ const projectImages = {
 const artistName = "Terez Frecerová";
 
 const rawConcerts = [
-  { venue: "Letná čítáreň U červeného raka", city: "Bratislava, SK", date: "2026-08-19", link: "https://www.mestskakniznica.sk/navstivte/nase-lokality/letna-citaren-u-cerveneho-raka", imgColor: "bg-purple-300", photoUrl: "" },
+  { venue: "Campus Hybernská (Konsent 10. narodeniny)", city: "Praha, CZ", date: "2026-09-26", link: "https://www.facebook.com/events/kampus-hybernská/konsent-slaví-10-let-a-bude-to-velkolepé/2119940502249733/", imgColor: "bg-purple-300", photoUrl: "" },
+  { venue: "Letná čítáreň U červeného raka", city: "Bratislava, SK", date: "2026-08-19", link: "https://www.mestskakniznica.sk/navstivte/nase-lokality/letna-citaren-u-cerveneho-raka", imgColor: "bg-purple-300", photoUrl: "/concerts/2026-08-19 citaren.JPG" },
   { venue: "Medze Festival", city: "Dolný Kubín, SK", date: "2026-09-05", link: "https://www.instagram.com/medzefestival/", imgColor: "bg-lime-200", photoUrl: "" },
   { venue: "10 rokov Kurníka", city: "Bratislava, SK", date: "2026-05-21", link: "https://naskurnik.sk/", imgColor: "bg-orange-200", photoUrl: "/concerts/2026-05-21 kurnik.JPG" },
   { venue: "Literatura žije!", city: "České Budějovice, CZ", date: "2026-04-25", link: "https://www.literatura-zije.cz/", imgColor: "bg-cyan-200", photoUrl: "/concerts/2026-04-25 literatura zije.jpg" },
@@ -61,7 +62,7 @@ const rawConcerts = [
   { venue: "Žižkovská noc", city: "Praha, CZ", date: "2026-03-20", link: "https://www.facebook.com/events/865544609627654", imgColor: "bg-orange-200", photoUrl: "/concerts/2026-03-20 zizkovska noc.jpg" },
   { venue: "+ Tante Elze: Tiny Flájská", city: "Praha, CZ", date: "2026-01-24", link: "https://www.youtube.com/@TinyFl%C3%A1jsk%C3%A1", imgColor: "bg-teal-200", photoUrl: "/concerts/2026-01-24 tiny flajska.jpg" },
   { venue: "Popo_FM", city: "Bratislava, SK", date: "2026-03-13", link: "https://fm.stvr.sk/relacie/popo_fm", imgColor: "bg-rose-200", photoUrl: "/concerts/2026-03-13 popofm.jpg" },
-  { venue: "Beseda u Bigbítu", city: "Tasov, CZ", date: "2026-07-31", link: "https://besedaubigbitu.cz/program", imgColor: "bg-fuchsia-200", photoUrl: "" },
+  { venue: "Beseda u Bigbítu", city: "Tasov, CZ", date: "2026-07-31", link: "https://besedaubigbitu.cz/program", imgColor: "bg-fuchsia-200", photoUrl: "/concerts/2026-07-31 beseda.JPG" },
   { venue: "WiFič VEN!_na poli", city: "Bílovice, CZ", date: "2026-08-28", link: "https://www.wificven.cz/", imgColor: "bg-violet-200", photoUrl: "" },
   { venue: "Christiania (Vyliate duše)", city: "Prešov, SK", date: "2025-12-05", link: "https://www.facebook.com/events/2041057979971614", imgColor: "bg-purple-200", photoUrl: "/concerts/2025-12-05 christiania.jpeg" },
   { venue: "Anežka (CZ krst albumu)", city: "Praha, CZ", date: "2025-12-13", link: "https://www.facebook.com/events/1676961323261958", imgColor: "bg-purple-200", photoUrl: "/concerts/2025-12-13 anezka.jpg" },

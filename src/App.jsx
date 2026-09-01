@@ -1,6 +1,14 @@
 import React, { useState, useEffect, useMemo, useRef } from 'react';
-import { motion } from 'framer-motion';
-import { Music, BookOpen, Mic, ArrowUpRight, Mail, Instagram, Facebook, Calendar, Disc, MapPin, ExternalLink, Camera, Headphones, X, ChevronLeft, ChevronRight, Star, Heart, Zap, FileText, Anchor, Cloud } from 'lucide-react';
+import { motion as Motion } from 'framer-motion';
+import { Music, BookOpen, ArrowUpRight, Mail, Instagram, Facebook, Calendar, Disc, MapPin, ExternalLink, Camera, Headphones, Zap, Cloud } from 'lucide-react';
+import {
+  artistName,
+  projectImages,
+  rawConcerts,
+  album,
+  getProjectById,
+  navItems,
+} from './data/siteData';
 
 const Navbar = ({ navItems, activeSection, scrollTo }) => {
   const [scrolled, setScrolled] = useState(false);
@@ -37,99 +45,10 @@ const Navbar = ({ navItems, activeSection, scrollTo }) => {
   );
 };
 
-// ==========================================
-// STATIC DATA & CONFIGURATION
-// ==========================================
-// Moving constants outside the component prevents re-allocation on every render.
-
-const projectImages = {
-  hero: { large: "/hero/hero1.jpg", medium: "/hero/hero2.jpg", small: "/hero/hero3.jpg" },
-  malaBySom: { background: "/projects/album_background.jpg", cover: "/projects/album.jpg" },
-  rapiky: { background: "/projects/rapiky_background.JPG", cover: "/projects/rapiky.JPG" },
-  lsdolina: { background: "/projects/lsdolina.jpeg" },
-  smiesna: { background: "/projects/smiesnaosobnadrama.jpg" }
-};
-
-const artistName = "Terez Frecerová";
-
-const rawConcerts = [
-  { venue: "Campus Hybernská (Konsent 10. narodeniny)", city: "Praha, CZ", date: "2026-09-26", link: "https://www.facebook.com/events/kampus-hybernská/konsent-slaví-10-let-a-bude-to-velkolepé/2119940502249733/", imgColor: "bg-purple-300", photoUrl: "" },
-  { venue: "Letná čítáreň U červeného raka", city: "Bratislava, SK", date: "2026-08-19", link: "https://www.mestskakniznica.sk/navstivte/nase-lokality/letna-citaren-u-cerveneho-raka", imgColor: "bg-purple-300", photoUrl: "/concerts/2026-08-19 citaren.JPG" },
-  { venue: "Medze Festival", city: "Dolný Kubín, SK", date: "2026-09-05", link: "https://www.instagram.com/medzefestival/", imgColor: "bg-lime-200", photoUrl: "" },
-  { venue: "10 rokov Kurníka", city: "Bratislava, SK", date: "2026-05-21", link: "https://naskurnik.sk/", imgColor: "bg-orange-200", photoUrl: "/concerts/2026-05-21 kurnik.JPG" },
-  { venue: "Literatura žije!", city: "České Budějovice, CZ", date: "2026-04-25", link: "https://www.literatura-zije.cz/", imgColor: "bg-cyan-200", photoUrl: "/concerts/2026-04-25 literatura zije.jpg" },
-  { venue: "United Islands (Klubová noc)", city: "Praha, CZ", date: "2026-04-30", link: "https://www.unitedislands.cz/cs", imgColor: "bg-rose-200", photoUrl: "/concerts/2026-04-30 united islands.JPG" },
-  { venue: "Žižkovská noc", city: "Praha, CZ", date: "2026-03-20", link: "https://www.facebook.com/events/865544609627654", imgColor: "bg-orange-200", photoUrl: "/concerts/2026-03-20 zizkovska noc.jpg" },
-  { venue: "+ Tante Elze: Tiny Flájská", city: "Praha, CZ", date: "2026-01-24", link: "https://www.youtube.com/@TinyFl%C3%A1jsk%C3%A1", imgColor: "bg-teal-200", photoUrl: "/concerts/2026-01-24 tiny flajska.jpg" },
-  { venue: "Popo_FM", city: "Bratislava, SK", date: "2026-03-13", link: "https://fm.stvr.sk/relacie/popo_fm", imgColor: "bg-rose-200", photoUrl: "/concerts/2026-03-13 popofm.jpg" },
-  { venue: "Beseda u Bigbítu", city: "Tasov, CZ", date: "2026-07-31", link: "https://besedaubigbitu.cz/program", imgColor: "bg-fuchsia-200", photoUrl: "/concerts/2026-07-31 beseda.JPG" },
-  { venue: "WiFič VEN!_na poli", city: "Bílovice, CZ", date: "2026-08-28", link: "https://www.wificven.cz/", imgColor: "bg-violet-200", photoUrl: "" },
-  { venue: "Christiania (Vyliate duše)", city: "Prešov, SK", date: "2025-12-05", link: "https://www.facebook.com/events/2041057979971614", imgColor: "bg-purple-200", photoUrl: "/concerts/2025-12-05 christiania.jpeg" },
-  { venue: "Anežka (CZ krst albumu)", city: "Praha, CZ", date: "2025-12-13", link: "https://www.facebook.com/events/1676961323261958", imgColor: "bg-purple-200", photoUrl: "/concerts/2025-12-13 anezka.jpg" },
-  { venue: "Pink Whale (SK krst albumu)", city: "Bratislava, SK", date: "2025-11-06", link: "https://koncerty.slnkorecords.sk/event-detail/68dd2aa6ec2eb8327e9f7eb2/", imgColor: "bg-pink-300", photoUrl: "/concerts/2025-11-06 Pink Whale krst.JPG" },
-  { venue: "Wave", city: "Prešov, SK", date: "2025-12-05", link: "https://www.wave.sk/event-detail/68e7a143370bcafa026c654c/?lang=sk_SK", imgColor: "bg-blue-200", photoUrl: "/concerts/2025-12-05 wave.JPG" },
-  { venue: "Beseda u Bigbítu", city: "Tasov, CZ", date: "2025-08-02", link: "https://besedaubigbitu.cz/program/rok/2025", imgColor: "bg-yellow-200", photoUrl: "/concerts/2025-08-02 beseda.jpeg" },
-  { venue: "MFDF Ji.hlava", city: "Jihlava, CZ", date: "2025-10-26", link: "https://www.ji-hlava.cz/akce/terez-frecerova", imgColor: "bg-red-200", photoUrl: "/concerts/2025-10-26 Jihlava.JPG" },
-  { venue: "Trnavský rínek", city: "Trnava, SK", date: "2025-12-06", link: "https://www.facebook.com/events/3293671617474544/", imgColor: "bg-orange-200", photoUrl: "/concerts/2025-12-06 Trnavsky rinek.jpeg" },
-  { venue: "Tužina Groove", city: "Tužina, SK", date: "2025-07-26", link: "https://www.tuzinagroove.sk/program/sobota/", imgColor: "bg-green-200", photoUrl: "/concerts/2025-07-26 tuzina.jpeg" },
-  { venue: "Prüger-Wallnerova záhrada (Letorast)", city: "Bratislava, SK", date: "2024-08-28", link: "https://www.instagram.com/reel/C_F-IMxq1rb/?utm_source=ig_web_copy_link", imgColor: "bg-emerald-200", photoUrl: "/concerts/2024-08-28 Letorast.jpg" },
-  { venue: "Fuga (Poeti z ulice)", city: "Bratislava, SK", date: "2025-03-20", link: "https://www.facebook.com/events/n%C3%A1mestie-snp-24-81101-bratislava-slovakia/poeti-z-ulice-fragmenty-svetla/1837139687060250/", imgColor: "bg-indigo-200", photoUrl: "/concerts/2025-03-20 fuga.jpg" },
-  { venue: "Manifest Bohéma (Srdcové záležitosti)", city: "Bratislava, SK", date: "2024-12-18", link: "https://www.facebook.com/events/1716159449240360/", imgColor: "bg-rose-200", photoUrl: "/concerts/2024-12-18 Srdcove zalezitosti.jpg" },
-  { venue: "Koncertná sieň Klarisiek", city: "Bratislava, SK", date: "2024-05-12", link: "https://goout.net/sk/srdcove-zalezitosti-matky-vsemohuce/szxqxcx/", imgColor: "bg-cyan-200", photoUrl: "/concerts/2024-05-12 Srdcove zalezitosti-Matky vsemohuce.jpeg" },
-  { venue: "Šafko Klub (Tepláreň Kabaret)", city: "Bratislava, SK", date: "2024-11-23", link: "https://tootoot.fm/en/events/65af9de81b234e174cefe18d", imgColor: "bg-lime-200", photoUrl: "/concerts/2024-11-23 teplaren.jpg" },
-  { venue: "Prüger-Wallnerova záhrada", city: "Bratislava, SK", date: "2024-05-30", link: "", imgColor: "bg-lime-200", photoUrl: "/concerts/2024-05-30 Prugerka Bratislava solo.jpeg" },
-  { venue: "Nová Cvernovka", city: "Bratislava, SK", date: "2024-12-07", link: "https://goout.net/uk/kaery-ann%2Bterez-frecerova/szetynx/", imgColor: "bg-fuchsia-200", photoUrl: "/concerts/2024-12-07 Nova Cvernovka.JPG" }
-];
-
-const album = {
-  title: "Mala by som niečo robiť",
-  label: "Slnko Records",
-  year: "2025",
-  desc: "'...je plnotučným songwriterským svědectvím čerstvé matky, která dává průchod svojí únavě, rozčarování, střetům s realitou, nasranosti, kletbám, naději, únikům.' -Pavel Klusák",
-  color: "bg-orange-300",
-  link: "https://www.slnkorecords.sk/terez-frecerova/mala-by-som-nieco-robit",
-  spotifyLink: "https://open.spotify.com/album/5tvf99kYFfLVPHuRyQs3a6",
-  tidalLink: "https://tidal.com/album/456287612/u"
-};
-
-const projects = [
-  {
-    id: "book1", category: "Kniha", title: "Smiešna osobná dráma", publisher: "Tatran, 2016",
-    desc: "Debutový román. Autentická satira o generácii Y, uväznenej medzi študentskou slobodou a absurditou prvého korporátneho jobu. Príbeh plný irónie a slangu o hľadaní zmyslu v banalitách dospelého života.",
-    link: "https://www.martinus.sk/777931-smiesna-osobna-drama/260353", style: "comic", 
-    theme: { bg: "bg-emerald-300", text: "text-black", accent: "bg-black text-emerald-300" }
-  },
-  {
-    id: "podcast", category: "Podcast", title: "LSDolina", publisher: "Spotify",
-    desc: "Dospelácka relácia o psychedelikách a dolinách ľudskej mysle.",
-    link: "https://open.spotify.com/show/4VPddgb3iQSskvQy3touHg", soundcloudLink: "https://soundcloud.com/terezia-frecerova", style: "psychedelic",
-    theme: { bg: "bg-indigo-900", text: "text-indigo-100", accent: "bg-indigo-400" }
-  },
-  {
-    id: "book2", category: "Poézia", title: "Rapíky mladej matere", publisher: "Ursa Minor",
-    desc: "'Freska o moderných ženách, modernom konzume, je to trip do vesmírnej petriho misky, na ktorú mieri galaktický snajper. Melodráma o kojení sveta, ktorý sa vám prisal na prsník cez uzlíček šťastia okolo ktorého číhajú vlásočnice depky.' -Lyrik",
-    link: "https://www.ursa-minor.sk/rapiky-mladej-matere/", style: "manuscript",
-    theme: { bg: "bg-[#f4e4bc]", text: "text-rose-900", accent: "bg-rose-500" }
-  }
-];
-
-const navItems = [
-  { id: 'home', label: 'domov' },
-  { id: 'music', label: 'hudba' },
-  { id: 'concerts', label: 'koncerty' },
-  { id: 'projects', label: 'projekty' },
-  { id: 'contact', label: 'kontakt' },
-];
-
-// ==========================================
-// SUB-COMPONENTS
-// ==========================================
-
 const Marquee = () => (
   <div className="bg-lime-300 text-black py-2 font-mono text-sm border-b-2 border-black overflow-hidden relative z-50">
     <div className="marquee-container">
       <div className="marquee-content font-bold flex items-center">
-        {/* Original Set */}
         <a href="https://www.youtube.com/watch?v=dzXfDRHVnE0&list=RDdzXfDRHVnE0&start_radio=1" target="_blank" rel="noreferrer" className="mx-4 hover:underline decoration-black decoration-2 underline-offset-2">
           ✿ KONCERT S TANTE ELZE v :POPO_FM
         </a>
@@ -148,7 +67,6 @@ const Marquee = () => (
           ✿ KONCERT S TANTE ELZE v :POPO_FM
         </a>
 
-        {/* Duplicate Set for Seamless Loop */}
         <a href="https://www.instagram.com/p/DVRIJX_DKg1/?img_index=1" target="_blank" rel="noreferrer" className="mx-4 hover:underline decoration-black decoration-2 underline-offset-2">
           ✿ ALBUM "MALA BY SOM NIEČO ROBIŤ" NA RADIO_HEAD AWARDS 2025
         </a>
@@ -165,8 +83,8 @@ const Marquee = () => (
   </div>
 );
 
-const HeroSection = ({ heroMobileHeight, heroRef }) => (
-  <section ref={heroRef} id="home" style={{ minHeight: heroMobileHeight }} className="relative flex flex-col justify-center items-center px-6 pt-24 border-b-2 border-black overflow-hidden noise-bg">
+const HeroSection = ({ heroRef }) => (
+  <section ref={heroRef} id="home" className="relative flex flex-col justify-center items-center px-6 pt-24 min-h-[90svh] border-b-2 border-black overflow-hidden noise-bg">
     <div className="absolute inset-0 z-0 pointer-events-none flex justify-center items-center">
         <div className="w-[80vw] h-[60vh] bg-white/70 blur-[80px] rounded-full mix-blend-screen"></div>
     </div>
@@ -188,17 +106,17 @@ const HeroSection = ({ heroMobileHeight, heroRef }) => (
       </div>
     </div>
 
-    <motion.div drag={window.innerWidth >= 768} dragConstraints={window.innerWidth >= 768 ? heroRef : undefined} className="relative z-10 w-full max-w-md mx-auto md:translate-x-12 bg-black border-2 border-black neo-shadow rotate-[2deg] overflow-hidden md:cursor-grab active:cursor-grabbing pointer-events-auto">
-       <img src={projectImages.hero.large} alt="Terez Frecerová" className="w-full h-auto aspect-[3/2] object-cover pointer-events-none" />
-    </motion.div>
+    <Motion.div drag={window.innerWidth >= 768} dragConstraints={window.innerWidth >= 768 ? heroRef : undefined} className="relative z-10 w-full max-w-md mx-auto md:translate-x-12 bg-black border-2 border-black neo-shadow rotate-[2deg] overflow-hidden md:cursor-grab active:cursor-grabbing pointer-events-auto">
+       <img src={projectImages.hero.large} alt={artistName} className="w-full h-auto aspect-[3/2] object-cover pointer-events-none" />
+    </Motion.div>
 
-    <motion.div drag dragConstraints={heroRef} className="hidden md:block absolute z-20 w-64 lg:w-80 bottom-24 2xl:bottom-80 left-10 lg:left-20 2xl:left-40 bg-[#bef264] border-2 border-[#bef264] shadow-[6px_6px_0px_0px_#bef264] rotate-[-4deg] overflow-hidden cursor-grab active:cursor-grabbing pointer-events-auto">
-       <img src={projectImages.hero.medium} alt="Terez Frecerová" className="w-full h-auto aspect-square object-cover pointer-events-none" />
-    </motion.div>
+    <Motion.div drag dragConstraints={heroRef} className="hidden md:block absolute z-20 w-64 lg:w-80 bottom-24 2xl:bottom-80 left-10 lg:left-20 2xl:left-40 bg-[#bef264] border-2 border-[#bef264] shadow-[6px_6px_0px_0px_#bef264] rotate-[-4deg] overflow-hidden cursor-grab active:cursor-grabbing pointer-events-auto">
+       <img src={projectImages.hero.medium} alt={artistName} className="w-full h-auto aspect-square object-cover pointer-events-none" />
+    </Motion.div>
 
-    <motion.div drag dragConstraints={heroRef} className="hidden lg:block absolute z-40 w-48 bottom-40 2xl:bottom-165 right-35 lg:right-45 2xl:right-60 bg-[#d8b4fe] border-2 border-[#d8b4fe] shadow-[6px_6px_0px_0px_#d8b4fe] rotate-[5deg] overflow-hidden cursor-grab active:cursor-grabbing pointer-events-auto">
-       <img src={projectImages.hero.small} alt="Terez Frecerová" className="w-full h-auto aspect-[4/5] object-cover pointer-events-none" />
-    </motion.div>
+    <Motion.div drag dragConstraints={heroRef} className="hidden lg:block absolute z-40 w-48 bottom-40 2xl:bottom-165 right-35 lg:right-45 2xl:right-60 bg-[#d8b4fe] border-2 border-[#d8b4fe] shadow-[6px_6px_0px_0px_#d8b4fe] rotate-[5deg] overflow-hidden cursor-grab active:cursor-grabbing pointer-events-auto">
+       <img src={projectImages.hero.small} alt={artistName} className="w-full h-auto aspect-[4/5] object-cover pointer-events-none" />
+    </Motion.div>
   </section>
 );
 
@@ -316,24 +234,27 @@ const ConcertArchive = ({ upcoming, past }) => (
   </section>
 );
 
-const ProjectsSection = () => (
+const ProjectsSection = () => {
+  const rapiky = getProjectById('rapiky');
+  const lsdolina = getProjectById('lsdolina');
+  const smiesna = getProjectById('smiesna');
+
+  return (
   <div id="projects">
-    {/* 4. RAPIKY MLADEJ MATERE (Redesigned: Clean Manuscript Style) */}
     <section className="relative min-h-[50vh] bg-[#fdf8e8] border-b-2 border-black flex flex-col md:flex-row overflow-hidden">
-       
        <div className="md:w-1/2 p-12 flex flex-col justify-center relative border-b-2 md:border-b-0 md:border-r-2 border-black z-10">
          <div className="relative z-10">
            <span className="font-mono text-xs font-bold uppercase tracking-widest text-red-600 mb-4 block">
-             Básnická zbierka • {projects[2].publisher}
+             Básnická zbierka • {rapiky.publisher}
            </span>
            <h2 className="font-mono font-bold text-4xl md:text-6xl mb-6 tracking-tight text-gray-900 leading-tight">
              Rapíky <br/> mladej matere
            </h2>
            <div className="w-12 h-1 bg-black mb-6"></div>
            <p className="font-serif italic text-xl leading-relaxed text-gray-700 mb-8 max-w-md">
-             {projects[2].desc}
+             {rapiky.desc}
            </p>
-           <a href={projects[2].link} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 font-mono text-sm font-bold border-b-2 border-black pb-1 hover:text-red-600 hover:border-red-600 transition-colors">
+           <a href={rapiky.link} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 font-mono text-sm font-bold border-b-2 border-black pb-1 hover:text-red-600 hover:border-red-600 transition-colors">
              To chcem <ArrowUpRight size={16} />
            </a>
          </div>
@@ -358,7 +279,6 @@ const ProjectsSection = () => (
        </div>
     </section>
 
-    {/* 5. LSDOLINA (Slightly Smaller) */}
     <section className="relative min-h-[60vh] text-indigo-100 border-b-2 border-black overflow-hidden flex flex-col md:flex-row items-center">
       <div className="absolute inset-0 z-0">
          {projectImages.lsdolina.background ? (
@@ -387,12 +307,12 @@ const ProjectsSection = () => (
              </span>
            </div>
          </div>
-         
+
          <div className="flex flex-col gap-3 w-auto items-center md:items-start mt-auto">
-           <a href={projects[1].link} target="_blank" rel="noreferrer" className="inline-flex items-center justify-center gap-2 bg-green-500 hover:bg-green-400 text-black px-6 py-2 rounded-full font-mono text-sm font-bold transition-all hover:scale-105 w-full md:w-auto shadow-[4px_4px_0_rgba(0,0,0,0.3)]">
+           <a href={lsdolina.link} target="_blank" rel="noreferrer" className="inline-flex items-center justify-center gap-2 bg-green-500 hover:bg-green-400 text-black px-6 py-2 rounded-full font-mono text-sm font-bold transition-all hover:scale-105 w-full md:w-auto shadow-[4px_4px_0_rgba(0,0,0,0.3)]">
              Spotify <Zap size={14} className="fill-black text-black"/>
            </a>
-           <a href={projects[1].soundcloudLink} target="_blank" rel="noreferrer" className="inline-flex items-center justify-center gap-2 bg-white hover:bg-gray-100 text-black px-6 py-2 rounded-full font-mono text-sm font-bold transition-all hover:scale-105 border-2 border-transparent w-full md:w-auto shadow-[4px_4px_0_rgba(0,0,0,0.3)]">
+           <a href={lsdolina.soundcloudLink} target="_blank" rel="noreferrer" className="inline-flex items-center justify-center gap-2 bg-white hover:bg-gray-100 text-black px-6 py-2 rounded-full font-mono text-sm font-bold transition-all hover:scale-105 border-2 border-transparent w-full md:w-auto shadow-[4px_4px_0_rgba(0,0,0,0.3)]">
              Soundcloud <Cloud size={14} className="fill-orange-500 text-orange-500"/>
            </a>
          </div>
@@ -401,13 +321,12 @@ const ProjectsSection = () => (
       <div className="md:w-3/5 p-12 flex items-center relative z-10">
          <p className="font-mono text-lg md:text-2xl font-bold leading-[2.3] max-w-xl">
            <span className="bg-lime-300 text-black px-2 py-0.5 box-decoration-clone">
-             {projects[1].desc}
+             {lsdolina.desc}
            </span>
          </p>
       </div>
     </section>
 
-    {/* 6. SMIESNA OSOBNA DRAMA (Slightly Smaller) */}
     <section className="relative min-h-[50vh] flex flex-col md:flex-row border-b-2 border-black overflow-hidden bg-white">
        <div className="absolute top-0 right-0 w-full h-full md:w-1/2 bg-emerald-300 md:clip-diagonal z-0 overflow-hidden">
          {projectImages.smiesna.background && (
@@ -418,15 +337,15 @@ const ProjectsSection = () => (
        <div className="relative z-10 w-full flex flex-col md:flex-row">
          <div className="md:w-1/2 p-10 flex flex-col justify-center">
            <div className="bg-black text-white inline-block self-start px-3 py-1 font-mono font-bold text-sm mb-4 rotate-[-2deg]">
-             {projects[0].category}
+             {smiesna.category}
            </div>
            <h2 className="font-syne font-extrabold text-4xl md:text-6xl leading-[0.9] mb-6 text-black">
              SMIEŠNA <br/> OSOBNÁ <br/> <span className="text-stroke-black">DRÁMA</span>
            </h2>
            <p className="font-mono text-sm bg-white/90 p-4 border-2 border-black neo-shadow max-w-sm mb-6">
-             {projects[0].desc}
+             {smiesna.desc}
            </p>
-           <a href={projects[0].link} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 font-bold font-mono hover:underline decoration-2">
+           <a href={smiesna.link} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 font-bold font-mono hover:underline decoration-2">
              Chcem pre kamaráta <ArrowUpRight size={18} />
            </a>
          </div>
@@ -435,7 +354,8 @@ const ProjectsSection = () => (
        </div>
     </section>
   </div>
-);
+  );
+};
 
 const ContactFooter = () => (
   <section id="contact" className="py-20 px-6 bg-black text-white text-center relative overflow-hidden">
@@ -458,32 +378,17 @@ const ContactFooter = () => (
     </div>
 
     <footer className="font-mono text-xs text-gray-500 flex flex-col md:flex-row justify-center items-center gap-4">
-      <p>© {new Date().getFullYear()} Terez Frecerová.</p>
+      <p>© {new Date().getFullYear()} {artistName}.</p>
       <span className="hidden md:inline">•</span>
       <p>Praha & Špania Dolina</p>
     </footer>
   </section>
 );
 
-// ==========================================
-// MAIN APP COMPONENT
-// ==========================================
-
 const App = () => {
   const [activeSection, setActiveSection] = useState('home');
-  const [heroMobileHeight, setHeroMobileHeight] = useState('90svh');
-  // Lock the hero height exactly once on mobile load to prevent address bar shifting
-  useEffect(() => {
-    if (window.innerWidth < 768) {
-      setHeroMobileHeight(`${window.innerHeight * 0.9}px`);
-    }
-  }, []);
-  const [selectedImage, setSelectedImage] = useState(null);
-  
-  // Reference for the draggable area boundaries
   const heroRef = useRef(null);
 
-  // Logic to split and sort concerts
   const { upcoming, past } = useMemo(() => {
     const now = new Date();
     const up = [];
@@ -491,11 +396,9 @@ const App = () => {
 
     rawConcerts.forEach(concert => {
       const concertDate = new Date(concert.date);
-      // Format date for display (e.g., "13 DEC")
       const displayDate = concertDate.toLocaleDateString('sk-SK', { day: 'numeric', month: 'short' }).toUpperCase();
-      // Format year for display
       const displayYear = concertDate.getFullYear();
-      
+
       const enhancedConcert = { ...concert, displayDate, displayYear };
 
       if (concertDate >= now) {
@@ -505,16 +408,12 @@ const App = () => {
       }
     });
 
-    //ZS Sort Upcoming: Ascending (Soonest first)
     up.sort((a, b) => new Date(a.date) - new Date(b.date));
-    
-    // Sort Past: Descending (Most recent first)
     p.sort((a, b) => new Date(b.date) - new Date(a.date));
 
     return { upcoming: up, past: p };
   }, []);
 
-  // Helper for scrolling
   const scrollTo = (id) => {
     const element = document.getElementById(id);
     if (element) {
@@ -525,41 +424,13 @@ const App = () => {
 
   return (
     <div className="min-h-screen bg-[#f8f5f2] text-gray-900 font-sans selection:bg-lime-300 selection:text-black overflow-x-hidden">
-
       <Marquee />
       <Navbar navItems={navItems} activeSection={activeSection} scrollTo={scrollTo} />
-      <HeroSection heroMobileHeight={heroMobileHeight} heroRef={heroRef} />
+      <HeroSection heroRef={heroRef} />
       <AlbumSection />
       <ConcertArchive upcoming={upcoming} past={past} />
-
       <ProjectsSection />
       <ContactFooter />
-
-      {/* Simple Image Modal Placeholder */}
-      {selectedImage && (
-        <div className="fixed inset-0 z-[60] bg-black/90 flex items-center justify-center p-4" onClick={() => setSelectedImage(null)}>
-          <button className="absolute top-8 right-8 text-white hover:text-lime-300" onClick={() => setSelectedImage(null)}>
-            <X size={40} />
-          </button>
-          <div className="max-w-4xl w-full bg-white border-2 border-lime-300 p-2" onClick={(e) => e.stopPropagation()}>
-             <div className={`aspect-video w-full ${selectedImage.imgColor} flex items-center justify-center overflow-hidden`}>
-                {/* Modal Image */}
-                {selectedImage.photoUrl ? (
-                  <img src={selectedImage.photoUrl} alt={selectedImage.venue} className="w-full h-full object-cover" />
-                ) : (
-                  <p className="font-mono font-bold text-xl">Galéria obrázkov pre {selectedImage.venue}</p>
-                )}
-             </div>
-             <div className="bg-black text-white p-4 font-mono flex justify-between items-center">
-               <span>{selectedImage.displayDate} {selectedImage.displayYear} - {selectedImage.venue}</span>
-               <div className="flex gap-4">
-                 <ChevronLeft className="cursor-pointer hover:text-lime-300"/>
-                 <ChevronRight className="cursor-pointer hover:text-lime-300"/>
-               </div>
-             </div>
-          </div>
-        </div>
-      )}
     </div>
   );
 };

@@ -19,87 +19,24 @@ jobs:
       - name: Set up Node
         uses: actions/setup-node@v4
         with:
-          # Node 20 is required for Tailwind CSS v4
           node-version: 20
           cache: 'npm'
 
       - name: Install dependencies
-        # Uses npm install to be more forgiving
-        run: npm install
-
-      - name: Ensure Tailwind Plugin (Safety Net)
-        # Installs the plugin explicitly in case it was missed in package.json
-        run: npm install -D @tailwindcss/vite
-
-      - name: Repair Vite Config
-        # This step overwrites vite.config.js with the KNOWN GOOD code.
-        # It fixes any copy-paste errors, typos, or saving issues from the local file.
-        run: |
-          echo "Overwriting vite.config.js with correct configuration..."
-          cat > vite.config.js <<EOF
-          import { defineConfig } from 'vite'
-          import react from '@vitejs/plugin-react'
-          import tailwindcss from '@tailwindcss/vite'
-
-          export default defineConfig({
-            plugins: [
-              react(),
-              tailwindcss(),
-            ],
-            base: './',
-          })
-          EOF
+        run: npm ci
 
       - name: Build
         run: npm run build
         env:
-          CI: false 
+          CI: false
 
-      - name: Debug - List All Files
-        run: |
-          echo "Listing root directory content:"
-          ls -F
-        # This helps confirm what folders were actually created
-
-      - name: Detect Build Folder
-        id: build_folder
-        run: |
-          if [ -d "dist" ]; then
-            echo "BUILD_PATH=./dist" >> $GITHUB_ENV
-            echo "Detected 'dist' folder."
-          elif [ -d "build" ]; then
-            echo "BUILD_PATH=./build" >> $GITHUB_ENV
-            echo "Detected 'build' folder."
-          else
-            echo "::error::Neither 'dist' nor 'build' folder found after build step."
-            exit 1
-          fi
-
-      - name: Fix Jekyll Issues
-        run: |
-          # Create a .nojekyll file to prevent GitHub Pages from ignoring files
-          touch ${{ env.BUILD_PATH }}/.nojekyll
-          echo "Created .nojekyll file in ${{ env.BUILD_PATH }}"
-
-      - name: Debug - Inspect Config & HTML
-        run: |
-          echo "--- CHECKING VITE CONFIG ---"
-          cat vite.config.js || echo "vite.config.js not found in root"
-          
-          echo "--- CHECKING BUILT INDEX.HTML ---"
-          HTML_FILE=$(find ${{ env.BUILD_PATH }} -name "index.html" | head -n 1)
-          if [ -z "$HTML_FILE" ]; then
-            echo "::error::No index.html found in build output!"
-          else
-            echo "Found: $HTML_FILE"
-            cat "$HTML_FILE"
-          fi
+      - name: Add .nojekyll
+        run: touch dist/.nojekyll
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          # Uses the environment variable set in the previous step
-          path: ${{ env.BUILD_PATH }}
+          path: ./dist
 
   deploy:
     environment:

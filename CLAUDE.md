@@ -42,7 +42,7 @@ public/social-preview.jpg
 
 `Marquee` → `Navbar` → `#home` Hero → `#music` Album → `#concerts` Archive → `#projects` (3 blocks) → `#contact` Footer
 
-Nav uses `scrollIntoView` on section IDs defined in `navItems`.
+Nav uses `scrollIntoView` on section IDs defined in `navItems`, with `IntersectionObserver` scroll-spy updating `activeSection` while scrolling.
 
 ## Architecture conventions
 
@@ -66,7 +66,7 @@ Nav uses `scrollIntoView` on section IDs defined in `navItems`.
 |------|-------|
 | Add concert | Append to `rawConcerts` in `src/data/siteData.js`; `date` must be `YYYY-MM-DD` |
 | Add concert photo | Save as `public/concerts/{YYYY-MM-DD}-{venue-slug}.jpg`, set `photoUrl` |
-| Add marquee link | Edit duplicated `Marquee` content in `App.jsx` (both sets for loop) |
+| Add marquee link | Append to `marqueeItems` in `src/data/siteData.js` (rendered twice for seamless loop) |
 | Update album | Edit `album` + `projectImages.malaBySom` in `siteData.js` |
 | Update project | Edit `projects` array + matching `projectImages` key in `siteData.js` |
 | Add hero photo | Drop in `public/hero/`, update `projectImages.hero` |
@@ -88,15 +88,10 @@ Example: `2026-05-21-kurnik.jpg`
 ## Known quirks / do-not-break
 
 - Hero uses `min-h-[90svh]` on mobile to avoid address-bar resize jump
+- Hero drag on the main photo uses `useMediaQuery('(min-width: 768px)')` and updates on resize
 - `ProjectsSection` render order (Rapíky → LSDolina → Smiešna) uses `getProjectById()` lookups
 - `base: './'` in `vite.config.js` required for GitHub Pages relative paths
 
 ## Deployment
 
 Push to `main` triggers CI build + GitHub Pages deploy. Build output: `dist/` with `.nojekyll` added in workflow.
-
-## Future work (out of scope unless requested)
-
-- Scroll-spy for `activeSection` (currently click-only)
-- `window.innerWidth` in HeroSection render — won't update on resize
-- Data-driven Marquee (currently duplicated markup for seamless loop)

@@ -82,6 +82,27 @@ export const projects = [
   },
 ];
 
+export const marqueeItems = [
+  {
+    label: '✿ KONCERT S TANTE ELZE v :POPO_FM',
+    href: 'https://www.youtube.com/watch?v=dzXfDRHVnE0&list=RDdzXfDRHVnE0&start_radio=1',
+  },
+  {
+    label: '✿ ALBUM "MALA BY SOM NIEČO ROBIŤ" NA RADIO_HEAD AWARDS 2025',
+    href: 'https://www.instagram.com/p/DVRIJX_DKg1/?img_index=1',
+  },
+  { label: '✿ ČEKNI JARNÉ KONCERTY' },
+  {
+    label: '✿ VYPOČUJ SI LSDOLINU S KATARÍNOU JANEČKOVOU WALSHE',
+    href: 'https://soundcloud.com/terezia-frecerova/lsdolina-katarina-janeckova-walshe-trip-nam-pomohol-vo-vztahu-35',
+  },
+  {
+    label: '✿ ROZHOVOR V ARTCAFÉ NA RÁDIU VLTAVA',
+    href: 'https://www.mujrozhlas.cz/artcafe/debut-hudebnice-terez-frecerove-prinasi-autenticitu-zivota-lehouckou-ironii-i-trapove-beaty',
+  },
+  { label: '✿ BIČ PLIESKA NA KONCI' },
+];
+
 export const navItems = [
   { id: 'home', label: 'domov' },
   { id: 'music', label: 'hudba' },

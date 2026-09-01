@@ -7,8 +7,36 @@ import {
   rawConcerts,
   album,
   getProjectById,
+  marqueeItems,
   navItems,
 } from './data/siteData';
+
+const useMediaQuery = (query) => {
+  const [matches, setMatches] = useState(() => window.matchMedia(query).matches);
+
+  useEffect(() => {
+    const mediaQuery = window.matchMedia(query);
+    const onChange = (event) => setMatches(event.matches);
+    mediaQuery.addEventListener('change', onChange);
+    return () => mediaQuery.removeEventListener('change', onChange);
+  }, [query]);
+
+  return matches;
+};
+
+const MarqueeItem = ({ item }) => {
+  const className = 'mx-4 hover:underline decoration-black decoration-2 underline-offset-2';
+
+  if (item.href) {
+    return (
+      <a href={item.href} target="_blank" rel="noreferrer" className={className}>
+        {item.label}
+      </a>
+    );
+  }
+
+  return <span className="mx-4">{item.label}</span>;
+};
 
 const Navbar = ({ navItems, activeSection, scrollTo }) => {
   const [scrolled, setScrolled] = useState(false);
@@ -49,41 +77,18 @@ const Marquee = () => (
   <div className="bg-lime-300 text-black py-2 font-mono text-sm border-b-2 border-black overflow-hidden relative z-50">
     <div className="marquee-container">
       <div className="marquee-content font-bold flex items-center">
-        <a href="https://www.youtube.com/watch?v=dzXfDRHVnE0&list=RDdzXfDRHVnE0&start_radio=1" target="_blank" rel="noreferrer" className="mx-4 hover:underline decoration-black decoration-2 underline-offset-2">
-          ✿ KONCERT S TANTE ELZE v :POPO_FM
-        </a>
-        <a href="https://www.instagram.com/p/DVRIJX_DKg1/?img_index=1" target="_blank" rel="noreferrer" className="mx-4 hover:underline decoration-black decoration-2 underline-offset-2">
-          ✿ ALBUM "MALA BY SOM NIEČO ROBIŤ" NA RADIO_HEAD AWARDS 2025
-        </a>
-        <span className="mx-4">✿ ČEKNI JARNÉ KONCERTY</span>
-        <a href="https://soundcloud.com/terezia-frecerova/lsdolina-katarina-janeckova-walshe-trip-nam-pomohol-vo-vztahu-35" target="_blank" rel="noreferrer" className="mx-4 hover:underline decoration-black decoration-2 underline-offset-2">
-          ✿ VYPOČUJ SI LSDOLINU S KATARÍNOU JANEČKOVOU WALSHE
-        </a>
-        <a href="https://www.mujrozhlas.cz/artcafe/debut-hudebnice-terez-frecerove-prinasi-autenticitu-zivota-lehouckou-ironii-i-trapove-beaty" target="_blank" rel="noreferrer" className="mx-4 hover:underline decoration-black decoration-2 underline-offset-2">
-          ✿ ROZHOVOR V ARTCAFÉ NA RÁDIU VLTAVA
-        </a>
-        <span className="mx-4">✿ BIČ PLIESKA NA KONCI</span>
-        <a href="https://www.youtube.com/watch?v=dzXfDRHVnE0&list=RDdzXfDRHVnE0&start_radio=1" target="_blank" rel="noreferrer" className="mx-4 hover:underline decoration-black decoration-2 underline-offset-2">
-          ✿ KONCERT S TANTE ELZE v :POPO_FM
-        </a>
-
-        <a href="https://www.instagram.com/p/DVRIJX_DKg1/?img_index=1" target="_blank" rel="noreferrer" className="mx-4 hover:underline decoration-black decoration-2 underline-offset-2">
-          ✿ ALBUM "MALA BY SOM NIEČO ROBIŤ" NA RADIO_HEAD AWARDS 2025
-        </a>
-        <span className="mx-4">✿ ČEKNI JARNÉ KONCERTY</span>
-        <a href="https://soundcloud.com/terezia-frecerova/lsdolina-katarina-janeckova-walshe-trip-nam-pomohol-vo-vztahu-35" target="_blank" rel="noreferrer" className="mx-4 hover:underline decoration-black decoration-2 underline-offset-2">
-          ✿ VYPOČUJ SI LSDOLINU S KATARÍNOU JANEČKOVOU WALSHE
-        </a>
-        <a href="https://www.mujrozhlas.cz/artcafe/debut-hudebnice-terez-frecerove-prinasi-autenticitu-zivota-lehouckou-ironii-i-trapove-beaty" target="_blank" rel="noreferrer" className="mx-4 hover:underline decoration-black decoration-2 underline-offset-2">
-          ✿ ROZHOVOR V ARTCAFÉ NA RÁDIU VLTAVA
-        </a>
-        <span className="mx-4">✿ BIČ PLIESKA NA KONCI</span>
+        {[...marqueeItems, ...marqueeItems].map((item, index) => (
+          <MarqueeItem key={`${item.label}-${index}`} item={item} />
+        ))}
       </div>
     </div>
   </div>
 );
 
-const HeroSection = ({ heroRef }) => (
+const HeroSection = ({ heroRef }) => {
+  const isDesktop = useMediaQuery('(min-width: 768px)');
+
+  return (
   <section ref={heroRef} id="home" className="relative flex flex-col justify-center items-center px-6 pt-24 min-h-[90svh] border-b-2 border-black overflow-hidden noise-bg">
     <div className="absolute inset-0 z-0 pointer-events-none flex justify-center items-center">
         <div className="w-[80vw] h-[60vh] bg-white/70 blur-[80px] rounded-full mix-blend-screen"></div>
@@ -106,7 +111,7 @@ const HeroSection = ({ heroRef }) => (
       </div>
     </div>
 
-    <Motion.div drag={window.innerWidth >= 768} dragConstraints={window.innerWidth >= 768 ? heroRef : undefined} className="relative z-10 w-full max-w-md mx-auto md:translate-x-12 bg-black border-2 border-black neo-shadow rotate-[2deg] overflow-hidden md:cursor-grab active:cursor-grabbing pointer-events-auto">
+    <Motion.div drag={isDesktop} dragConstraints={isDesktop ? heroRef : undefined} className="relative z-10 w-full max-w-md mx-auto md:translate-x-12 bg-black border-2 border-black neo-shadow rotate-[2deg] overflow-hidden md:cursor-grab active:cursor-grabbing pointer-events-auto">
        <img src={projectImages.hero.large} alt={artistName} className="w-full h-auto aspect-[3/2] object-cover pointer-events-none" />
     </Motion.div>
 
@@ -118,7 +123,8 @@ const HeroSection = ({ heroRef }) => (
        <img src={projectImages.hero.small} alt={artistName} className="w-full h-auto aspect-[4/5] object-cover pointer-events-none" />
     </Motion.div>
   </section>
-);
+  );
+};
 
 const AlbumSection = () => (
   <section id="music" className="border-b-2 border-black">
@@ -421,6 +427,28 @@ const App = () => {
       setActiveSection(id);
     }
   };
+
+  useEffect(() => {
+    const sections = navItems
+      .map(({ id }) => document.getElementById(id))
+      .filter(Boolean);
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const visible = entries.filter((entry) => entry.isIntersecting);
+        if (visible.length === 0) return;
+
+        const active = visible.reduce((best, entry) =>
+          entry.intersectionRatio > best.intersectionRatio ? entry : best
+        );
+        setActiveSection(active.target.id);
+      },
+      { rootMargin: '-20% 0px -55% 0px', threshold: [0, 0.25, 0.5, 0.75, 1] }
+    );
+
+    sections.forEach((section) => observer.observe(section));
+    return () => observer.disconnect();
+  }, []);
 
   return (
     <div className="min-h-screen bg-[#f8f5f2] text-gray-900 font-sans selection:bg-lime-300 selection:text-black overflow-x-hidden">

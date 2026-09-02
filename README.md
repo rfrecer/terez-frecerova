@@ -2,7 +2,7 @@
 
 A highly visual, neo-brutalist single-page portfolio for Terez Frecerová (writer, songwriter, lyricist). Built with React, Vite, Tailwind CSS, and Framer Motion.
 
-For AI assistant conventions and content-editing guides, see [CLAUDE.md](CLAUDE.md).
+For AI assistant conventions and content-editing guides, see [AGENTS.md](AGENTS.md).
 
 ## Architecture & Tech Stack
 

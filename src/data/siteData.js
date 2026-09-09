@@ -9,9 +9,11 @@ export const projectImages = {
 };
 
 export const rawConcerts = [
+  { venue: 'Jinčí čin', city: 'Jičín, CZ', date: 'TBA', link: 'https://www.jincicin.cz', imgColor: 'bg-fuchsia-300', photoUrl: '' },
+  { venue: 'Podzimní snění', city: 'Běleč nad Orlicí, CZ', date: '2026-11-06', link: 'https://www.instagram.com/podzimni_sneni?stkn=MTAwd2Q4eTduemE1Mg==', imgColor: 'bg-purple-300', photoUrl: '' },
   { venue: 'Campus Hybernská (Konsent 10. narodeniny)', city: 'Praha, CZ', date: '2026-09-26', link: 'https://www.facebook.com/events/kampus-hybernská/konsent-slaví-10-let-a-bude-to-velkolepé/2119940502249733/', imgColor: 'bg-purple-300', photoUrl: '' },
   { venue: 'Letná čítáreň U červeného raka', city: 'Bratislava, SK', date: '2026-08-19', link: 'https://www.mestskakniznica.sk/navstivte/nase-lokality/letna-citaren-u-cerveneho-raka', imgColor: 'bg-purple-300', photoUrl: '/concerts/2026-08-19-citaren.jpg' },
-  { venue: 'Medze Festival', city: 'Dolný Kubín, SK', date: '2026-09-05', link: 'https://www.instagram.com/medzefestival/', imgColor: 'bg-lime-200', photoUrl: '' },
+  { venue: 'Medze Festival', city: 'Dolný Kubín, SK', date: '2026-09-05', link: 'https://www.instagram.com/medzefestival/', imgColor: 'bg-lime-200', photoUrl: '/concerts/2026-09-05-medze.jpg' },
   { venue: '10 rokov Kurníka', city: 'Bratislava, SK', date: '2026-05-21', link: 'https://naskurnik.sk/', imgColor: 'bg-orange-200', photoUrl: '/concerts/2026-05-21-kurnik.jpg' },
   { venue: 'Literatura žije!', city: 'České Budějovice, CZ', date: '2026-04-25', link: 'https://www.literatura-zije.cz/', imgColor: 'bg-cyan-200', photoUrl: '/concerts/2026-04-25-literatura-zije.jpg' },
   { venue: 'United Islands (Klubová noc)', city: 'Praha, CZ', date: '2026-04-30', link: 'https://www.unitedislands.cz/cs', imgColor: 'bg-rose-200', photoUrl: '/concerts/2026-04-30-united-islands.jpg' },
@@ -19,7 +21,7 @@ export const rawConcerts = [
   { venue: '+ Tante Elze: Tiny Flájská', city: 'Praha, CZ', date: '2026-01-24', link: 'https://www.youtube.com/@TinyFl%C3%A1jsk%C3%A1', imgColor: 'bg-teal-200', photoUrl: '/concerts/2026-01-24-tiny-flajska.jpg' },
   { venue: 'Popo_FM', city: 'Bratislava, SK', date: '2026-03-13', link: 'https://fm.stvr.sk/relacie/popo_fm', imgColor: 'bg-rose-200', photoUrl: '/concerts/2026-03-13-popofm.jpg' },
   { venue: 'Beseda u Bigbítu', city: 'Tasov, CZ', date: '2026-07-31', link: 'https://besedaubigbitu.cz/program', imgColor: 'bg-fuchsia-200', photoUrl: '/concerts/2026-07-31-beseda.jpg' },
-  { venue: 'WiFič VEN!_na poli', city: 'Bílovice, CZ', date: '2026-08-28', link: 'https://www.wificven.cz/', imgColor: 'bg-violet-200', photoUrl: '' },
+  { venue: 'WiFič VEN!_na poli', city: 'Bílovice, CZ', date: '2026-08-28', link: 'https://www.wificven.cz/', imgColor: 'bg-violet-200', photoUrl: '/concerts/2026-08-28-wific.jpg' },
   { venue: 'Christiania (Vyliate duše)', city: 'Prešov, SK', date: '2025-12-05', link: 'https://www.facebook.com/events/2041057979971614', imgColor: 'bg-purple-200', photoUrl: '/concerts/2025-12-05-christiania.jpeg' },
   { venue: 'Anežka (CZ krst albumu)', city: 'Praha, CZ', date: '2025-12-13', link: 'https://www.facebook.com/events/1676961323261958', imgColor: 'bg-purple-200', photoUrl: '/concerts/2025-12-13-anezka.jpg' },
   { venue: 'Pink Whale (SK krst albumu)', city: 'Bratislava, SK', date: '2025-11-06', link: 'https://koncerty.slnkorecords.sk/event-detail/68dd2aa6ec2eb8327e9f7eb2/', imgColor: 'bg-pink-300', photoUrl: '/concerts/2025-11-06-pink-whale-krst.jpg' },
@@ -84,6 +86,10 @@ export const projects = [
 
 export const marqueeItems = [
   {
+    label: '✿ POĎ NA PODZIMNÍ SNĚNÍ',
+    href: 'https://www.instagram.com/podzimni_sneni?stkn=MTAwd2Q4eTduemE1Mg==',
+  },
+  {
     label: '✿ KONCERT S TANTE ELZE v :POPO_FM',
     href: 'https://www.youtube.com/watch?v=dzXfDRHVnE0&list=RDdzXfDRHVnE0&start_radio=1',
   },
@@ -91,7 +97,7 @@ export const marqueeItems = [
     label: '✿ ALBUM "MALA BY SOM NIEČO ROBIŤ" NA RADIO_HEAD AWARDS 2025',
     href: 'https://www.instagram.com/p/DVRIJX_DKg1/?img_index=1',
   },
-  { label: '✿ ČEKNI JARNÉ KONCERTY' },
+  { label: '✿ LUPNI SI JESENNÉ KONCERTY' },
   {
     label: '✿ VYPOČUJ SI LSDOLINU S KATARÍNOU JANEČKOVOU WALSHE',
     href: 'https://soundcloud.com/terezia-frecerova/lsdolina-katarina-janeckova-walshe-trip-nam-pomohol-vo-vztahu-35',
@@ -100,7 +106,7 @@ export const marqueeItems = [
     label: '✿ ROZHOVOR V ARTCAFÉ NA RÁDIU VLTAVA',
     href: 'https://www.mujrozhlas.cz/artcafe/debut-hudebnice-terez-frecerove-prinasi-autenticitu-zivota-lehouckou-ironii-i-trapove-beaty',
   },
-  { label: '✿ BIČ PLIESKA NA KONCI' },
+  { label: '✿ RADŠEJ HAMOVAŤ AKO BANOVAŤ' },
 ];
 
 export const navItems = [

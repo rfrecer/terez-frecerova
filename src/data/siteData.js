@@ -11,7 +11,7 @@ export const projectImages = {
 export const rawConcerts = [
   { venue: 'Jinčí čin', city: 'Jičín, CZ', date: '2026-11-14', link: 'https://www.jincicin.cz', imgColor: 'bg-fuchsia-300', photoUrl: '' },
   { venue: 'Podzimní snění', city: 'Běleč nad Orlicí, CZ', date: '2026-11-06', link: 'https://www.instagram.com/podzimni_sneni?stkn=MTAwd2Q4eTduemE1Mg==', imgColor: 'bg-purple-300', photoUrl: '' },
-  { venue: 'Campus Hybernská (Konsent 10. narodeniny)', city: 'Praha, CZ', date: '2026-09-26', link: 'https://www.facebook.com/events/kampus-hybernská/konsent-slaví-10-let-a-bude-to-velkolepé/2119940502249733/', imgColor: 'bg-purple-300', photoUrl: '2026-09-26-konsent.jpeg' },
+  { venue: 'Campus Hybernská (Konsent 10. narodeniny)', city: 'Praha, CZ', date: '2026-09-26', link: 'https://www.facebook.com/events/kampus-hybernská/konsent-slaví-10-let-a-bude-to-velkolepé/2119940502249733/', imgColor: 'bg-purple-300', photoUrl: '2026-09-26-konsent.jpg' },
   { venue: 'Letná čítáreň U červeného raka', city: 'Bratislava, SK', date: '2026-08-19', link: 'https://www.mestskakniznica.sk/navstivte/nase-lokality/letna-citaren-u-cerveneho-raka', imgColor: 'bg-purple-300', photoUrl: '/concerts/2026-08-19-citaren.jpg' },
   { venue: 'Medze Festival', city: 'Dolný Kubín, SK', date: '2026-09-05', link: 'https://www.instagram.com/medzefestival/', imgColor: 'bg-lime-200', photoUrl: '/concerts/2026-09-05-medze.jpg' },
   { venue: '10 rokov Kurníka', city: 'Bratislava, SK', date: '2026-05-21', link: 'https://naskurnik.sk/', imgColor: 'bg-orange-200', photoUrl: '/concerts/2026-05-21-kurnik.jpg' },
